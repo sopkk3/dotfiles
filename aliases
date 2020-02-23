@@ -1,0 +1,17 @@
+# Universal Shell Aliases
+alias mkdir='mkdir -p'
+alias chown='chown -Rv'
+alias chmod='chmod -Rv'
+alias grep='grep --color=always'
+
+# Personal aliases
+alias dirs='dirs -v'
+alias cl='clear'
+alias cd..='cd ..'
+
+# Git
+alias gaa='git add -A'
+alias gcmsg='git commit -m '
+alias gp='git push'
+alias gss='git status -s'
+alias gd='git diff'

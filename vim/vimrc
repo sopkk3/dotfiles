@@ -1,0 +1,195 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+" call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" NERDTree
+Plugin 'scrooloose/nerdtree'
+
+" Vim-Airline - Shows current mode and other file details
+Plugin 'bling/vim-airline'
+
+" Ctrl P - Enables ctrl+p fuzzy file search
+Plugin 'ctrlpvim/ctrlp.vim'
+
+" Fugitive - Integracion de vim con git
+Plugin 'tpope/vim-fugitive'
+
+" vim-surround - quoting/parenthesizing made simple
+Plugin 'tpope/vim-surround'
+
+" vim-repeat - enables . repetition for some plugins
+Plugin 'tpope/vim-repeat'
+
+" vim-go - Go language support for vim
+Plugin 'fatih/vim-go'
+
+" mirar https://github.com/Raimondi/delimitMate
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" To ignore plugin indent changes, instead use:
+" filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+filetype plugin indent on
+syntax on
+
+""""""""""""
+" CTRL-P
+let g:ctrlp_map = '<leader>s'
+
+" Set ctrlP mode to mixed - searches in buffers and MRU
+let g:ctrlp_cmd = 'CtrlPMixed'
+
+" Setup some default ignores
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\v[\/](\.(git|hg|svn)|\_site)$',
+  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+\}
+
+" Use ag-silver-searcher as search engine
+" github.com/ggreer/the_silver_searcher
+if executable('ag')
+  " User Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag --literal --files-with-matches --nocolor --hidden -g "" %s'
+
+  " ag is fast enoguh that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+
+endif
+
+colorscheme mirodark
+set t_Co=256
+
+let mapleader = ","
+autocmd BufWritePre * %s/\s\+$//e " Deletes trailing whitespace on save
+set autoindent                    " Copies indentation from previous line
+set encoding=utf-8
+set relativenumber
+set number
+set wildmenu
+set hlsearch
+set nobackup
+set nowritebackup
+set noswapfile
+
+set scrolloff=3                   " Leave n lines of buffer when scrolling
+set sidescrolloff=5               " Same for horizontal
+" set colorcolumn=80
+" set background=dark
+
+" Basic commands mapping
+noremap <leader>w :w<CR>
+noremap <leader>q :q!<CR>
+inoremap jj <ESC>
+inoremap jk <ESC>
+nnoremap Y y$
+setglobal pastetoggle=<F3>
+
+" <Ctrl-l> redraws the screen and removes any search highlighting.
+nnoremap <silent> <leader>L :nohl<CR><C-l>
+
+" Copy/Paste to system clipboard
+" * and + are sys clipboards
+" * is PRIMARY or on select (pasted with mid mouse button)
+" + is CLIPBOARD, ^C (pasted with ctrl+c)
+noremap <Leader>y "+y
+noremap <Leader>p "+p
+" noremap <Leader>y "*y
+" noremap <Leader>p "*p
+" Also possible to map clipboard variable to these clipboards
+" set clipboard=unnamed or unnamedplus (* or +)
+
+" Airline settings
+set laststatus=2
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" Open NERDTree automatically on vim startup
+" au VimEnter *  NERDTree
+
+" Activate NERDTree
+map <silent> <C-n> :NERDTreeToggle<CR>
+
+" YouCompleteMe settings
+" disables preview window on completions
+" https://github.com/Valloric/YouCompleteMe#the-gycm_add_preview_to_completeopt-option
+set completeopt-=preview
+
+" Split manipulation
+noremap <silent> <leader>k :res +1<CR>
+noremap <silent> <leader>j :res -1<CR>
+noremap <silent> <leader>l :vertical resize +2<CR>
+noremap <silent> <leader>h :vertical resize -2<CR>
+
+" Window/buffer movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+noremap <silent> <leader>n :bnext<CR>
+noremap <leader>Q :bd<space>
+noremap <leader>D :bn\|bd #<CR>
+noremap <leader>e :buffer<space>
+
+" Spaces & Tabs
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+
+" Add a new line and exit instert mode
+let @o='ojk'
+
+" GUI options
+if has("gui_running")
+  if has("gui_win32")
+    set guifont=Consolas:h11:cANSI
+  endif
+endif
+
+" Making Parenthesis & Brackets Handling Easer
+" http://vim.wikia.com/wiki/Making_Parenthesis_And_Brackets_Handling_Easier
+inoremap ( ()<Esc>:call BC_AddChar(")")<CR>i
+inoremap { {}<Esc>:call BC_AddChar("}")<CR>i
+inoremap [ []<Esc>:call BC_AddChar("]")<CR>i
+
+" jump out of parenthesis
+inoremap <C-f> <Esc>:call search(BC_GetChar(), "W")<CR>a
+
+function! BC_AddChar(schar)
+ if exists("b:robstack")
+ let b:robstack = b:robstack . a:schar
+ else
+ let b:robstack = a:schar
+ endif
+endfunction
+
+function! BC_GetChar()
+ let l:char = b:robstack[strlen(b:robstack)-1]
+ let b:robstack = strpart(b:robstack, 0, strlen(b:robstack)-1)
+ return l:char
+endfunction
