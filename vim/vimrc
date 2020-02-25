@@ -31,7 +31,8 @@ Plugin 'tpope/vim-repeat'
 " vim-go - Go language support for vim
 Plugin 'fatih/vim-go'
 
-" mirar https://github.com/Raimondi/delimitMate
+" YouCompleteMe - Code completion engine for vim
+Plugin 'ycm-core/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -176,6 +177,8 @@ endif
 inoremap ( ()<Esc>:call BC_AddChar(")")<CR>i
 inoremap { {}<Esc>:call BC_AddChar("}")<CR>i
 inoremap [ []<Esc>:call BC_AddChar("]")<CR>i
+inoremap ' ''<Esc>:call BC_AddChar("'")<CR>i
+inoremap {<CR> {<CR>}<Esc>:call BC_AddChar("}")<CR><Esc>kA<CR>
 
 " jump out of parenthesis
 inoremap <C-f> <Esc>:call search(BC_GetChar(), "W")<CR>a

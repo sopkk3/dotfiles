@@ -8,6 +8,8 @@ alias grep='grep --color=always'
 alias dirs='dirs -v'
 alias cl='clear'
 alias cd..='cd ..'
+alias python='python3'
+alias pip='pip3'
 
 # Git
 alias gaa='git add -A'
