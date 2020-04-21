@@ -1,11 +1,8 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-" call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
@@ -37,20 +34,6 @@ Plugin 'ycm-core/YouCompleteMe'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-
-" To ignore plugin indent changes, instead use:
-" filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-filetype plugin indent on
 syntax on
 
 """"""""""""
@@ -63,8 +46,8 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 " Setup some default ignores
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v[\/](\.(git|hg|svn)|\_site)$',
-  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+  \ 'dir': '\v[\/](node_modules|target|dist)(\.(git|hg|svn)|\_site)$',
+  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg|o)$',
 \}
 
 " Use ag-silver-searcher as search engine
@@ -80,21 +63,25 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 
 endif
+""""""""""""
 
-colorscheme mirodark
+colorscheme badwolf
 set t_Co=256
 
 let mapleader = ","
 autocmd BufWritePre * %s/\s\+$//e " Deletes trailing whitespace on save
 set autoindent                    " Copies indentation from previous line
 set encoding=utf-8
-set relativenumber
-set number
 set wildmenu
-set hlsearch
 set nobackup
 set nowritebackup
 set noswapfile
+set ignorecase
+set cursorline
+set relativenumber
+set number
+autocmd InsertEnter * :set norelativenumber
+autocmd InsertLeave * :set relativenumber
 
 set scrolloff=3                   " Leave n lines of buffer when scrolling
 set sidescrolloff=5               " Same for horizontal
@@ -168,7 +155,14 @@ let @o='ojk'
 " GUI options
 if has("gui_running")
   if has("gui_win32")
+    set backspace=indent,eol,start
     set guifont=Consolas:h11:cANSI
+    set guioptions-=m
+    set guioptions-=T
+    set guioptions-=r
+    set guioptions-=L
+    au GUIEnter * sim ~x
+    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe
   endif
 endif
 
@@ -177,7 +171,6 @@ endif
 inoremap ( ()<Esc>:call BC_AddChar(")")<CR>i
 inoremap { {}<Esc>:call BC_AddChar("}")<CR>i
 inoremap [ []<Esc>:call BC_AddChar("]")<CR>i
-inoremap ' ''<Esc>:call BC_AddChar("'")<CR>i
 inoremap {<CR> {<CR>}<Esc>:call BC_AddChar("}")<CR><Esc>kA<CR>
 
 " jump out of parenthesis
