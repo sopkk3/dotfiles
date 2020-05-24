@@ -13,8 +13,8 @@ Plugin 'scrooloose/nerdtree'
 " Vim-Airline - Shows current mode and other file details
 Plugin 'bling/vim-airline'
 
-" Ctrl P - Enables ctrl+p fuzzy file search
-Plugin 'ctrlpvim/ctrlp.vim'
+" command-t - Fuzzy file search
+Plugin 'wincent/command-t'
 
 " Fugitive - Integracion de vim con git
 Plugin 'tpope/vim-fugitive'
@@ -36,33 +36,6 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
 
-""""""""""""
-" CTRL-P
-let g:ctrlp_map = '<leader>s'
-
-" Set ctrlP mode to mixed - searches in buffers and MRU
-let g:ctrlp_cmd = 'CtrlPMixed'
-
-" Setup some default ignores
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v[\/](node_modules|target|dist)(\.(git|hg|svn)|\_site)$',
-  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg|o)$',
-\}
-
-" Use ag-silver-searcher as search engine
-" github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " User Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag --literal --files-with-matches --nocolor --hidden -g "" %s'
-
-  " ag is fast enoguh that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-
-endif
 """"""""""""
 
 colorscheme badwolf
@@ -105,27 +78,8 @@ nnoremap <silent> <leader>L :nohl<CR><C-l>
 " + is CLIPBOARD, ^C (pasted with ctrl+c)
 noremap <Leader>y "+y
 noremap <Leader>p "+p
-" noremap <Leader>y "*y
-" noremap <Leader>p "*p
 " Also possible to map clipboard variable to these clipboards
 " set clipboard=unnamed or unnamedplus (* or +)
-
-" Airline settings
-set laststatus=2
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-
-" Open NERDTree automatically on vim startup
-" au VimEnter *  NERDTree
-
-" Activate NERDTree
-map <silent> <C-n> :NERDTreeToggle<CR>
-
-" YouCompleteMe settings
-" disables preview window on completions
-" https://github.com/Valloric/YouCompleteMe#the-gycm_add_preview_to_completeopt-option
-set completeopt-=preview
 
 " Split manipulation
 noremap <silent> <leader>k :res +1<CR>
@@ -148,6 +102,7 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
+set backspace=indent,eol,start
 
 " Add a new line and exit instert mode
 let @o='ojk'
@@ -155,7 +110,6 @@ let @o='ojk'
 " GUI options
 if has("gui_running")
   if has("gui_win32")
-    set backspace=indent,eol,start
     set guifont=Consolas:h11:cANSI
     set guioptions-=m
     set guioptions-=T
@@ -189,3 +143,21 @@ function! BC_GetChar()
  let b:robstack = strpart(b:robstack, 0, strlen(b:robstack)-1)
  return l:char
 endfunction
+
+" Airline settings
+set laststatus=2
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" Activate NERDTree
+map <silent> <C-n> :NERDTreeToggle<CR>
+
+" YouCompleteMe settings
+" disables preview window on completions
+" https://github.com/Valloric/YouCompleteMe#the-gycm_add_preview_to_completeopt-option
+set completeopt-=preview
+
+" command-t settings
+nnoremap <leader>s :CommandT<CR>
+nnoremap <leader>S :CommandTBuffer<CR>
