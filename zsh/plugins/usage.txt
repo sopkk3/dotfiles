@@ -1,2 +1,0 @@
-Link folders to ~/.oh-my-zsh/custom/plugins
-Add line plugin=(plugin-folder-name) to .zshrc
