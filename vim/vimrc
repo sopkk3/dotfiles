@@ -11,7 +11,10 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 
 " Vim-Airline - Shows current mode and other file details
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+
+" Airline themes
+Plugin 'vim-airline/vim-airline-themes'
 
 " command-t - Fuzzy file search
 Plugin 'wincent/command-t'
@@ -22,6 +25,9 @@ Plugin 'tpope/vim-fugitive'
 " vim-surround - quoting/parenthesizing made simple
 Plugin 'tpope/vim-surround'
 
+" vim-commentary - Comment stuff out
+Plugin 'tpope/vim-commentary'
+
 " vim-repeat - enables . repetition for some plugins
 Plugin 'tpope/vim-repeat'
 
@@ -31,7 +37,6 @@ Plugin 'fatih/vim-go'
 " YouCompleteMe - Code completion engine for vim
 Plugin 'ycm-core/YouCompleteMe'
 
-" All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
@@ -53,19 +58,19 @@ set ignorecase
 set cursorline
 set relativenumber
 set number
+set wildignore+=*/node_modules/*,*/target/*,*/.out,*/.git/*,*.swp
+inoremap <C-C> <Esc>`^
 autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
 
 set scrolloff=3                   " Leave n lines of buffer when scrolling
 set sidescrolloff=5               " Same for horizontal
-" set colorcolumn=80
+set colorcolumn=100
 " set background=dark
 
 " Basic commands mapping
 noremap <leader>w :w<CR>
 noremap <leader>q :q!<CR>
-inoremap jj <ESC>
-inoremap jk <ESC>
 nnoremap Y y$
 setglobal pastetoggle=<F3>
 
@@ -78,8 +83,6 @@ nnoremap <silent> <leader>L :nohl<CR><C-l>
 " + is CLIPBOARD, ^C (pasted with ctrl+c)
 noremap <Leader>y "+y
 noremap <Leader>p "+p
-" Also possible to map clipboard variable to these clipboards
-" set clipboard=unnamed or unnamedplus (* or +)
 
 " Split manipulation
 noremap <silent> <leader>k :res +1<CR>
@@ -104,9 +107,6 @@ set shiftwidth=2
 set expandtab
 set backspace=indent,eol,start
 
-" Add a new line and exit instert mode
-let @o='ojk'
-
 " GUI options
 if has("gui_running")
   if has("gui_win32")
@@ -120,35 +120,14 @@ if has("gui_running")
   endif
 endif
 
-" Making Parenthesis & Brackets Handling Easer
-" http://vim.wikia.com/wiki/Making_Parenthesis_And_Brackets_Handling_Easier
-inoremap ( ()<Esc>:call BC_AddChar(")")<CR>i
-inoremap { {}<Esc>:call BC_AddChar("}")<CR>i
-inoremap [ []<Esc>:call BC_AddChar("]")<CR>i
-inoremap {<CR> {<CR>}<Esc>:call BC_AddChar("}")<CR><Esc>kA<CR>
-
-" jump out of parenthesis
-inoremap <C-f> <Esc>:call search(BC_GetChar(), "W")<CR>a
-
-function! BC_AddChar(schar)
- if exists("b:robstack")
- let b:robstack = b:robstack . a:schar
- else
- let b:robstack = a:schar
- endif
-endfunction
-
-function! BC_GetChar()
- let l:char = b:robstack[strlen(b:robstack)-1]
- let b:robstack = strpart(b:robstack, 0, strlen(b:robstack)-1)
- return l:char
-endfunction
+inoremap {<CR> {<CR>}<Esc>O
 
 " Airline settings
 set laststatus=2
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_theme = 'base16'
 
 " Activate NERDTree
 map <silent> <C-n> :NERDTreeToggle<CR>
@@ -161,3 +140,7 @@ set completeopt-=preview
 " command-t settings
 nnoremap <leader>s :CommandT<CR>
 nnoremap <leader>S :CommandTBuffer<CR>
+
+" vim-commentary
+autocmd FileType c,cpp,cs,java        setlocal commentstring=//\ %s
+autocmd FileType sql                  setlocal commentstring=--\ %s
