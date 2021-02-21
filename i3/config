@@ -18,10 +18,10 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 bindsym $mod+h focus left
 
-bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
+bindsym $mod+Left focus left
 
 # move focused window
 bindsym $mod+Shift+j move down
@@ -29,10 +29,10 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 bindsym $mod+Shift+h move left
 
-bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Left move left
 
 # change split orientation
 bindsym $mod+t split toggle
@@ -150,17 +150,16 @@ bar {
 bindsym $mod+Shift+x exec $HOME/.config/i3/lock.sh
 
 # Assign application to workspaces
-assign [class="Google-chrome"] $workspace2
 assign [class="Spotify"] $workspace10
 
 # NetworkManager
 exec --no-startup-id nm-applet
 
 # Set wallpaper
-exec_always feh --bg-scale $HOME/Pictures/japan_calamar.jpg
+exec_always feh --bg-scale $HOME/Pictures/grey.jpg
 
 # Activate tap to click (Touchpad) and natural scrolling
-exec $HOME/.config/i3/natural_scroll.sh
+# exec $HOME/.config/i3/natural_scroll.sh
 
 # Media Keys
 # Pulse Audio controls
@@ -169,9 +168,9 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% #decrease sound vo
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec brightness.sh +5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec brightness.sh -5 # decrease screen brightness
+# bindsym XF86MonBrightnessUp exec brightness.sh +5 # increase screen brightness
+# bindsym XF86MonBrightnessDown exec brightness.sh -5 # decrease screen brightness
 
 # Touchpad controls
-bindsym XF86TouchpadToggle exec $HOME/.config/i3/toggletouchpad.sh # toggle touchpad
+# bindsym XF86TouchpadToggle exec $HOME/.config/i3/toggletouchpad.sh # toggle touchpad
 

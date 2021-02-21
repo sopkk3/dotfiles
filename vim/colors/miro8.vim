@@ -13,7 +13,8 @@ let g:colors_name="miro8"
 hi Normal          ctermfg=white	cterm=bold
 hi Ignore          ctermfg=black	cterm=bold
 hi Comment         ctermfg=grey
-hi LineNr          ctermfg=black	cterm=bold
+hi LineNr          ctermfg=yellow	cterm=bold
+" hi LineNr          ctermfg=black	cterm=bold -- original line
 hi NonText         ctermfg=black	cterm=bold
 hi Float           ctermfg=yellow
 hi Include         ctermfg=magenta
@@ -35,7 +36,7 @@ hi Repeat          ctermfg=red		cterm=bold
 hi Statement       ctermfg=blue
 hi Label           ctermfg=magenta	cterm=bold
 hi Operator        ctermfg=yellow
-hi Keyword         ctermfg=red		cterm=bold   
+hi Keyword         ctermfg=red		cterm=bold
 hi StorageClass    ctermfg=yellow	cterm=bold
 hi Structure       ctermfg=magenta
 hi Typedef         ctermfg=cyan
@@ -44,7 +45,7 @@ hi Exception       ctermfg=red
 hi Underlined      ctermfg=blue
 hi Title           ctermfg=yellow
 hi Tag             ctermfg=yellow	cterm=bold
-hi Delimiter       ctermfg=blue		cterm=bold 
+hi Delimiter       ctermfg=blue		cterm=bold
 hi SpecialComment  ctermfg=red		cterm=bold
 hi Boolean         ctermfg=yellow
 hi Todo            ctermfg=red		ctermbg=None	cterm=bold
@@ -75,11 +76,11 @@ hi DiffChange      ctermfg=black
 hi DiffDelete      ctermfg=black    ctermbg=blue
 "test
 
-" Specific for Vim script  --- 
+" Specific for Vim script  ---
 hi vimCommentTitle ctermfg=green	cterm=bold
 hi vimFold         ctermfg=black    ctermbg=white	cterm=bold
 
-" Specific for help files  --- 
+" Specific for help files  ---
 hi helpHyperTextJump ctermfg=yellow	cterm=bold
 
 " JS numbers only ---
@@ -90,17 +91,17 @@ hi htmlTag        ctermfg=cyan
 hi htmlEndTag     ctermfg=cyan
 hi htmlTagName    ctermfg=yellow	cterm=bold
 
-" Specific for Perl  --- 
+" Specific for Perl  ---
 hi perlSharpBang  ctermfg=green		cterm=bold	term=standout
 hi perlStatement  ctermfg=magenta	cterm=bold
 hi perlStatementStorage ctermfg=red
 hi perlVarPlain   ctermfg=yellow
 hi perlVarPlain2  ctermfg=yellow	cterm=bold
 
-" Specific for Ruby  --- 
+" Specific for Ruby  ---
 hi rubySharpBang  ctermfg=green		cterm=bold term=standout
 
-" Spell checking  --- 
+" Spell checking  ---
 if version >= 700
   hi clear SpellBad
   hi clear SpellCap
@@ -113,5 +114,5 @@ if version >= 700
 endif
 
 "endif
-	
+
 " vim: foldmethod=marker foldmarker={{{,}}}:

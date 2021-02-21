@@ -1,0 +1,16 @@
+let mapleader = ","
+set relativenumber
+set number
+set surround
+set commentary
+set encoding=utf-8
+
+noremap <leader>w :w<CR>
+noremap <leader>q :q!<CR>
+nnoremap Y y$
+
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set backspace=indent,eol,start
