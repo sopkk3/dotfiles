@@ -11,6 +11,7 @@ alias cd..='cd ..'
 alias python='python3'
 alias pip='pip3'
 alias vim='nvim'
+alias kc='kubectl'
 
 # Git
 alias gaa='git add -A'

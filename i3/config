@@ -147,9 +147,11 @@ bar {
 
 # Custom config
 bindsym $mod+Shift+x exec $HOME/.config/i3/lock.sh
+mouse_warping none
 
 # Assign application to workspaces
-assign [class="Spotify"] $workspace10
+# xprop WM_CLASS(STRING) second value
+# assign [class="Spotify"] $workspace10
 
 # NetworkManager
 exec --no-startup-id nm-applet
