@@ -44,7 +44,15 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # Launches ssh-agent
-eval `keychain --eval --agents ssh $HOME/.ssh/git/id_rsa`
+if command -v keychain &> /dev/null
+then
+  eval `keychain --eval --agents ssh $HOME/.ssh/git/id_rsa`
+fi
 
 # set key repeat rate. delay 400 milisecond, 50 per sec
 xset r rate 400 50
+
+if command -v kubectl &> /dev/null
+then
+source <(kubectl completion zsh)
+fi
