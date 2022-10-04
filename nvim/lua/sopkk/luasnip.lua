@@ -24,7 +24,6 @@ ls.config.set_config {
 
 vim.keymap.set({ 'i', 's' }, '<C-k>', function()
     -- vim.api.nvim_echo({{'first chunk and ', 'None'}, {'second chunk to echo', 'None'}}, false, {})
-    --   vim.cmd('echom "none"')
     if ls.expand_or_jumpable() then
       ls.expand_or_jump()
     end
