@@ -56,7 +56,7 @@ hi MatchParen      ctermfg=black    ctermbg=white
 hi ErrorMsg        ctermfg=red	    ctermbg=None
 hi WildMenu        ctermfg=magenta  ctermbg=white	cterm=bold
 hi Folded          cterm=reverse 	ctermfg=cyan    ctermbg=black
-hi Search          ctermfg=red	    ctermbg=white	cterm=bold
+hi Search          ctermfg=red	    ctermbg=236 cterm=bold
 hi IncSearch       ctermfg=red	    ctermbg=white
 hi WarningMsg      ctermfg=red	    ctermbg=white
 hi Question        ctermfg=green    ctermbg=white	cterm=bold

@@ -1,0 +1,12 @@
+vim.g.mapleader = ','
+
+require 'sopkk.plugins'
+require 'sopkk.options'
+require 'sopkk.lsp'
+require 'sopkk.keymaps'
+require 'sopkk.telescope'
+require 'sopkk.treesitter'
+require 'sopkk.colors'
+require 'sopkk.lualine'
+require 'sopkk.luasnip'
+require 'sopkk.gitsigns'

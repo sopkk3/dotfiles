@@ -1,17 +1,16 @@
-# Universal Shell Aliases
+# General
 alias mkdir='mkdir -p'
 alias chown='chown -Rv'
 alias chmod='chmod -Rv'
 alias grep='grep --color=always'
-
-# Personal aliases
-alias dirs='dirs -v'
-alias cl='clear'
 alias cd..='cd ..'
 alias python='python3'
 alias pip='pip3'
 alias vim='nvim'
 alias kc='kubectl'
+alias kx='kubectx'
+alias tf='terraform'
+alias nctl='nerdctl'
 
 # Git
 alias gaa='git add -A'
@@ -19,3 +18,5 @@ alias gcmsg='git commit -m '
 alias gp='git push'
 alias gss='git status -s'
 alias gd='git diff'
+alias gsw='git switch -; git pull'
+alias gl='git pull'
