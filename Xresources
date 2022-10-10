@@ -1,24 +1,14 @@
 urxvt.termName: rxvt-256color
-urxvt.font: xft:Droid Sans Mono Dotted for Powerline:size=10
+! urxvt.font:
 urxvt.letterSpace: -1
 urxvt.scrollBar: false
 
-! https://terminal.sexy/
-!
-! Terminal Color Scheme: dark
-!
-! Maintainer: Jason W Ryan <http://jasonwryan.com/>
-!
-! higher contrast background
-*background: #000000
+*background: #171717
 *foreground: #999999
 ! black dark/light
 ! higher contrast black dark/light
-*color0:     #121212
+*color0:     #171717
 *color8:     #3d3d3d
-! lower contrast black dark/light
-!*color0:     #3d3d3d
-!*color8:     #5e5e5e
 ! red dark/light
 *color1:     #8a2f58
 *color9:     #cf4f88

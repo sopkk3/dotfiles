@@ -49,11 +49,16 @@ end
 
 -- TBD: move to nvim function
 command 'autocmd BufWritePre * %s/\\s\\+$//e' -- Deletes trailing whitespace on save
-command 'autocmd BufRead,BufNewFile *Jenkinsfile* set filetype=groovy'
 -- vim-commentary
 command 'autocmd FileType c,cpp,cs,java        setlocal commentstring=//\\ %s'
 command 'autocmd FileType sql                  setlocal commentstring=--\\ %s'
 command 'autocmd FileType toml                 setlocal commentstring=#\\ %s'
+
+vim.filetype.add({
+  pattern = {
+    ['.*Jenkinsfile.*'] = 'groovy'
+  }
+})
 
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   callback = function()

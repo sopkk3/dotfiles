@@ -30,11 +30,11 @@ export BAT_THEME="ansi"
 # Launches ssh-agent
 if command -v keychain &> /dev/null
 then
-  eval `keychain --eval --agents ssh $HOME/.ssh/git/id_rsa`
+  eval `keychain --eval --agents ssh $HOME/.ssh/id_dot`
 fi
 
 # set key repeat rate. delay 400 milisecond, 50 per sec
-if command -v kubectl &> /dev/null
+if command -v xset &> /dev/null
 then
   xset r rate 400 50
 fi

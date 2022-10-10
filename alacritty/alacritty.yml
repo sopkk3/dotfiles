@@ -1,0 +1,18 @@
+import:
+  - ~/.config/alacritty/themes/sopkk.yml
+window:
+  padding:
+   x: 5
+   y: 0
+
+font:
+  normal:
+    family: SFMono Nerd Font
+  size: 13.0
+
+cursor:
+  style:
+    shape: Block
+    blinking: Off
+
+live_config_reload: true

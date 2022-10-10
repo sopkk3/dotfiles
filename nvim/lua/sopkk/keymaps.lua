@@ -16,6 +16,7 @@ local mappings = {
 
   -- Buffers, tabs and qfix list
   {'n', '<leader>n', ':bnext<CR>'},
+  {'n', '<leader>bd', ':bd<CR>'},
   {'n', '<leader>DD', ':call delete(expand("%")) | bdelete!<CR>'},
   {'n', '<Left>', 'gT'},
   {'n', '<Right>', 'gt'},
