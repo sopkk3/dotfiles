@@ -4,7 +4,7 @@ local options = {
   backup = false,
   writebackup = false,
   swapfile = false,
-  mouse = '',
+  mouse = 'nv',
 
   ignorecase = true,
   smartcase = true,

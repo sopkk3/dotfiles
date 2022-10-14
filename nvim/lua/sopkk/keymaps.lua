@@ -29,10 +29,10 @@ local mappings = {
   {'n', '<leader>os', ':set scrollbind!<CR>'},
   {'n', '<leader>tn', ':tabnew<CR>'},
 
-  {'n', '[<Space>', ':m .-2<CR>=='},
-  {'v', '[<Space>', ':m .-2<CR>==gv'},
-  {'n', ']<Space>', ':m .+1<CR>=='},
-  -- {'v', ']<Space>', ':m >+1<CR>==gv'}, error
+  {'n', ']<Space>', ':m .-2<CR>=='},
+  {'v', ']<Space>', ':m .-2<CR>==gv'},
+  {'n', '[<Space>', ':m .+1<CR>=='},
+  -- {'v', '[<Space>', ':m >+1<CR>==gv'}, error
 
   {'n', '<leader>dd', ':.!base64 -d<CR>'},
   {'n', '<leader>de', ':.!base64<CR>'},
