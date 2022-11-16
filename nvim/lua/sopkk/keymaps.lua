@@ -24,8 +24,8 @@ local mappings = {
   {'n', '<C-k>', ':cprev<CR>zz'},
   {'n', '<A-.>', '<C-W>>'},
   {'n', '<A-,>', '<C-W><'},
-  {'n', '<A-n>', '<C-W>+'},
-  {'n', '<A-m>', '<C-W>-'},
+  {'n', '<A-m>', '<C-W>+'},
+  {'n', '<A-n>', '<C-W>-'},
   {'n', '<leader>os', ':set scrollbind!<CR>'},
   {'n', '<leader>tn', ':tabnew<CR>'},
 
@@ -55,7 +55,7 @@ local mappings = {
 
   -- vim wiki
   {'n', '<leader>WW', ':VimwikiIndex<CR>'},
-  {'n', '<leader>WC', ':VimwikiToggleListItem<CR>'},
+  {'n', '<leader>wc', ':VimwikiToggleListItem<CR>'},
 
   -- harpoon
   {'n', '<leader>ad', ':lua require("harpoon.mark").add_file()<CR>'},

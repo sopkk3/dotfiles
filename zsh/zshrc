@@ -8,9 +8,13 @@ plugins=(
 )
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.aliases
+
+function mkcd { command mkdir $1 && cd $1 }
+function jqp { jq -R -r '. as $line | try fromjson catch $line' }
 
 if [[ $OSTYPE == 'darwin'* ]]; then
   export JAVA_HOME=$(/usr/libexec/java_home)

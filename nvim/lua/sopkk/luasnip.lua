@@ -10,13 +10,13 @@ local i = ls.insert_node
 
 ls.config.set_config {
   history = true,
-  updateevents = "TextChanged,TextChangedI",
+  updateevents = 'TextChanged,TextChangedI',
   enable_autosnippets = true,
 
   ext_opts = {
     [types.choiceNode] = {
       active = {
-        virt_text = { { " <- Current Choice", "NonTest" } },
+        virt_text = { { ' <- Current Choice', 'NonTest' } },
       },
     },
   },

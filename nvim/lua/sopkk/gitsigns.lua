@@ -1,4 +1,4 @@
-if not pcall(require, "gitsigns") then
+if not pcall(require, 'gitsigns') then
   return
 end
 

@@ -16,3 +16,11 @@ cursor:
     blinking: Off
 
 live_config_reload: true
+
+key_bindings:
+  #MacOS https://github.com/alacritty/alacritty/issues/1359
+  - { key: Q,       mods: Control,   chars: "\x11" }
+  - { key: Period,  mods: Alt,       chars: "\x1b." }
+  - { key: Comma,   mods: Alt,       chars: "\x1b," }
+  - { key: N,       mods: Alt,       chars: "\x1bn" }
+  - { key: M,       mods: Alt,       chars: "\x1bm" }
