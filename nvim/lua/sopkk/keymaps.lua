@@ -15,13 +15,14 @@ local mappings = {
   {'n', '<Down>', '<C-e>'},
 
   -- Buffers, tabs and qfix list
-  {'n', '<leader>n', ':bnext<CR>'},
+  {'n', ']b', ':bnext<CR>'},
+  {'n', '[b', ':bnext<CR>'},
   {'n', '<leader>bd', ':bd<CR>'},
   {'n', '<leader>DD', ':call delete(expand("%")) | bdelete!<CR>'},
   {'n', '<Left>', 'gT'},
   {'n', '<Right>', 'gt'},
-  {'n', '<C-j>', ':cnext<CR>zz'},
-  {'n', '<C-k>', ':cprev<CR>zz'},
+  {'n', '[q', ':cprev<CR>zz'},
+  {'n', ']q', ':cnext<CR>zz'},
   {'n', '<A-.>', '<C-W>>'},
   {'n', '<A-,>', '<C-W><'},
   {'n', '<A-m>', '<C-W>+'},
@@ -34,9 +35,9 @@ local mappings = {
   {'n', '[<Space>', ':m .+1<CR>=='},
   -- {'v', '[<Space>', ':m >+1<CR>==gv'}, error
 
-  {'n', '<leader>dd', ':.!base64 -d<CR>'},
-  {'n', '<leader>de', ':.!base64<CR>'},
-  {'n', '<leader>dj', ':.!jq<CR>'},
+  {'n', '[d', ':.!base64<CR>'},
+  {'n', ']d', ':.!base64 -d<CR>'},
+  {'n', ']j', ':.!jq<CR>'},
 
   -- Clipboard access is needed :help clipboard
   {{ 'n', 'v' }, '<Leader>y', '"+y'},
