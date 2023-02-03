@@ -47,7 +47,10 @@ end
 
 vim.filetype.add({
   pattern = {
-    ['.*Jenkinsfile.*'] = 'groovy'
+    ['.*Jenkinsfile.*'] = 'groovy',
+    ['.*tf'] = 'terraform',
+    ['.*terraform'] = 'terraform',
+    ['.*tfvars'] = 'terraform'
   }
 })
 
@@ -56,7 +59,7 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, { command = '%s/\\s\\+$//e'})
 -- vim-commentary
 vim.api.nvim_create_autocmd({ 'FileType' }, { pattern = { 'c', 'cpp', 'cs', 'java' }, command = 'setlocal commentstring=//\\ %s'})
 vim.api.nvim_create_autocmd({ 'FileType' }, { pattern = 'sql', command = 'setlocal commentstring=--\\ %s'})
-vim.api.nvim_create_autocmd({ 'FileType' }, { pattern = 'toml', command = 'setlocal commentstring=#\\ %s'})
+vim.api.nvim_create_autocmd({ 'FileType' }, { pattern = { 'toml', 'terraform'} , command = 'setlocal commentstring=#\\ %s'})
 
 vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
   callback = function()

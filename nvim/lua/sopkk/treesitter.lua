@@ -15,6 +15,7 @@ require'nvim-treesitter.configs'.setup {
     'toml',
     'typescript',
     'javascript',
+    'terraform',
   },
   highlight = {
     enable = true,

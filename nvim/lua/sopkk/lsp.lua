@@ -9,6 +9,9 @@ vim.keymap.set('n', '<leader>LR', ':LspRestart<CR>')
 local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local home = os.getenv "HOME"
 
+require("mason").setup()
+require("mason-lspconfig").setup()
+
 -- TODO: root patterns could fix late initialization of the servers
 -- :h lspconfig-server-configurations
 local servers = {
@@ -71,6 +74,9 @@ local servers = {
 
 }
 
+-- - |vim.lsp.buf.references()|
+
+
 local setup_server = function(server, config)
   if type(config) ~= "table" then
     config = {}
@@ -78,15 +84,18 @@ local setup_server = function(server, config)
 
   config = vim.tbl_deep_extend("force", {
     -- capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-    on_attach = function()
-      vim.keymap.set('n', 'K', vim.lsp.buf.hover, {buffer = 0})
-      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {buffer = 0})
-      vim.keymap.set('n', 'gT', vim.lsp.buf.type_definition, {buffer = 0})
-      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {buffer = 0})
-      vim.keymap.set('n', 'gr', vim.lsp.buf.rename, {buffer = 0})
-      vim.keymap.set('n', '<leader>ga', vim.lsp.buf.code_action, {buffer = 0})
-      vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, {buffer = 0})
-      vim.keymap.set('n', ']g', vim.diagnostic.goto_next, {buffer = 0})
+    on_attach = function(client, bufnr)
+      local bufopts = { noremap=true, silent=true, buffer=bufnr }
+      vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+      vim.keymap.set('n', 'gT', vim.lsp.buf.type_definition, bufopts)
+      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+      vim.keymap.set('n', 'gR', vim.lsp.buf.rename, bufopts)
+      vim.keymap.set('i', '<C-l>', vim.lsp.buf.signature_help, bufopts)
+      vim.keymap.set('n', 'gF', vim.lsp.buf.format, bufopts)
+      vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+      vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, bufopts)
+      vim.keymap.set('n', ']g', vim.diagnostic.goto_next, bufopts)
     end,
   }, config)
 

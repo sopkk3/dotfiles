@@ -21,6 +21,8 @@ return require('packer').startup(function()
   use 'wuelnerdotexe/vim-enfocado'
 
   use 'neovim/nvim-lspconfig'
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
   use 'google/vim-jsonnet'
 
   use 'hrsh7th/nvim-cmp'

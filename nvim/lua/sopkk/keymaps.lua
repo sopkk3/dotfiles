@@ -1,5 +1,9 @@
 local opts = { noremap = true, silent = true }
 
+local harp_ui = require('harpoon.ui')
+local harp_mark = require('harpoon.mark')
+local harp_term = require('harpoon.term')
+
 local mappings = {
   {'n', '<leader>ww', ':w<CR>'},
   {'n', '<leader>q', ':q<CR>'},
@@ -38,6 +42,7 @@ local mappings = {
   {'n', '[d', ':.!base64<CR>'},
   {'n', ']d', ':.!base64 -d<CR>'},
   {'n', ']j', ':.!jq<CR>'},
+  --:% ! column -t | sed 's/ = /=/'
 
   -- Clipboard access is needed :help clipboard
   {{ 'n', 'v' }, '<Leader>y', '"+y'},
@@ -59,13 +64,13 @@ local mappings = {
   {'n', '<leader>wc', ':VimwikiToggleListItem<CR>'},
 
   -- harpoon
-  {'n', '<leader>ad', ':lua require("harpoon.mark").add_file()<CR>'},
-  {'n', '<leader>l', ':lua require("harpoon.ui").toggle_quick_menu()<CR>'},
-  {'n', '<leader>1', ':lua require("harpoon.ui").nav_file(1)<CR>'},
-  {'n', '<leader>2', ':lua require("harpoon.ui").nav_file(2)<CR>'},
-  {'n', '<leader>3', ':lua require("harpoon.ui").nav_file(3)<CR>'},
-  {'n', '<leader>4', ':lua require("harpoon.ui").nav_file(4)<CR>'},
-  {'n', '<leader>t1', ':lua require("harpoon.term").gotoTerminal(1)<CR>'},
+  {'n', '<leader>ad', function() harp_mark.add_file() end},
+  {'n', '<leader>l', harp_ui.toggle_quick_menu},
+  {'n', '<leader>1', function() harp_ui.nav_file(1) end},
+  {'n', '<leader>2', function() harp_ui.nav_file(2) end},
+  {'n', '<leader>3', function() harp_ui.nav_file(3) end},
+  {'n', '<leader>4', function() harp_ui.nav_file(4) end},
+  {'n', '<leader>t1', function() harp_term.gotoTerminal(1) end},
 }
 
 for _, v in pairs(mappings) do
