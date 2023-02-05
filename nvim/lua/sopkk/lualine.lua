@@ -96,9 +96,9 @@ require('lualine').setup {
     section_separators = { left = "", right = "" },
   },
   sections = {
-      lualine_c = {'%r %F %m'},
-      lualine_x = {'encoding', 'filetype'},
-      lualine_z = {'location', trailing, mixedIndent, mixedIndentFile}
+    lualine_c = {'%r %F %m'},
+    lualine_x = {'encoding', 'filetype'},
+    lualine_z = {'location', trailing, mixedIndent, mixedIndentFile}
   },
   tabline = {
     -- lualine_a = {'buffers'},
@@ -106,7 +106,7 @@ require('lualine').setup {
   winbar = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename %m'},
+    lualine_c = {'filename'},
     lualine_x = {},
     lualine_y = {},
     lualine_z = {}

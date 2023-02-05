@@ -71,6 +71,9 @@ local mappings = {
   {'n', '<leader>3', function() harp_ui.nav_file(3) end},
   {'n', '<leader>4', function() harp_ui.nav_file(4) end},
   {'n', '<leader>t1', function() harp_term.gotoTerminal(1) end},
+
+  -- luasnip
+  {'n', '<leader><leader>s', '<cmd>source ~/.config/nvim/lua/sopkk/luasnip.lua<CR>'},
 }
 
 for _, v in pairs(mappings) do

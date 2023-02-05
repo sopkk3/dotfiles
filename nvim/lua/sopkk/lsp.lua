@@ -61,6 +61,12 @@ local servers = {
       "-Xmx1G",
       "-Xms100m",
     },
+  },
+
+  rust_analyzer = {
+    cmd = {
+      "rustup", "run", "stable", "rust-analyzer",
+    }
   }
 
   -- yamlls = {    -- npm i -g yaml-language-server@latest
@@ -74,8 +80,38 @@ local servers = {
 
 }
 
--- - |vim.lsp.buf.references()|
-
+if not pcall(require, 'cmp') then
+  return
+end
+-- cmpletion
+local cmp = require 'cmp'
+cmp.setup {
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-n>'] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+    ['<C-p>'] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-g>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+    { name = 'path' },
+    { name = 'nvim_lua' },
+  },{
+    { name = 'buffer', keyword_length = 5 },
+  }),
+  experimental = {
+    native_menu = false,
+  }
+}
 
 local setup_server = function(server, config)
   if type(config) ~= "table" then
@@ -83,7 +119,7 @@ local setup_server = function(server, config)
   end
 
   config = vim.tbl_deep_extend("force", {
-    -- capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
     on_attach = function(client, bufnr)
       local bufopts = { noremap=true, silent=true, buffer=bufnr }
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -105,35 +141,3 @@ end
 for server, config in pairs(servers) do
   setup_server(server, config)
 end
-
-if not pcall(require, 'cmp') then
-  return
-end
--- cmpletion
-local cmp = require 'cmp'
-cmp.setup {
-  snippet = {
-    expand = function(args)
-      require('luasnip').lsp_expand(args.body)
-    end,
-  },
-  mapping = {
-    ['<C-n>'] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
-    ['<C-p>'] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-g>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-  },
-  sources = {
-    { name = 'nvim_lua' },
-    { name = 'nvim_lsp' },
-    { name = 'path' },
-    { name = 'buffer', keyword_length = 5 },
-    { name = "luasnip" },
-  },
-  experimental = {
-    native_menu = false,
-  }
-}
