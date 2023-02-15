@@ -4,8 +4,14 @@ local harp_ui = require('harpoon.ui')
 local harp_mark = require('harpoon.mark')
 local harp_term = require('harpoon.term')
 
+-- TODO: function to run `column` and then indent same lines
+-- local function indentSelection()
+--   local line1 = vim.api.nvim_buf_get_mark(0, "<")[1]
+--   local line2 = vim.api.nvim_buf_get_mark(0, ">")[1]
+-- end
+
 local mappings = {
-  {'n', '<leader>ww', ':w<CR>'},
+  {'n', '<leader>ww', ':update<CR>'},
   {'n', '<leader>q', ':q<CR>'},
   {'n', '<leader>aq', ':q!<CR>'},
   {'n', '<leader>Q', ':qa<CR>'},
@@ -17,6 +23,11 @@ local mappings = {
   {'n', '<leader>E', ':Explore<CR>'},
   {'n', '<Up>', '<C-y>'},
   {'n', '<Down>', '<C-e>'},
+  {'n', '<leader>w1', '1<C-w>w'},
+  {'n', '<leader>w2', '2<C-w>w'},
+  {'n', '<leader>w3', '3<C-w>w'},
+  {'n', '<leader>w4', '4<C-w>w'},
+
 
   -- Buffers, tabs and qfix list
   {'n', ']b', ':bnext<CR>'},
@@ -42,7 +53,7 @@ local mappings = {
   {'n', '[d', ':.!base64<CR>'},
   {'n', ']d', ':.!base64 -d<CR>'},
   {'n', ']j', ':.!jq<CR>'},
-  --:% ! column -t | sed 's/ = /=/'
+  {'v', '[=', [[:'<,'>! column -t | sed 's/ = /=/'<CR>]]},
 
   -- Clipboard access is needed :help clipboard
   {{ 'n', 'v' }, '<Leader>y', '"+y'},
@@ -51,9 +62,10 @@ local mappings = {
   {'v', 'p', '"_dP'},
 
   {'t', '<C-x>', '<C-\\><C-n>'},
+  {'t', '<Esc>', '<C-\\><C-n>'},
 
   -- fugitive
-  {'n', '<leader>G', ':G<CR><C-w>5-'},
+  {'n', '<leader>G', ':G<CR>'},
   {'n', '<Leader>gb', ':G blame<CR>'},
   {'n', '<Leader>gp', ':G push<CR>'},
   {'n', '<Leader>gl', ':G pull<CR>'},

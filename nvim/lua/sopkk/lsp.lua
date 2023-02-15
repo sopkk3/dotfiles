@@ -15,11 +15,11 @@ require("mason-lspconfig").setup()
 -- TODO: root patterns could fix late initialization of the servers
 -- :h lspconfig-server-configurations
 local servers = {
-  gopls = true, -- go install golang.org/x/tools/gopls@latest
-  pyright = true, -- npm i -g pyright
-  jsonnet_ls = true, -- go install github.com/grafana/jsonnet-language-server@latest
-  terraformls = true, -- https://github.com/hashicorp/terraform-ls/releases
-  sumneko_lua = { -- homebrew https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#sumneko_lua
+  gopls = true, -- Mason -- go install golang.org/x/tools/gopls@latest
+  pyright = true, -- Mason -- npm i -g pyright
+  jsonnet_ls = true, -- Mason -- go install github.com/grafana/jsonnet-language-server@latest
+  terraformls = true, -- Mason -- https://github.com/hashicorp/terraform-ls/releases
+  lua_ls = { -- Mason
     settings = {
       Lua = {
         runtime = {
@@ -63,7 +63,7 @@ local servers = {
     },
   },
 
-  rust_analyzer = {
+  rust_analyzer = { -- Mason -- rustup
     cmd = {
       "rustup", "run", "stable", "rust-analyzer",
     }
@@ -101,12 +101,22 @@ cmp.setup {
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   }),
   sources = cmp.config.sources({
+    { name = 'path' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-    { name = 'path' },
     { name = 'nvim_lua' },
   },{
-    { name = 'buffer', keyword_length = 5 },
+    { name = 'buffer', keyword_length = 5,
+      option = {
+        get_bufnrs = function()
+          local bufs = {}
+          for _, win in ipairs(vim.api.nvim_list_wins()) do
+            bufs[vim.api.nvim_win_get_buf(win)] = true
+          end
+          return vim.tbl_keys(bufs)
+        end
+      }
+    },
   }),
   experimental = {
     native_menu = false,

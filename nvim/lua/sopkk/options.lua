@@ -56,6 +56,8 @@ vim.filetype.add({
 
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, { command = '%s/\\s\\+$//e'})
 
+vim.api.nvim_create_autocmd({ 'TermOpen' }, { command = 'set nonumber norelativenumber'})
+
 -- vim-commentary
 vim.api.nvim_create_autocmd({ 'FileType' }, { pattern = { 'c', 'cpp', 'cs', 'java' }, command = 'setlocal commentstring=//\\ %s'})
 vim.api.nvim_create_autocmd({ 'FileType' }, { pattern = 'sql', command = 'setlocal commentstring=--\\ %s'})

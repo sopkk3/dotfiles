@@ -39,6 +39,10 @@ local mixedIndentFile = {
   color = { bg = 'DarkOrange' },
 }
 
+local function window()
+  return vim.api.nvim_win_get_number(0)
+end
+
 local colors = {
   black        = '#202020', dim_black    = '#2e2d2d',
   neon         = '#DFFF00', white        = '#FFFFFF',
@@ -101,17 +105,17 @@ require('lualine').setup {
     lualine_z = {'location', trailing, mixedIndent, mixedIndentFile}
   },
   tabline = {
-    -- lualine_a = {'buffers'},
+    -- lualine_a = {{'tabs', mode = 2}},
   },
   winbar = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
+    lualine_c = {window, 'filename'},
     lualine_x = {},
     lualine_y = {},
     lualine_z = {}
   },
   inactive_winbar = {
-    lualine_c = {'%F %m'},
+    lualine_c = {window, '%F %m'},
   }
 }
