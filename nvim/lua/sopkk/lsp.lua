@@ -4,15 +4,12 @@ end
 
 local lspcnf = require 'lspconfig'
 
-vim.keymap.set('n', '<leader>LR', ':LspRestart<CR>')
-
 local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local home = os.getenv "HOME"
 
 require("mason").setup()
 require("mason-lspconfig").setup()
 
--- TODO: root patterns could fix late initialization of the servers
 -- :h lspconfig-server-configurations
 local servers = {
   gopls = true, -- Mason -- go install golang.org/x/tools/gopls@latest

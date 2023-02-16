@@ -28,6 +28,9 @@ local mappings = {
   {'n', '<leader>w3', '3<C-w>w'},
   {'n', '<leader>w4', '4<C-w>w'},
 
+  -- Folding
+  {'n', '[f', 'zfi{'}, -- TODO: Make fold work based on indentation blocks
+  {'n', ']f', 'za'},
 
   -- Buffers, tabs and qfix list
   {'n', ']b', ':bnext<CR>'},
@@ -86,6 +89,9 @@ local mappings = {
 
   -- luasnip
   {'n', '<leader><leader>s', '<cmd>source ~/.config/nvim/lua/sopkk/luasnip.lua<CR>'},
+
+  -- lsp
+  {'n', '<leader>LR', ':LspRestart<CR>'},
 }
 
 for _, v in pairs(mappings) do
