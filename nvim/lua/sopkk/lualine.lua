@@ -100,7 +100,7 @@ require('lualine').setup {
     section_separators = { left = "", right = "" },
   },
   sections = {
-    lualine_c = {'%r %F %m'},
+    lualine_c = {'%r %=%F %m'},
     lualine_x = {'encoding', 'filetype'},
     lualine_z = {'location', trailing, mixedIndent, mixedIndentFile}
   },

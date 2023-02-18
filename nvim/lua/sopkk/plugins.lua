@@ -19,6 +19,7 @@ return require('packer').startup(function()
   use 'nvim-lualine/lualine.nvim'
 
   use 'wuelnerdotexe/vim-enfocado'
+  use 'nyoom-engineering/oxocarbon.nvim'
 
   use 'neovim/nvim-lspconfig'
   use 'williamboman/mason.nvim'

@@ -16,6 +16,7 @@ local servers = {
   pyright = true, -- Mason -- npm i -g pyright
   jsonnet_ls = true, -- Mason -- go install github.com/grafana/jsonnet-language-server@latest
   terraformls = true, -- Mason -- https://github.com/hashicorp/terraform-ls/releases
+  groovyls = true,
   lua_ls = { -- Mason
     settings = {
       Lua = {
@@ -64,7 +65,7 @@ local servers = {
     cmd = {
       "rustup", "run", "stable", "rust-analyzer",
     }
-  }
+  },
 
   -- yamlls = {    -- npm i -g yaml-language-server@latest
   --   yaml = {

@@ -1,5 +1,5 @@
 vim.g.sopkk_colorscheme = 'enfocado'
--- vim.g.sopkk_colorscheme = 'tokyonight' -- make normal bg same as NormalFloat
+-- vim.g.sopkk_colorscheme = 'oxocarbon' -- pink/purple/blue
 
 vim.cmd('colorscheme ' .. vim.g.sopkk_colorscheme)
 
@@ -15,6 +15,8 @@ if vim.g.sopkk_colorscheme == 'enfocado' then
   hl('LineNrBelow', { ctermfg = 246, ctermbg = 234, })
   hl('LineNrAbove', { ctermfg = 246, ctermbg = 234, })
   hl('CursorLineNr', { ctermfg = 254, ctermbg = 234, })
+
+  hl('Search', { ctermfg = 214, ctermbg = 234, })
 
 end
 
