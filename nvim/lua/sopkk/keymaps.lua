@@ -29,8 +29,8 @@ local mappings = {
   {'n', '<leader>w4', '4<C-w>w'},
 
   -- Folding
-  {'n', '[f', 'zfi{'}, -- TODO: Make fold work based on indentation blocks
-  {'n', ']f', 'za'},
+  {'n', '[z', 'zfi{'}, -- TODO: Make fold work based on indentation blocks
+  {'n', ']z', 'za'},
 
   -- Buffers, tabs and qfix list
   {'n', ']b', ':bnext<CR>'},
