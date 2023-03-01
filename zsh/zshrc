@@ -28,6 +28,12 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# Helm
+if command -v helm &> /dev/null
+then
+  helm completion zsh > "${fpath[1]}/_helm"
+fi
+
 # Bat
 export BAT_THEME="ansi"
 

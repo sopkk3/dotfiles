@@ -12,11 +12,13 @@ require("mason-lspconfig").setup()
 
 -- :h lspconfig-server-configurations
 local servers = {
+  -- gopls groovy-language-server  jsonnet-language-server    lua-language-server  pyright  rust-analyzer  terraform-ls typescript-language-server
   gopls = true, -- Mason -- go install golang.org/x/tools/gopls@latest
   pyright = true, -- Mason -- npm i -g pyright
   jsonnet_ls = true, -- Mason -- go install github.com/grafana/jsonnet-language-server@latest
   terraformls = true, -- Mason -- https://github.com/hashicorp/terraform-ls/releases
-  groovyls = true,
+  groovyls = true, -- Mason
+  tsserver = true, -- Mason
   lua_ls = { -- Mason
     settings = {
       Lua = {
@@ -94,7 +96,7 @@ cmp.setup {
     ['<C-p>'] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-g>'] = cmp.mapping.complete(),
+    ['<C-o>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   }),

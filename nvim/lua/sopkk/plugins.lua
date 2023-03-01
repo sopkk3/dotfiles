@@ -1,50 +1,55 @@
-local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-  vim.cmd [[packadd packer.nvim]]
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable', -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-return require('packer').startup(function()
-  use 'wbthomason/packer.nvim'
+require('lazy').setup({
+   'wbthomason/packer.nvim',
 
-  use 'tpope/vim-surround'
-  use 'tpope/vim-commentary'
-  use 'tpope/vim-repeat'
+   'tpope/vim-surround',
+   'tpope/vim-commentary',
+   'tpope/vim-repeat',
 
-  use 'tpope/vim-fugitive'
-  use 'lewis6991/gitsigns.nvim'
-  use 'TimUntersberger/neogit'
+   'tpope/vim-fugitive',
+   'lewis6991/gitsigns.nvim',
+   'TimUntersberger/neogit',
 
-  use 'nvim-lualine/lualine.nvim'
+   'nvim-lualine/lualine.nvim',
 
-  use 'wuelnerdotexe/vim-enfocado'
-  use 'nyoom-engineering/oxocarbon.nvim'
+   'wuelnerdotexe/vim-enfocado',
+   'nyoom-engineering/oxocarbon.nvim',
 
-  use 'neovim/nvim-lspconfig'
-  use 'williamboman/mason.nvim'
-  use 'williamboman/mason-lspconfig.nvim'
-  use 'google/vim-jsonnet'
+   'neovim/nvim-lspconfig',
+   'williamboman/mason.nvim',
+   'williamboman/mason-lspconfig.nvim',
+   'google/vim-jsonnet',
 
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-nvim-lua'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
+   'hrsh7th/nvim-cmp',
+   'hrsh7th/cmp-nvim-lsp',
+   'hrsh7th/cmp-nvim-lua',
+   'hrsh7th/cmp-buffer',
+   'hrsh7th/cmp-path',
 
-  use 'L3MON4D3/LuaSnip'
+   'L3MON4D3/LuaSnip',
 
-  use 'vimwiki/vimwiki'
+   'vimwiki/vimwiki',
 
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-lua/popup.nvim'
+   'nvim-lua/plenary.nvim',
+   'nvim-lua/popup.nvim',
 
-  use 'ThePrimeagen/harpoon'
+   'ThePrimeagen/harpoon',
 
-  use 'nvim-telescope/telescope.nvim'
-  use 'nvim-telescope/telescope-fzy-native.nvim'
+   'nvim-telescope/telescope.nvim',
+   'nvim-telescope/telescope-fzy-native.nvim',
 
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use 'nvim-treesitter/nvim-treesitter-context'
-
-end)
+   'nvim-treesitter/nvim-treesitter',
+   'nvim-treesitter/nvim-treesitter-context',
+})
