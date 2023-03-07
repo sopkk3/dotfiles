@@ -8,7 +8,6 @@ local utils = require("telescope.utils")
 require("telescope").setup({
   defaults = {
     file_sorter = require("telescope.sorters").get_fzy_sorter,
-    sorting_strategy = 'ascending',
     prompt_prefix = " >",
     color_devicons = true,
 
@@ -31,7 +30,6 @@ require("telescope").setup({
 
     layout_strategy = 'horizontal',
     layout_config = {
-      prompt_position = 'top',
       preview_width = 90,
     },
   },
