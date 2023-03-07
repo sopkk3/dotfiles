@@ -4,11 +4,23 @@ local harp_ui = require('harpoon.ui')
 local harp_mark = require('harpoon.mark')
 local harp_term = require('harpoon.term')
 
--- TODO: function to run `column` and then indent same lines
--- local function indentSelection()
---   local line1 = vim.api.nvim_buf_get_mark(0, "<")[1]
---   local line2 = vim.api.nvim_buf_get_mark(0, ">")[1]
--- end
+local function alignOnChar() -- Current error: Mark is not set. For some reason '<' and '>' don't get set
+  local character = vim.fn.input("Element to align: ", "", "file")
+  -- local line1 = vim.api.nvim_buf_get_mark(0, "<")[1]
+  -- local line2 = vim.api.nvim_buf_get_mark(0, ">")[1]
+  -- for k, v in pairs(startPos) do print(k, v) end
+  local command = '\'<,\'>! column -t | sed \'s/ ' .. character .. ' /' .. character .. '/\''
+  -- local command = line1 .. ',' .. line2 .. '! column -t | sed \'s/ ' .. character .. ' /' .. character .. '/\''
+  print(command)
+  vim.api.nvim_command(command)
+  -- run indent from < to >
+end
+
+local function wikiTable()
+  local columns = vim.fn.input("Number of columns: ")
+  local rows = vim.fn.input("Number of rows: ")
+  vim.api.nvim_command('VimwikiTable ' .. columns .. ' ' .. rows)
+end
 
 local mappings = {
   {'n', '<leader>ww', ':update<CR>'},
@@ -20,6 +32,7 @@ local mappings = {
   {'n', 'N', 'Nzz'},
   {'n', 'J', 'mxJ`x'},
   {'n', 'Y', 'y$'},
+  {'i', '<C-c>', '<Esc>'},
   {'n', '<leader>E', ':Explore<CR>'},
   {'n', '<Up>', '<C-y>'},
   {'n', '<Down>', '<C-e>'},
@@ -56,7 +69,8 @@ local mappings = {
   {'n', '[d', ':.!base64<CR>'},
   {'n', ']d', ':.!base64 -d<CR>'},
   {'n', ']j', ':.!jq<CR>'},
-  {'v', '[=', [[:'<,'>! column -t | sed 's/ = /=/'<CR>]]},
+  {'v', '[=', [[:'<,'>! column -t | sed 's/  / /'<CR>]]},
+  {'v', ']=', alignOnChar},
 
   -- Clipboard access is needed :help clipboard
   {{ 'n', 'v' }, '<Leader>y', '"+y'},
@@ -77,6 +91,7 @@ local mappings = {
   -- vim wiki
   {'n', '<leader>WW', ':VimwikiIndex<CR>'},
   {'n', '<leader>wc', ':VimwikiToggleListItem<CR>'},
+  {'n', '<leader>WT', wikiTable},
 
   -- harpoon
   {'n', '<leader>ad', function() harp_mark.add_file() end},

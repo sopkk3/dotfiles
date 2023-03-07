@@ -12,8 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-   'wbthomason/packer.nvim',
-
    'tpope/vim-surround',
    'tpope/vim-commentary',
    'tpope/vim-repeat',

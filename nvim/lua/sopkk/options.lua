@@ -28,9 +28,6 @@ local options = {
   softtabstop = 2,
   shiftwidth = 2,
   expandtab = true,
-  -- foldmethod = "expr", -- zx update folds in file. za toggle. zr open all, zm close all
-  -- foldexpr = "nvim_treesitter#foldexpr()",
-  -- foldlevel = 1,
 
   laststatus = 3,
 }

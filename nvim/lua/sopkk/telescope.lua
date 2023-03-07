@@ -6,34 +6,41 @@ local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
 local utils = require("telescope.utils")
 require("telescope").setup({
-    defaults = {
-        file_sorter = require("telescope.sorters").get_fzy_sorter,
-        prompt_prefix = " >",
-        color_devicons = true,
+  defaults = {
+    file_sorter = require("telescope.sorters").get_fzy_sorter,
+    sorting_strategy = 'ascending',
+    prompt_prefix = " >",
+    color_devicons = true,
 
-        file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-        grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-        qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+    file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+    grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+    qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
 
-        mappings = {
-            i = {
-                ["<C-q>"] = actions.send_to_qflist,
-                ["<C-w>"] = actions.send_selected_to_qflist,
-                ["<tab>"] = actions.toggle_selection + actions.move_selection_previous,
-            },
-            n = {
-                ["<C-q>"] = actions.send_to_qflist,
-                ["<C-w>"] = actions.send_selected_to_qflist,
-                ["<tab>"] = actions.toggle_selection,
-            },
-        },
+    mappings = {
+      i = {
+        ["<C-q>"] = actions.send_to_qflist,
+        ["<C-w>"] = actions.send_selected_to_qflist,
+        ["<tab>"] = actions.toggle_selection + actions.move_selection_previous,
+      },
+      n = {
+        ["<C-q>"] = actions.send_to_qflist,
+        ["<C-w>"] = actions.send_selected_to_qflist,
+        ["<tab>"] = actions.toggle_selection,
+      },
     },
-    extensions = {
-        fzy_native = {
-            override_generic_sorter = false,
-            override_file_sorter = true,
-        },
+
+    layout_strategy = 'horizontal',
+    layout_config = {
+      prompt_position = 'top',
+      preview_width = 90,
     },
+  },
+  extensions = {
+    fzy_native = {
+      override_generic_sorter = false,
+      override_file_sorter = true,
+    },
+  },
 })
 
 vim.keymap.set('n', '<leader>s', builtin.find_files)
