@@ -13,7 +13,7 @@ local function alignOnChar() -- Current error: Mark is not set. For some reason 
   -- local command = line1 .. ',' .. line2 .. '! column -t | sed \'s/ ' .. character .. ' /' .. character .. '/\''
   print(command)
   vim.api.nvim_command(command)
-  -- run indent from < to >
+  -- vim.api.nvim_command([['<,'>normal =ap]])
 end
 
 local function wikiTable()
@@ -40,6 +40,8 @@ local mappings = {
   {'n', '<leader>w2', '2<C-w>w'},
   {'n', '<leader>w3', '3<C-w>w'},
   {'n', '<leader>w4', '4<C-w>w'},
+  {'t', '<C-x>', '<C-\\><C-n>'},
+  {'t', '<Esc>', '<C-\\><C-n>'},
 
   -- Folding
   {'n', '[z', 'zfi{'}, -- TODO: Make fold work based on indentation blocks
@@ -73,24 +75,22 @@ local mappings = {
   {'v', ']=', alignOnChar},
 
   -- Clipboard access is needed :help clipboard
-  {{ 'n', 'v' }, '<Leader>y', '"+y'},
-  {'n', '<Leader>p', '"+p'},
-  {'v', '<Leader>p', '"_d"+P'},
+  {{ 'n', 'v' }, '<leader>y', '"+y'},
+  {'n', '<leader>p', '"+p'},
+  {'v', '<leader>p', '"_d"+P'},
   {'v', 'p', '"_dP'},
-
-  {'t', '<C-x>', '<C-\\><C-n>'},
-  {'t', '<Esc>', '<C-\\><C-n>'},
+  {'n', '<leader>cf', ':let @+ = expand("%")<CR>'}, -- :h expand
 
   -- fugitive
   {'n', '<leader>G', ':G<CR>'},
-  {'n', '<Leader>gb', ':G blame<CR>'},
-  {'n', '<Leader>gp', ':G push<CR>'},
-  {'n', '<Leader>gl', ':G pull<CR>'},
-  {'n', '<Leader>gs', ':G switch -<CR>'},
+  {'n', '<leader>gb', ':G blame<CR>'},
+  {'n', '<leader>gp', ':G push<CR>'},
+  {'n', '<leader>gl', ':G pull<CR>'},
+  {'n', '<leader>gs', ':G switch -<CR>'},
 
   -- vim wiki
   {'n', '<leader>WW', ':VimwikiIndex<CR>'},
-  {'n', '<leader>wc', ':VimwikiToggleListItem<CR>'},
+  {'n', '<leader>WC', ':VimwikiToggleListItem<CR>'},
   {'n', '<leader>WT', wikiTable},
 
   -- harpoon
