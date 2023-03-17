@@ -26,7 +26,8 @@ local mappings = {
   {'n', '<leader>ww', ':update<CR>'},
   {'n', '<leader>q', ':q<CR>'},
   {'n', '<leader>aq', ':q!<CR>'},
-  {'n', '<leader>Q', ':qa<CR>'},
+  {'n', '<leader>QQ', ':qa<CR>'},
+  {'n', '<leader>QW', ':tabclose<CR>'},
   {'n', '<leader>aQ', ':qa!<CR>'},
   {'n', 'n', 'nzz'},
   {'n', 'N', 'Nzz'},
@@ -81,12 +82,13 @@ local mappings = {
   {'v', 'p', '"_dP'},
   {'n', '<leader>cf', ':let @+ = expand("%")<CR>'}, -- :h expand
 
-  -- fugitive
+  -- git / fugitive
   {'n', '<leader>G', ':G<CR>'},
   {'n', '<leader>gb', ':G blame<CR>'},
   {'n', '<leader>gp', ':G push<CR>'},
   {'n', '<leader>gl', ':G pull<CR>'},
   {'n', '<leader>gs', ':G switch -<CR>'},
+  {'n', '<leader>gd', ':DiffviewOpen '},
 
   -- vim wiki
   {'n', '<leader>WW', ':VimwikiIndex<CR>'},

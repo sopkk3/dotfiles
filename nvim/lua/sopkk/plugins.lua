@@ -16,14 +16,18 @@ require('lazy').setup({
    'tpope/vim-commentary',
    'tpope/vim-repeat',
 
+   'nvim-lua/plenary.nvim',
+   'nvim-lua/popup.nvim',
+   'nvim-tree/nvim-web-devicons',
+
    'tpope/vim-fugitive',
    'lewis6991/gitsigns.nvim',
    'TimUntersberger/neogit',
+   'sindrets/diffview.nvim',
 
    'nvim-lualine/lualine.nvim',
 
    'wuelnerdotexe/vim-enfocado',
-   'nyoom-engineering/oxocarbon.nvim',
 
    'neovim/nvim-lspconfig',
    'williamboman/mason.nvim',
@@ -39,9 +43,6 @@ require('lazy').setup({
    'L3MON4D3/LuaSnip',
 
    'vimwiki/vimwiki',
-
-   'nvim-lua/plenary.nvim',
-   'nvim-lua/popup.nvim',
 
    'ThePrimeagen/harpoon',
 

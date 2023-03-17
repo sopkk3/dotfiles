@@ -1,5 +1,4 @@
 vim.g.sopkk_colorscheme = 'enfocado'
--- vim.g.sopkk_colorscheme = 'oxocarbon' -- pink/purple/blue
 
 vim.cmd('colorscheme ' .. vim.g.sopkk_colorscheme)
 
