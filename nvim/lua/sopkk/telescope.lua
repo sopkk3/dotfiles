@@ -28,9 +28,11 @@ require("telescope").setup({
       },
     },
 
+    sorting_strategy = "ascending",
     layout_strategy = 'horizontal',
     layout_config = {
       preview_width = 90,
+      prompt_position = "top",
     },
   },
   extensions = {

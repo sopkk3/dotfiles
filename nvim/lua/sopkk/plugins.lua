@@ -22,7 +22,6 @@ require('lazy').setup({
 
    'tpope/vim-fugitive',
    'lewis6991/gitsigns.nvim',
-   'TimUntersberger/neogit',
    'sindrets/diffview.nvim',
 
    'nvim-lualine/lualine.nvim',
