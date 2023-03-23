@@ -19,7 +19,7 @@ require("telescope").setup({
       i = {
         ["<C-q>"] = actions.send_to_qflist,
         ["<C-w>"] = actions.send_selected_to_qflist,
-        ["<tab>"] = actions.toggle_selection + actions.move_selection_previous,
+        ["<tab>"] = actions.toggle_selection + actions.move_selection_next,
       },
       n = {
         ["<C-q>"] = actions.send_to_qflist,
