@@ -11,6 +11,7 @@ local i = ls.insert_node
 local c = ls.choice_node
 local sn = ls.snippet_node
 local t = ls.text_node
+local f = ls.function_node
 
 ls.config.set_config {
   history = true,
@@ -53,4 +54,17 @@ ls.add_snippets( 'all', {
 }, {
   key = 'all',
 })
--- GLOBAL }}
+-- }}
+
+-- WIKI {{
+ls.add_snippets( 'vimwiki', {
+  snippet('daily', fmt("{}\n  - ", {f(
+    function ()
+      return os.date "%Y/%m/%d"
+    end)}
+    )
+  )
+}, {
+  key = 'wiki'
+})
+-- }}

@@ -12,7 +12,6 @@ require("mason-lspconfig").setup()
 
 -- :h lspconfig-server-configurations
 local servers = {
-  -- gopls groovy-language-server  jsonnet-language-server    lua-language-server  pyright  rust-analyzer  terraform-ls typescript-language-server
   gopls = true, -- Mason -- go install golang.org/x/tools/gopls@latest
   pyright = true, -- Mason -- npm i -g pyright
   jsonnet_ls = true, -- Mason -- go install github.com/grafana/jsonnet-language-server@latest
