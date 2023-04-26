@@ -26,11 +26,12 @@ require('lazy').setup({
 
    'nvim-lualine/lualine.nvim',
 
-   'wuelnerdotexe/vim-enfocado',
-
    'neovim/nvim-lspconfig',
    'williamboman/mason.nvim',
    'williamboman/mason-lspconfig.nvim',
+
+   'jose-elias-alvarez/null-ls.nvim',
+
    'google/vim-jsonnet',
 
    'hrsh7th/nvim-cmp',
@@ -41,13 +42,17 @@ require('lazy').setup({
 
    'L3MON4D3/LuaSnip',
 
-   'vimwiki/vimwiki',
-
-   'ThePrimeagen/harpoon',
-
    'nvim-telescope/telescope.nvim',
    'nvim-telescope/telescope-fzy-native.nvim',
 
    'nvim-treesitter/nvim-treesitter',
    'nvim-treesitter/nvim-treesitter-context',
+
+   'vimwiki/vimwiki',
+
+   'ThePrimeagen/harpoon',
+
+   'wuelnerdotexe/vim-enfocado',
+   'folke/tokyonight.nvim',
+   'bluz71/vim-nightfly-colors',
 })

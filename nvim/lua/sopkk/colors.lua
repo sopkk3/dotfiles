@@ -1,4 +1,6 @@
 vim.g.sopkk_colorscheme = 'enfocado'
+-- vim.g.sopkk_colorscheme = 'nightfly'
+-- vim.g.sopkk_colorscheme = 'tokyonight-storm' -- blue
 
 vim.cmd('colorscheme ' .. vim.g.sopkk_colorscheme)
 
@@ -17,7 +19,14 @@ if vim.g.sopkk_colorscheme == 'enfocado' then
 
   hl('Search', { ctermfg = 214, ctermbg = 234, })
 
+  hl('CursorLine', { ctermbg = 238, })
+  hl('ColorColumn', { ctermbg = 238, })
+
+  for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+    vim.api.nvim_set_hl(0, group, {})
+  end
+
 end
 
-hl('CursorLine', { ctermbg = 238, })
-hl('ColorColumn', { ctermbg = 238, })
+-- hl('Normal', { ctermbg = 234, }) -- background
+-- hl('NormalNC', { ctermbg = 234, }) -- background non active windows
