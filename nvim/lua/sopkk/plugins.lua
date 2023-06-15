@@ -12,47 +12,48 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-   'tpope/vim-surround',
-   'tpope/vim-commentary',
-   'tpope/vim-repeat',
+  'tpope/vim-surround',
+  'tpope/vim-commentary',
+  'tpope/vim-repeat',
 
-   'nvim-lua/plenary.nvim',
-   'nvim-lua/popup.nvim',
-   'nvim-tree/nvim-web-devicons',
+  'nvim-lua/plenary.nvim',
+  'nvim-lua/popup.nvim',
+  'nvim-tree/nvim-web-devicons',
 
-   'tpope/vim-fugitive',
-   'lewis6991/gitsigns.nvim',
-   'sindrets/diffview.nvim',
+  'tpope/vim-fugitive',
+  'lewis6991/gitsigns.nvim',
+  'sindrets/diffview.nvim',
 
-   'nvim-lualine/lualine.nvim',
+  'nvim-lualine/lualine.nvim',
 
-   'neovim/nvim-lspconfig',
-   'williamboman/mason.nvim',
-   'williamboman/mason-lspconfig.nvim',
+  'neovim/nvim-lspconfig',
+  'williamboman/mason.nvim',
+  'williamboman/mason-lspconfig.nvim',
 
-   'jose-elias-alvarez/null-ls.nvim',
+  'jose-elias-alvarez/null-ls.nvim',
 
-   'google/vim-jsonnet',
+  'google/vim-jsonnet',
 
-   'hrsh7th/nvim-cmp',
-   'hrsh7th/cmp-nvim-lsp',
-   'hrsh7th/cmp-nvim-lua',
-   'hrsh7th/cmp-buffer',
-   'hrsh7th/cmp-path',
+  'hrsh7th/nvim-cmp',
+  'hrsh7th/cmp-nvim-lsp',
+  'hrsh7th/cmp-nvim-lua',
+  'hrsh7th/cmp-buffer',
+  'hrsh7th/cmp-path',
 
-   'L3MON4D3/LuaSnip',
+  'L3MON4D3/LuaSnip',
 
-   'nvim-telescope/telescope.nvim',
-   'nvim-telescope/telescope-fzy-native.nvim',
+  'nvim-telescope/telescope.nvim',
+  'nvim-telescope/telescope-fzy-native.nvim',
+  'nvim-telescope/telescope-live-grep-args.nvim',
 
-   'nvim-treesitter/nvim-treesitter',
-   'nvim-treesitter/nvim-treesitter-context',
+  'nvim-treesitter/nvim-treesitter',
+  'nvim-treesitter/nvim-treesitter-context',
 
-   'vimwiki/vimwiki',
+  'vimwiki/vimwiki',
 
-   'ThePrimeagen/harpoon',
+  'ThePrimeagen/harpoon',
 
-   'wuelnerdotexe/vim-enfocado',
-   'folke/tokyonight.nvim',
-   'bluz71/vim-nightfly-colors',
+  'wuelnerdotexe/vim-enfocado',
+  'folke/tokyonight.nvim',
+  'bluz71/vim-nightfly-colors',
 })

@@ -5,11 +5,15 @@ end
 local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
 local utils = require("telescope.utils")
+local extensions = require("telescope").extensions
+local lga_actions = require("telescope-live-grep-args.actions")
 require("telescope").setup({
   defaults = {
     file_sorter = require("telescope.sorters").get_fzy_sorter,
     prompt_prefix = " >",
     color_devicons = true,
+    -- path_display = { truncate = 3 },
+    path_display = { shorten = { len = 1, exclude = { 1, 2, -1, -2 } } },
 
     file_previewer = require("telescope.previewers").vim_buffer_cat.new,
     grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
@@ -40,19 +44,28 @@ require("telescope").setup({
       override_generic_sorter = false,
       override_file_sorter = true,
     },
+    live_grep_args = {
+      auto_quoting = true,
+      mappings = {
+        i = {
+          ["<C-k>"] = lga_actions.quote_prompt(),
+          ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+        },
+      },
+    }
   },
 })
 
 vim.keymap.set('n', '<leader>s', builtin.find_files)
 vim.keymap.set('n', '<leader>S', builtin.git_files)
 vim.keymap.set('n', '<leader>as', function()
-  builtin.find_files({cwd = utils.buffer_dir()})
+  builtin.find_files({ cwd = utils.buffer_dir() })
 end)
 vim.keymap.set('n', '<leader>aS', builtin.quickfix)
 vim.keymap.set('n', '<leader>aB', builtin.buffers)
-vim.keymap.set('n', '<leader>ag', builtin.live_grep)
+vim.keymap.set('n', '<leader>ag', extensions.live_grep_args.live_grep_args)
 vim.keymap.set('n', '<leader>aG', function()
-  builtin.live_grep({cwd = utils.buffer_dir()})
+  builtin.live_grep({ cwd = utils.buffer_dir() })
 end)
 vim.keymap.set('n', '<leader>af', builtin.grep_string)
 vim.keymap.set('n', '<leader>aF', builtin.current_buffer_fuzzy_find)

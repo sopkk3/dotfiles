@@ -2,6 +2,7 @@ if not pcall(require, 'lualine') then
   return
 end
 
+-- TODO: execute only when file smallet than certain size and check performance
 local trailing = {
   function()
     local s = vim.fn.search('\\s$', 'nw')
@@ -95,7 +96,6 @@ require('lualine').setup {
   options = {
     icons_enabled = false,
     theme = sopkk_theme,
-    -- theme = 'onedark',
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
   },

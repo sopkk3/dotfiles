@@ -2,6 +2,7 @@
 alias mkdir='mkdir -p'
 alias chown='chown -Rv'
 alias chmod='chmod -Rv'
+alias ll='ls -lhrta'
 alias grep='grep --color=always'
 alias cd..='cd ..'
 alias python='python3'
