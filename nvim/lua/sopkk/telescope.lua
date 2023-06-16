@@ -49,7 +49,15 @@ require("telescope").setup({
       mappings = {
         i = {
           ["<C-k>"] = lga_actions.quote_prompt(),
-          ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+          ["<C-j>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+          ["<C-q>"] = actions.smart_add_to_qflist,
+          ["<C-w>"] = actions.smart_send_to_qflist,
+          ["<tab>"] = actions.toggle_selection + actions.move_selection_next,
+        },
+        n = {
+          ["<C-q>"] = actions.smart_add_to_qflist,
+          ["<C-w>"] = actions.smart_send_to_qflist,
+          ["<tab>"] = actions.toggle_selection,
         },
       },
     }
