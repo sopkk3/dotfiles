@@ -30,8 +30,6 @@ require('lazy').setup({
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
 
-  'jose-elias-alvarez/null-ls.nvim',
-
   'google/vim-jsonnet',
 
   'hrsh7th/nvim-cmp',

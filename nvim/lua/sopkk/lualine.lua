@@ -2,7 +2,15 @@ if not pcall(require, 'lualine') then
   return
 end
 
--- TODO: execute only when file smallet than certain size and check performance
+-- bad performance on large files {{
+
+-- local file = vim.fn.expand('%:p')  -- Get the current file path
+-- local fileSize = vim.fn.getfsize(file)  -- Get the file size in bytes
+
+-- if fileSize < 150 * 1024 then  -- Convert KB to bytes
+--   print('File size is less than 150KB')
+-- end
+
 local trailing = {
   function()
     local s = vim.fn.search('\\s$', 'nw')
@@ -39,6 +47,7 @@ local mixedIndentFile = {
   end,
   color = { bg = 'DarkOrange' },
 }
+-- bad performance on large files }}
 
 local function window()
   return vim.api.nvim_win_get_number(0)
@@ -102,7 +111,8 @@ require('lualine').setup {
   sections = {
     lualine_c = {'%r %=%F %m'},
     lualine_x = {'encoding', 'filetype'},
-    lualine_z = {'location', trailing, mixedIndent, mixedIndentFile}
+    lualine_z = {'location'}
+    -- lualine_z = {'location', trailing, mixedIndent, mixedIndentFile}
   },
   tabline = {
     -- lualine_a = {{'tabs', mode = 2}},

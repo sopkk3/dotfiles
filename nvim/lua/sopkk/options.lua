@@ -22,7 +22,7 @@ local options = {
   scrolloff = 10,
   sidescrolloff = 5,
   cursorline = true,
-  colorcolumn = '110',
+  -- colorcolumn = '110',
 
   tabstop = 2,
   softtabstop = 2,
