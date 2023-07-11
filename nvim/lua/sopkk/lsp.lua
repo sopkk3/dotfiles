@@ -2,6 +2,12 @@ if not pcall(require, 'lspconfig') then
   return
 end
 
+if not pcall(require, 'telescope') then
+  return
+end
+
+local builtin = require("telescope.builtin")
+
 local lspcnf = require 'lspconfig'
 
 local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
@@ -131,11 +137,15 @@ local setup_server = function(server, config)
     capabilities = require("cmp_nvim_lsp").default_capabilities(),
     on_attach = function(client, bufnr)
       local bufopts = { noremap=true, silent=true, buffer=bufnr }
+
+      -- https://github.com/nvim-telescope/telescope.nvim#neovim-lsp-pickers
+      -- :h vim.lsp
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+      vim.keymap.set('n', 'gd', builtin.lsp_definitions, bufopts)
       vim.keymap.set('n', 'gT', vim.lsp.buf.type_definition, bufopts)
       vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
       vim.keymap.set('n', 'gR', vim.lsp.buf.rename, bufopts)
+      vim.keymap.set('n', '<leader>gr', builtin.lsp_references)
       vim.keymap.set('i', '<C-l>', vim.lsp.buf.signature_help, bufopts)
       vim.keymap.set('n', 'gF', vim.lsp.buf.format, bufopts)
       vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
