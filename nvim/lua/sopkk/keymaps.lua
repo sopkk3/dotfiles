@@ -22,6 +22,11 @@ local function wikiTable()
   vim.api.nvim_command('VimwikiTable ' .. columns .. ' ' .. rows)
 end
 
+local function openTerminalBelow()
+  vim.cmd('belowright 20split')
+  harp_term.gotoTerminal(1)
+end
+
 local mappings = {
   {'n', '<leader>ww', ':update<CR>'},
   {'n', '<leader>q', ':q<CR>'},
@@ -63,6 +68,7 @@ local mappings = {
   {'n', '<A-n>', '<C-W>-'},
   {'n', '<leader>os', ':set scrollbind!<CR>'},
   {'n', '<leader>tn', ':tabnew<CR>'},
+  {'n', '<leader>tt', openTerminalBelow},
 
   {'n', ']<Space>', ':m .-2<CR>=='},
   {'v', ']<Space>', ':m .-2<CR>==gv'},
@@ -80,7 +86,7 @@ local mappings = {
   {'n', '<leader>p', '"+p'},
   {'v', '<leader>p', '"_d"+P'},
   {'v', 'p', '"_dP'},
-  {'n', '<leader>cf', ':let @+ = expand("%")<CR>'}, -- :h expand
+  {'n', '<leader>cf', ':let @+ = expand("%")<CR>'}, -- copies file path | :h expand
 
   -- git / fugitive
   {'n', '<leader>G', ':G<CR>'},
@@ -103,6 +109,7 @@ local mappings = {
   {'n', '<leader>3', function() harp_ui.nav_file(3) end},
   {'n', '<leader>4', function() harp_ui.nav_file(4) end},
   {'n', '<leader>t1', function() harp_term.gotoTerminal(1) end},
+  {'n', '<leader>t2', function() harp_term.gotoTerminal(2) end},
 
   -- luasnip
   {'n', '<leader><leader>s', '<cmd>source ~/.config/nvim/lua/sopkk/luasnip.lua<CR>'},
