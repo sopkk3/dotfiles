@@ -31,7 +31,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Helm
 if command -v helm &> /dev/null
 then
-  helm completion zsh > "${fpath[1]}/_helm"
+  source <(helm completion zsh)
 fi
 
 # Bat

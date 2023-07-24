@@ -9,7 +9,6 @@ local options = {
   ignorecase = true,
   smartcase = true,
   smartindent = true,
-  autoindent = true,
   relativenumber = true,
   number = true,
   updatetime = 1000,
