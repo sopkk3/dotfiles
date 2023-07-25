@@ -1,20 +1,10 @@
-typeset -A host_repr
-
-time_enabled="%(?.%{$fg[green]%}.%{$fg[red]%})%*%{$reset_color%}"
-time_disabled="%{$fg[green]%}%*%{$reset_color%}"
-time=$time_enabled
-
-local user="%(!.%{$fg[blue]%}.%{$fg[blue]%})%n%{$reset_color%}"
-
-local host="@${host_repr[$HOST]:-$HOST}%{$reset_color%}"
-
 local pwd="%{$fg[cyan]%}%~%{$reset_color%}"
 
 PROMPT='${pwd} $(git_prompt_info) $(git_prompt_status)
 > '
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[green]%} %{$fg[yellow]%}?%{$fg[green]%}%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}"
 ZSH_THEME_GIT_PROMPT_STASHED="%{$fg[magenta]%}stash%{$reset_color%}"

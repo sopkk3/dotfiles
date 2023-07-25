@@ -9,15 +9,19 @@ local hl = function(thing, opts)
 end
 
 if vim.g.sopkk_colorscheme == 'enfocado' then
+  -- 250 default white
+  -- 234 default bg black
 
-  hl('NormalFloat', { ctermfg = 250, ctermbg = 234, })
-  hl('FloatBorder', { ctermfg = 107, ctermbg = 234, })
+  hl('Normal', { ctermfg = 252, ctermbg = 232 })
 
-  hl('LineNrBelow', { ctermfg = 246, ctermbg = 234, })
-  hl('LineNrAbove', { ctermfg = 246, ctermbg = 234, })
-  hl('CursorLineNr', { ctermfg = 254, ctermbg = 234, })
+  hl('NormalFloat', { ctermfg = 250, ctermbg = 0, })
+  hl('FloatBorder', { ctermfg = 107, ctermbg = 0, })
 
-  hl('Search', { ctermfg = 214, ctermbg = 234, })
+  hl('LineNrBelow', { ctermfg = 246, ctermbg = 0, })
+  hl('LineNrAbove', { ctermfg = 246, ctermbg = 0, })
+  hl('CursorLineNr', { ctermfg = 254, ctermbg = 0, })
+
+  hl('Search', { ctermfg = 214, ctermbg = 0, })
 
   hl('CursorLine', { ctermbg = 238, })
   hl('ColorColumn', { ctermbg = 238, })

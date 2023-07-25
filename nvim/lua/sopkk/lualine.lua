@@ -54,7 +54,7 @@ local function window()
 end
 
 local colors = {
-  black        = '#202020', dim_black    = '#2e2d2d',
+  black        = '#000000', dim_black    = '#2e2d2d',
   neon         = '#DFFF00', white        = '#FFFFFF',
   green        = '#00D700', purple       = '#5F005F',
   blue         = '#00DFFF', darkblue     = '#00005F',
