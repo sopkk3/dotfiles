@@ -1,5 +1,4 @@
 vim.g.sopkk_colorscheme = 'enfocado'
--- vim.g.sopkk_colorscheme = 'nightfly'
 -- vim.g.sopkk_colorscheme = 'tokyonight-storm' -- blue
 
 vim.cmd('colorscheme ' .. vim.g.sopkk_colorscheme)
@@ -8,11 +7,13 @@ local hl = function(thing, opts)
   vim.api.nvim_set_hl(0, thing, opts)
 end
 
+-- hl('Normal', { ctermbg = 234, }) -- background
+-- hl('NormalNC', { ctermbg = 234, }) -- background non active windows
 if vim.g.sopkk_colorscheme == 'enfocado' then
   -- 250 default white
   -- 234 default bg black
 
-  hl('Normal', { ctermfg = 252, ctermbg = 232 })
+  hl('Normal', { ctermfg = 250, ctermbg = 232 })
 
   hl('NormalFloat', { ctermfg = 250, ctermbg = 0, })
   hl('FloatBorder', { ctermfg = 107, ctermbg = 0, })
@@ -33,6 +34,3 @@ if vim.g.sopkk_colorscheme == 'enfocado' then
   end
 
 end
-
--- hl('Normal', { ctermbg = 234, }) -- background
--- hl('NormalNC', { ctermbg = 234, }) -- background non active windows

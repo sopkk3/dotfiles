@@ -110,7 +110,7 @@ require('lualine').setup {
   },
   sections = {
     lualine_c = {'%r %=%F %m'},
-    lualine_x = {'encoding', 'filetype'},
+    lualine_x = {'encoding', 'filetype', 'fileformat'},
     lualine_z = {'location'}
     -- lualine_z = {'location', trailing, mixedIndent, mixedIndentFile}
   },

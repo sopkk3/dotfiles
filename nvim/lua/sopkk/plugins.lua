@@ -54,5 +54,4 @@ require('lazy').setup({
 
   'wuelnerdotexe/vim-enfocado',
   'folke/tokyonight.nvim',
-  'bluz71/vim-nightfly-colors',
 })
