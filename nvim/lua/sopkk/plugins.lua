@@ -31,6 +31,7 @@ require('lazy').setup({
   'williamboman/mason-lspconfig.nvim',
 
   'google/vim-jsonnet',
+  'mfussenegger/nvim-jdtls',
 
   'hrsh7th/nvim-cmp',
   { 'hrsh7th/cmp-nvim-lsp', dependencies = { 'hrsh7th/nvim-cmp' } },

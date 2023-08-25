@@ -4,18 +4,6 @@ local harp_ui = require('harpoon.ui')
 local harp_mark = require('harpoon.mark')
 local harp_term = require('harpoon.term')
 
-local function alignOnChar() -- Current error: Mark is not set. For some reason '<' and '>' don't get set
-  local character = vim.fn.input("Element to align: ", "", "file")
-  -- local line1 = vim.api.nvim_buf_get_mark(0, "<")[1]
-  -- local line2 = vim.api.nvim_buf_get_mark(0, ">")[1]
-  -- for k, v in pairs(startPos) do print(k, v) end
-  local command = '\'<,\'>! column -t | sed \'s/ ' .. character .. ' /' .. character .. '/\''
-  -- local command = line1 .. ',' .. line2 .. '! column -t | sed \'s/ ' .. character .. ' /' .. character .. '/\''
-  print(command)
-  vim.api.nvim_command(command)
-  -- vim.api.nvim_command([['<,'>normal =ap]])
-end
-
 local function wikiTable()
   local columns = vim.fn.input("Number of columns: ")
   local rows = vim.fn.input("Number of rows: ")
@@ -79,7 +67,7 @@ local mappings = {
   {'n', ']d', ':.!base64 -d<CR>'},
   {'n', ']j', ':.!jq<CR>'},
   {'v', '[=', [[:'<,'>! column -t | sed 's/  / /'<CR>]]},
-  {'v', ']=', alignOnChar},
+  -- {'v', ']=', alignOnChar},
 
   -- Clipboard access is needed :help clipboard
   {{ 'n', 'v' }, '<leader>y', '"+y'},
@@ -121,3 +109,29 @@ local mappings = {
 for _, v in pairs(mappings) do
   vim.keymap.set(v[1], v[2], v[3], opts)
 end
+
+local builtin = require("telescope.builtin")
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    local bufopts = { noremap=true, silent=true, buffer=ev.buf }
+
+    -- https://github.com/nvim-telescope/telescope.nvim#neovim-lsp-pickers
+    -- :h vim.lsp
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('n', 'gd', builtin.lsp_definitions, bufopts)
+    vim.keymap.set('n', 'gT', vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+    vim.keymap.set('n', 'gR', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', '<leader>gr', builtin.lsp_references)
+    vim.keymap.set('i', '<C-l>', vim.lsp.buf.signature_help, bufopts)
+    vim.keymap.set('n', 'gF', function()
+      vim.lsp.buf.format { async = true }
+    end, bufopts)
+    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, bufopts)
+    vim.keymap.set('n', ']g', vim.diagnostic.goto_next, bufopts)
+
+  end,
+})

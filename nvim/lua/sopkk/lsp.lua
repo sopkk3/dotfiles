@@ -6,12 +6,7 @@ if not pcall(require, 'telescope') then
   return
 end
 
-local builtin = require("telescope.builtin")
-
 local lspcnf = require 'lspconfig'
-
-local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-local home = os.getenv "HOME"
 
 require("mason").setup()
 require("mason-lspconfig").setup()
@@ -41,30 +36,6 @@ local servers = {
           enable = false,
         },
       },
-    },
-  },
-
-  jdtls = { -- https://github.com/eclipse/eclipse.jdt.ls#installation
-    cmd = {
-      'java',
-      '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-      '-Dosgi.bundles.defaultStartLevel=4',
-      '-Declipse.product=org.eclipse.jdt.ls.core.product',
-      '-Dlog.level=ALL',
-      '-javaagent:' .. home .. '/build/jdtls/lombok.jar',
-      '-noverify',
-      '-jar', home .. '/build/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
-      '-configuration', home .. '/build/jdtls/config_mac',
-      '-data', vim.fn.expand('/tmp/jdtls-workspace') .. workspace_dir,
-    },
-    vmargs = { -- https://github.com/williamboman/nvim-lsp-installer/blob/main/lua/nvim-lsp-installer/servers/jdtls/README.md
-      "-XX:+UseParallelGC",
-      "-XX:GCTimeRatio=4",
-      "-XX:AdaptiveSizePolicyWeight=90",
-      "-Dsun.zip.disableMemoryMapping=true",
-      "-Djava.import.generatesMetadataFilesAtProjectRoot=false",
-      "-Xmx1G",
-      "-Xms100m",
     },
   },
 
@@ -126,23 +97,6 @@ local setup_server = function(server, config)
 
   config = vim.tbl_deep_extend("force", {
     capabilities = require("cmp_nvim_lsp").default_capabilities(),
-    on_attach = function(client, bufnr)
-      local bufopts = { noremap=true, silent=true, buffer=bufnr }
-
-      -- https://github.com/nvim-telescope/telescope.nvim#neovim-lsp-pickers
-      -- :h vim.lsp
-      vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-      vim.keymap.set('n', 'gd', builtin.lsp_definitions, bufopts)
-      vim.keymap.set('n', 'gT', vim.lsp.buf.type_definition, bufopts)
-      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-      vim.keymap.set('n', 'gR', vim.lsp.buf.rename, bufopts)
-      vim.keymap.set('n', '<leader>gr', builtin.lsp_references)
-      vim.keymap.set('i', '<C-l>', vim.lsp.buf.signature_help, bufopts)
-      vim.keymap.set('n', 'gF', vim.lsp.buf.format, bufopts)
-      vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-      vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, bufopts)
-      vim.keymap.set('n', ']g', vim.diagnostic.goto_next, bufopts)
-    end,
   }, config)
 
   lspcnf[server].setup(config)
