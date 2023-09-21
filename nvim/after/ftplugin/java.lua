@@ -10,6 +10,8 @@ vim.opt_local.commentstring = [[// %s]]
 
 local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local home = os.getenv "HOME"
+-- https://github.com/eclipse-jdtls/eclipse.jdt.ls#installation
+-- https://projectlombok.org/download
 local config = {
   cmd = {
     'java',
@@ -22,9 +24,9 @@ local config = {
     '--add-modules=ALL-SYSTEM',
     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-    '-javaagent:' .. home .. '/build/jdtls/lombok.jar',
-    '-jar', home .. '/build/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
-    '-configuration', home .. '/build/jdtls/config_mac',
+    '-javaagent:' .. home .. '/build/lombok/1.18.28/lombok.jar',
+    '-jar', home .. '/build/jdtls/1.26.0/plugins/org.eclipse.equinox.launcher_1.6.500.v20230717-2134.jar',
+    '-configuration', home .. '/build/jdtls/1.26.0/config_mac',
     '-data', vim.fn.expand('/tmp/jdtls-workspace') .. workspace_dir,
   },
 

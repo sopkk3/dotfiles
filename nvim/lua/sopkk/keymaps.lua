@@ -15,21 +15,30 @@ local function openTerminalBelow()
   harp_term.gotoTerminal(1)
 end
 
+local function encode64()
+  local lineContent = vim.api.nvim_get_current_line()
+  local output = vim.fn.system("printf " .. lineContent .. "| base64")
+  local newLineContent = output:gsub("\n", "")
+  vim.api.nvim_set_current_line(newLineContent)
+end
+
+
 local mappings = {
-  {'n', '<leader>ww', ':update<CR>'},
-  {'n', '<leader>q', ':q<CR>'},
-  {'n', '<leader>aq', ':q!<CR>'},
-  {'n', '<leader>QQ', ':qa<CR>'},
-  {'n', '<leader>QW', ':tabclose<CR>'},
-  {'n', '<leader>aQ', ':qa!<CR>'},
+  {'n', '<leader>ww', '<cmd>update<CR>'},
+  {'n', '<leader>q', '<cmd>q<CR>'},
+  {'n', '<leader>aq', '<cmd>q!<CR>'},
+  {'n', '<leader>QQ', '<cmd>qa<CR>'},
+  {'n', '<leader>QW', '<cmd>tabclose<CR>'},
+  {'n', '<leader>aQ', '<cmd>qa!<CR>'},
   {'n', 'n', 'nzz'},
   {'n', 'N', 'Nzz'},
   {'n', 'J', 'mxJ`x'},
   {'n', 'Y', 'y$'},
   {'i', '<C-c>', '<Esc>'},
-  {'n', '<leader>E', ':Explore<CR>'},
+  {'n', '<leader>E', '<cmd>Explore<CR>'},
   {'n', '<Up>', '<C-y>'},
   {'n', '<Down>', '<C-e>'},
+  {'n', '*', '*N'},
   {'n', '<leader>w1', '1<C-w>w'},
   {'n', '<leader>w2', '2<C-w>w'},
   {'n', '<leader>w3', '3<C-w>w'},
@@ -42,51 +51,53 @@ local mappings = {
   {'n', ']z', 'za'},
 
   -- Buffers, tabs and qfix list
-  {'n', ']b', ':bnext<CR>'},
-  {'n', '[b', ':bnext<CR>'},
-  {'n', '<leader>bd', ':bd<CR>'},
-  {'n', '<leader>DD', ':call delete(expand("%")) | bdelete!<CR>'},
+  {'n', ']b', '<cmd>bnext<CR>'},
+  {'n', '[b', '<cmd>bnext<CR>'},
+  {'n', '<leader>bd', '<cmd>bd<CR>'},
+  {'n', '<leader>DD', '<cmd>call delete(expand("%")) | bdelete!<CR>'},
   {'n', '<Left>', 'gT'},
   {'n', '<Right>', 'gt'},
-  {'n', '[q', ':cprev<CR>zz'},
-  {'n', ']q', ':cnext<CR>zz'},
+  {'n', '[q', '<cmd>cprev<CR>zz'},
+  {'n', ']q', '<cmd>cnext<CR>zz'},
   {'n', '<A-.>', '<C-W>>'},
   {'n', '<A-,>', '<C-W><'},
   {'n', '<A-m>', '<C-W>+'},
   {'n', '<A-n>', '<C-W>-'},
-  {'n', '<leader>os', ':set scrollbind!<CR>'},
-  {'n', '<leader>tn', ':tabnew<CR>'},
+  {'n', '<leader>os', '<cmd>set scrollbind!<CR>'},
+  {'n', '<leader>tn', '<cmd>tabnew<CR>'},
   {'n', '<leader>tt', openTerminalBelow},
 
-  {'n', ']<Space>', ':m .-2<CR>=='},
-  {'v', ']<Space>', ':m .-2<CR>==gv'},
-  {'n', '[<Space>', ':m .+1<CR>=='},
-  -- {'v', '[<Space>', ':m >+1<CR>==gv'}, error
+  {'n', ']<Space>', '<cmd>m .-2<CR>=='},
+  {'v', ']<Space>', '<cmd>m .-2<CR>==gv'},
+  {'n', '[<Space>', '<cmd>m .+1<CR>=='},
+  -- {'v', '[<Space>', '<cmd>m >+1<CR>==gv'}, error
 
-  {'n', '[d', ':.!base64<CR>'},
-  {'n', ']d', ':.!base64 -d<CR>'},
-  {'n', ']j', ':.!jq<CR>'},
-  {'v', '[=', [[:'<,'>! column -t | sed 's/  / /'<CR>]]},
+  -- Decode/Encode
+  {'n', '[d', encode64}, -- <cmd>.!base64<CR> line ending also encoded
+  {'n', ']d', '<cmd>.!base64 -d<CR>'},
+  {'n', ']j', '<cmd>.!jq<CR>'},
+  {'v', '[=', [[<cmd>'<,'>! column -t | sed 's/  / /'<CR>]]},
   -- {'v', ']=', alignOnChar},
+  {'n', ']c', '<cmd>!openssl x509 -in % -noout -text<CR>'},
 
   -- Clipboard access is needed :help clipboard
   {{ 'n', 'v' }, '<leader>y', '"+y'},
   {'n', '<leader>p', '"+p'},
   {'v', '<leader>p', '"_d"+P'},
   {'v', 'p', '"_dP'},
-  {'n', '<leader>cf', ':let @+ = expand("%")<CR>'}, -- copies file path | :h expand
+  {'n', '<leader>cf', '<cmd>let @+ = expand("%")<CR>'}, -- copies file path | :h expand
 
   -- git / fugitive
-  {'n', '<leader>G', ':G<CR>'},
-  {'n', '<leader>gb', ':G blame<CR>'},
-  {'n', '<leader>gp', ':G push<CR>'},
-  {'n', '<leader>gl', ':G pull<CR>'},
-  {'n', '<leader>gs', ':G switch -<CR>'},
-  {'n', '<leader>gd', ':DiffviewOpen '},
+  {'n', '<leader>G', '<cmd>G<CR>'},
+  {'n', '<leader>gb', '<cmd>G blame<CR>'},
+  {'n', '<leader>gp', '<cmd>G push<CR>'},
+  {'n', '<leader>gl', '<cmd>G pull<CR>'},
+  {'n', '<leader>gs', '<cmd>G switch -<CR>'},
+  {'n', '<leader>gd', '<cmd>DiffviewOpen '},
 
   -- vim wiki
-  {'n', '<leader>WW', ':VimwikiIndex<CR>'},
-  {'n', '<leader>WC', ':VimwikiToggleListItem<CR>'},
+  {'n', '<leader>WW', '<cmd>VimwikiIndex<CR>'},
+  {'n', '<leader>WC', '<cmd>VimwikiToggleListItem<CR>'},
   {'n', '<leader>WT', wikiTable},
 
   -- harpoon
@@ -103,7 +114,7 @@ local mappings = {
   {'n', '<leader><leader>s', '<cmd>source ~/.config/nvim/lua/sopkk/luasnip.lua<CR>'},
 
   -- lsp
-  {'n', '<leader>LR', ':LspRestart<CR>'},
+  {'n', '<leader>LR', '<cmd>LspRestart<CR>'},
 }
 
 for _, v in pairs(mappings) do
