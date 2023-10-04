@@ -24,8 +24,6 @@ require('lazy').setup({
   'lewis6991/gitsigns.nvim',
   'sindrets/diffview.nvim',
 
-  'nvim-lualine/lualine.nvim',
-
   'neovim/nvim-lspconfig',
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
