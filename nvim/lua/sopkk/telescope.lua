@@ -12,6 +12,9 @@ require("telescope").setup({
     file_sorter = require("telescope.sorters").get_fzy_sorter,
     prompt_prefix = " >",
     color_devicons = true,
+    file_ignore_patterns = {
+      "%.otf"
+    },
     -- path_display = { truncate = 3 },
     path_display = { shorten = { len = 1, exclude = { 1, 2, -1, -2 } } },
 

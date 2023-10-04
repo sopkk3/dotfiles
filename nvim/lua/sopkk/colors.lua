@@ -7,6 +7,8 @@ local hl = function(thing, opts)
   vim.api.nvim_set_hl(0, thing, opts)
 end
 
+-- find hl groups: <cmd>filter /search/ highlight
+-- :filter /line/ highlight
 -- hl('Normal', { ctermbg = 234, }) -- background
 -- hl('NormalNC', { ctermbg = 234, }) -- background non active windows
 if vim.g.sopkk_colorscheme == 'enfocado' then

@@ -68,9 +68,9 @@ local mappings = {
   {'n', '<leader>tt', openTerminalBelow},
 
   {'n', ']<Space>', '<cmd>m .-2<CR>=='},
-  {'v', ']<Space>', '<cmd>m .-2<CR>==gv'},
+  {'v', ']<Space>', [[:move '<-2<CR>gv=gv]]},
   {'n', '[<Space>', '<cmd>m .+1<CR>=='},
-  -- {'v', '[<Space>', '<cmd>m >+1<CR>==gv'}, error
+  {'v', '[<Space>', [[:move '>+1<CR>gv=gv]]},
 
   -- Decode/Encode
   {'n', '[d', encode64}, -- <cmd>.!base64<CR> line ending also encoded
