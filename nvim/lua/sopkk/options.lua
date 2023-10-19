@@ -22,7 +22,6 @@ local options = {
   scrolloff = 10,
   sidescrolloff = 5,
   cursorline = true,
-  -- colorcolumn = '110',
 
   tabstop = 2,
   softtabstop = 2,
@@ -54,8 +53,6 @@ vim.filetype.add({
 
 
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, { command = '%s/\\s\\+$//e'})
-
-vim.api.nvim_create_autocmd({ 'TermOpen' }, { command = 'set nonumber norelativenumber'})
 
 vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
   callback = function()

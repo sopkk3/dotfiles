@@ -17,7 +17,7 @@ end
 
 local function encode64()
   local lineContent = vim.api.nvim_get_current_line()
-  local output = vim.fn.system("printf " .. lineContent .. "| base64")
+  local output = vim.fn.system("echo -n '" .. lineContent .. "'| base64")
   local newLineContent = output:gsub("\n", "")
   vim.api.nvim_set_current_line(newLineContent)
 end
@@ -30,8 +30,6 @@ local mappings = {
   {'n', '<leader>QQ', '<cmd>qa<CR>'},
   {'n', '<leader>QW', '<cmd>tabclose<CR>'},
   {'n', '<leader>aQ', '<cmd>qa!<CR>'},
-  {'n', 'n', 'nzz'},
-  {'n', 'N', 'Nzz'},
   {'n', 'J', 'mxJ`x'},
   {'n', 'Y', 'y$'},
   {'i', '<C-c>', '<Esc>'},
@@ -107,6 +105,8 @@ local mappings = {
   {'n', '<leader>2', function() harp_ui.nav_file(2) end},
   {'n', '<leader>3', function() harp_ui.nav_file(3) end},
   {'n', '<leader>4', function() harp_ui.nav_file(4) end},
+  {'n', '<leader>5', function() harp_ui.nav_file(5) end},
+  {'n', '<leader>6', function() harp_ui.nav_file(6) end},
   {'n', '<leader>t1', function() harp_term.gotoTerminal(1) end},
   {'n', '<leader>t2', function() harp_term.gotoTerminal(2) end},
 

@@ -29,10 +29,10 @@ if vim.g.sopkk_colorscheme == 'enfocado' then
   hl('CursorLine', { ctermbg = 238, })
   hl('ColorColumn', { ctermbg = 238, })
 
-  -- disable 0.9 lsp highlight temporarily
-  -- https://www.reddit.com/r/neovim/comments/12gvms4/this_is_why_your_higlights_look_different_in_90/
-  for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
-    vim.api.nvim_set_hl(0, group, {})
-  end
+end
 
+-- disable 0.9 lsp highlight temporarily
+-- https://www.reddit.com/r/neovim/comments/12gvms4/this_is_why_your_higlights_look_different_in_90/
+for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+  vim.api.nvim_set_hl(0, group, {})
 end
