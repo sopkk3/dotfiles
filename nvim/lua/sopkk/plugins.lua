@@ -52,5 +52,4 @@ require('lazy').setup({
   'ThePrimeagen/harpoon',
 
   'wuelnerdotexe/vim-enfocado',
-  'folke/tokyonight.nvim',
 })

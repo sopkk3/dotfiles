@@ -91,7 +91,7 @@ local mappings = {
   {'n', '<leader>gp', '<cmd>G push<CR>'},
   {'n', '<leader>gl', '<cmd>G pull<CR>'},
   {'n', '<leader>gs', '<cmd>G switch -<CR>'},
-  {'n', '<leader>gd', '<cmd>DiffviewOpen '},
+  {'n', '<leader>gd', ':DiffviewOpen '},
 
   -- vim wiki
   {'n', '<leader>WW', '<cmd>VimwikiIndex<CR>'},

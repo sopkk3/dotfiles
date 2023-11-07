@@ -15,6 +15,10 @@ source $HOME/.aliases
 
 function mkcd { command mkdir $1 && cd $1 }
 function jqp { jq -R -r '. as $line | try fromjson catch $line' }
+function nvm_load {
+  export NVM_DIR=~/.nvm
+  source $(brew --prefix nvm)/nvm.sh
+}
 
 if [[ $OSTYPE == 'darwin'* ]]; then
   export JAVA_HOME=$(/usr/libexec/java_home)
