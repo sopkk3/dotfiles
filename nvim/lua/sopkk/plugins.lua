@@ -37,6 +37,7 @@ require('lazy').setup({
   { 'hrsh7th/cmp-buffer', dependencies = { 'hrsh7th/nvim-cmp' } },
   { 'hrsh7th/cmp-path', dependencies = { 'hrsh7th/nvim-cmp' } },
   { 'saadparwaiz1/cmp_luasnip', dependencies = { 'L3MON4D3/LuaSnip' } },
+  'onsails/lspkind.nvim',
 
   'L3MON4D3/LuaSnip',
 
@@ -52,4 +53,7 @@ require('lazy').setup({
   'ThePrimeagen/harpoon',
 
   'wuelnerdotexe/vim-enfocado',
+
+  'stevearc/overseer.nvim',
+  'stevearc/aerial.nvim',
 })

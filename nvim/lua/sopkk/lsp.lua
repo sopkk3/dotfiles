@@ -51,6 +51,29 @@ if not pcall(require, 'cmp') then
   return
 end
 
+if not pcall(require, 'lspkind') then
+  return
+end
+
+local lspkind = require('lspkind')
+lspkind.init {
+  symbol_map = {
+    Method = "",
+    Function = "f(x)",
+    Field = "",
+    Variable = "",
+    Class = "",
+    Property = "",
+    Keyword = "",
+    File = "",
+    Folder = "",
+    Constant = "",
+    Struct = "",
+    Operator = "",
+  },
+}
+
+
 local cmp = require 'cmp'
 cmp.setup {
   snippet = {
@@ -85,6 +108,19 @@ cmp.setup {
       }
     },
   }),
+  formatting = {
+    format = lspkind.cmp_format({
+      mode = 'symbol_text',
+      menu = {
+        buffer = "[buf]",
+        nvim_lsp = "[LSP]",
+        nvim_lua = "[api]",
+        path = "[path]",
+        luasnip = "[snip]",
+      },
+
+    })
+  },
   experimental = {
     native_menu = false,
   }
@@ -105,3 +141,8 @@ end
 for server, config in pairs(servers) do
   setup_server(server, config)
 end
+
+if not pcall(require, 'aerial') then
+  return
+end
+require('aerial').setup()
