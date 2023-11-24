@@ -70,6 +70,7 @@ lspkind.init {
     Constant = "",
     Struct = "",
     Operator = "",
+    Text = "",
   },
 }
 

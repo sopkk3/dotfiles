@@ -1,8 +1,8 @@
 colors:
   # Default colors
-    # background: '0x171717'
+    # background: '0x000000'
   primary:
-    background: '0x000000'
+    background: '0x1c1c1c'
     foreground: '0xd6d6d6'
 
     dim_foreground:    '0xdbdbdb'
