@@ -1,0 +1,41 @@
+import = ["/Users/anorojor/.config/alacritty/themes/sopkk.toml"]
+live_config_reload = true
+
+[cursor.style]
+blinking = "Off"
+shape = "Block"
+
+[font]
+size = 13.0
+
+[font.normal]
+family = "SFMono Nerd Font"
+
+[[keyboard.bindings]]
+chars = "\u0011"
+key = "Q"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u001B."
+key = "Period"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001B,"
+key = "Comma"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bn"
+key = "N"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bm"
+key = "M"
+mods = "Alt"
+
+[window.padding]
+x = 5
+y = 0
