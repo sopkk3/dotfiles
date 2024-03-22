@@ -4,13 +4,23 @@ set number
 set surround
 set commentary
 set encoding=utf-8
+set clipboard+=unnamedplus
 
-noremap <leader>w :w<CR>
+noremap <leader>ww :w<CR>
 noremap <leader>q :q!<CR>
 nnoremap Y y$
+nnoremap <Up> <C-y>
+nnoremap <Down> <C-e>
 
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
 set backspace=indent,eol,start
+
+map <leader>S <Action>(SearchEverywhere)
+map <leader>s <Action>(GotoFile)
+map <leader>ag <Action>(FindInPath)
+map <left> <Action>(PreviousTab)
+map <right> <Action>(NextTab)
+map <leader>ca <Action>(ShowIntentionActions)

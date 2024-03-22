@@ -19,6 +19,7 @@ local servers = {
   terraformls = true, -- Mason -- https://github.com/hashicorp/terraform-ls/releases
   groovyls = true, -- Mason
   tsserver = true, -- Mason
+  yamlls = true, -- Mason -- https://github.com/redhat-developer/yaml-language-server
   lua_ls = { -- Mason
     settings = {
       Lua = {
