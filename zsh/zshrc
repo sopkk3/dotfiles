@@ -13,7 +13,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 source $ZSH/oh-my-zsh.sh
 source $HOME/.aliases
 
-function mkcd { command mkdir $1 && cd $1 }
+function mkcd { command mkdir -p $1 && cd $1 }
 function jqp { jq -R -r '. as $line | try fromjson catch $line' }
 function nvm_load {
   export NVM_DIR=~/.nvm
@@ -21,7 +21,6 @@ function nvm_load {
 }
 
 if [[ $OSTYPE == 'darwin'* ]]; then
-  export JAVA_HOME=$(/usr/libexec/java_home)
   export GOROOT="$(brew --prefix golang)/libexec"
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   export GOROOT=/usr/local/go
@@ -31,6 +30,9 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 export PATH="$HOME/.cargo/bin:$PATH"
+
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # Helm
 if command -v helm &> /dev/null
