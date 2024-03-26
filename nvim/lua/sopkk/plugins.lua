@@ -56,4 +56,5 @@ require('lazy').setup({
 
   'stevearc/overseer.nvim',
   'stevearc/aerial.nvim',
+  { "lukas-reineke/indent-blankline.nvim", main = 'ibl', ft = { 'yaml' } },
 })
