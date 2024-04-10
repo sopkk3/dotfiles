@@ -18,6 +18,8 @@ local options = {
   breakindent = true,
   showbreak = string.rep(" ", 3),
   linebreak = true,
+  list = true,
+  listchars = { trail = '·', tab = '>>' },
 
   scrolloff = 10,
   sidescrolloff = 5,
@@ -29,13 +31,11 @@ local options = {
   expandtab = true,
 
   laststatus = 3,
-
 }
 
 vim.opt.wildignore:append('*/node_modules/*,*/target/*,*/.out,*/.git/*,*.swp')
 
 vim.g.netrw_banner = 0
-
 vim.g.jsonnet_fmt_on_save = 0
 
 for k, v in pairs(options) do
