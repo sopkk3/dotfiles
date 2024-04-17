@@ -93,9 +93,9 @@ local mappings = {
   {'n', '<leader>gs', '<cmd>G switch -<CR>'},
   {'n', '<leader>gd', ':DiffviewOpen '},
 
-  -- vim wiki
-  {'n', '<leader>WW', '<cmd>VimwikiIndex<CR>'},
-  {'n', '<leader>WC', '<cmd>VimwikiToggleListItem<CR>'},
+  -- markdown
+  {'n', '<leader>WC', 'mx0f[ax<Esc>`x'}, -- check [] box
+  {'n', '<leader>WD', 'mx0f[fxx<Esc>`x'}, -- uncheck [x] box
   {'n', '<leader>WT', wikiTable},
 
   -- harpoon

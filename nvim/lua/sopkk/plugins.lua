@@ -48,7 +48,11 @@ require('lazy').setup({
   'nvim-treesitter/nvim-treesitter',
   'nvim-treesitter/nvim-treesitter-context',
 
-  'vimwiki/vimwiki',
+  'tpope/vim-dadbod',
+  'kristijanhusak/vim-dadbod-ui',
+  'kristijanhusak/vim-dadbod-completion',
+
+  'lervag/wiki.vim',
 
   'ThePrimeagen/harpoon',
 

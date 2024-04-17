@@ -57,7 +57,7 @@ ls.add_snippets( 'all', {
 -- }}
 
 -- WIKI {{
-ls.add_snippets( 'vimwiki', {
+ls.add_snippets( 'markdown', {
   snippet('daily', fmt("{}\n  - ", {f(
     function ()
       return os.date "%Y/%m/%d"

@@ -29,6 +29,16 @@ if vim.g.sopkk_colorscheme == 'enfocado' and vim.o.background ~= "light" then
   hl('CursorLine', { ctermbg = 238, })
   hl('ColorColumn', { ctermbg = 238, })
 
+  hl('NonText', { ctermfg = 243, })
+
+  -- hl('@markup.heading', { link = 'Title' }) -- @markup.heading shares group with pipe_table_header
+  hl('@markup.heading.1', { ctermfg = 66, bold = true })
+  hl('@markup.heading.2', { ctermfg = 66, bold = true })
+  hl('@markup.heading.3', { ctermfg = 66, bold = true })
+  hl('@markup.link.label', { link = 'SpecialChar' })
+  hl('@markup.link.url', { link = 'Underlined' })
+  hl('@markup.list', { ctermfg = 69 })
+
 end
 
 -- disable 0.9 lsp highlight
