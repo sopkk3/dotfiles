@@ -47,6 +47,7 @@ require('lazy').setup({
 
   'nvim-treesitter/nvim-treesitter',
   'nvim-treesitter/nvim-treesitter-context',
+  'nvim-treesitter/nvim-treesitter-textobjects',
 
   'tpope/vim-dadbod',
   'kristijanhusak/vim-dadbod-ui',

@@ -2,6 +2,7 @@ if not pcall(require, 'nvim-treesitter') then
   return
 end
 
+---@diagnostic disable-next-line: missing-fields
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     'bash',
@@ -19,11 +20,8 @@ require'nvim-treesitter.configs'.setup {
     'typescript',
     'vimdoc',
     'yaml',
+    'sql',
   },
-  auto_install = false,
-  sync_install = false,
-  ignore_install = {},
-  modules = {},
   highlight = {
     enable = true,
     disable = function(lang, buf)
@@ -36,7 +34,28 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false
   },
   indent = {
-    enable = true,
+    enable = false,
+  },
+  textobjects = {
+    move = {
+      enable = true,
+      set_jumps = true,
+
+      goto_next_start = {
+        ["]p"] = "@parameter.inner",
+        ["]m"] = "@function.outer",
+      },
+      goto_next_end = {
+        ["]M"] = "@function.outer",
+      },
+      goto_previous_start = {
+        ["[p"] = "@parameter.inner",
+        ["[m"] = "@function.outer",
+      },
+      goto_previous_end = {
+        ["[M"] = "@function.outer",
+      },
+    },
   }
 }
 
