@@ -19,7 +19,7 @@ local options = {
   showbreak = string.rep(" ", 3),
   linebreak = true,
   list = true,
-  listchars = { trail = '·', tab = '>>' },
+  listchars = { trail = '·', tab = '>>', nbsp = '␣' },
 
   scrolloff = 10,
   sidescrolloff = 5,
