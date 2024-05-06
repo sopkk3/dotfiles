@@ -53,15 +53,16 @@ vim.filetype.add({
 })
 
 
-vim.api.nvim_create_autocmd({ 'BufWritePre' }, { command = '%s/\\s\\+$//e'})
+local group = vim.api.nvim_create_augroup('OptionsGroup', { clear = true })
 
+vim.api.nvim_create_autocmd({ 'BufWritePre' }, { group = group,  command = '%s/\\s\\+$//e'})
 vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
+  group = group,
   callback = function()
     vim.highlight.on_yank { higroup = 'Visual', timeout = 300 }
   end,
 })
 
-local group = vim.api.nvim_create_augroup('CursorLineControl', { clear = true })
 local set_cursorline = function(event, value, pattern)
   vim.api.nvim_create_autocmd(event, {
     group = group,
@@ -74,3 +75,23 @@ end
 set_cursorline('WinLeave', false)
 set_cursorline('WinEnter', true)
 set_cursorline('FileType', false, 'TelescopePrompt')
+
+vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'FocusGained' }, {
+  group = group,
+  desc = 'git branch',
+  callback = function()
+    if vim.fn.isdirectory '.git' ~= 0 then
+      local branch = vim.fn.system "git branch --show-current | tr -d '\n'"
+      vim.b.branch_name = '  ' .. branch .. ' '
+    else
+      vim.b.branch_name = ''
+    end
+  end,
+})
+
+vim.api.nvim_set_hl(0, 'greenFGblackBG', {ctermfg = 158, ctermbg = 234})
+vim.api.nvim_set_hl(0, 'greenFGwhiteBG', {ctermfg = 0, ctermbg = 231})
+
+vim.o.statusline="%#greenFGblackBG#%{get(b:, 'branch_name', '')} %h%m%r %=%F %=%{&encoding} %y %{&ff} %-8.(%l,%c%V%) %P"
+vim.o.winbar="%#greenFGblackBG# %{winnr()} %f%m"
+-- vim.o.tabline needs to iterate through tabs

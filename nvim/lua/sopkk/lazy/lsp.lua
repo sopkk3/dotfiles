@@ -1,0 +1,164 @@
+-- :h lspconfig-server-configurations
+local servers = {
+  gopls = true, -- Mason -- go install golang.org/x/tools/gopls@latest
+  pyright = true, -- Mason -- npm i -g pyright
+  jsonnet_ls = true, -- Mason -- go install github.com/grafana/jsonnet-language-server@latest
+  terraformls = true, -- Mason -- https://github.com/hashicorp/terraform-ls/releases
+  groovyls = true, -- Mason
+  tsserver = true, -- Mason
+  yamlls = true, -- Mason -- https://github.com/redhat-developer/yaml-language-server
+  lua_ls = { -- Mason
+    settings = {
+      Lua = {
+        runtime = {
+          version = 'LuaJIT',
+        },
+        diagnostics = {
+          globals = {'vim', 'use'},
+        },
+        workspace = {
+          library = vim.api.nvim_get_runtime_file("", true),
+          checkThirdParty = false,
+        },
+        telemetry = {
+          enable = false,
+        },
+      },
+    },
+  },
+
+  rust_analyzer = { -- Mason -- rustup
+    cmd = {
+      "rustup", "run", "stable", "rust-analyzer",
+    }
+  },
+
+}
+
+return {
+  'neovim/nvim-lspconfig',
+    dependencies = {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+      "hrsh7th/nvim-cmp",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+    },
+    keys = {
+      { '<leader>LR', '<cmd>LspRestart<CR>' },
+    },
+    config = function()
+      local lspcnf = require 'lspconfig'
+      local cmp = require('cmp')
+      local builtin = require("telescope.builtin")
+      local lspkind = require('lspkind')
+
+      for server, config in pairs(servers) do
+        if type(config) ~= "table" then
+          config = {}
+        end
+
+        config = vim.tbl_deep_extend("force", {
+          capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        }, config)
+
+        lspcnf[server].setup(config)
+
+        vim.api.nvim_create_autocmd('LspAttach', {
+          group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+          callback = function(ev)
+            local bufopts = { noremap=true, silent=true, buffer=ev.buf }
+
+            -- https://github.com/nvim-telescope/telescope.nvim#neovim-lsp-pickers
+            -- :h vim.lsp
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+            vim.keymap.set('n', 'gd', builtin.lsp_definitions, bufopts)
+            vim.keymap.set('n', 'gT', vim.lsp.buf.type_definition, bufopts)
+            vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+            vim.keymap.set('n', 'gR', vim.lsp.buf.rename, bufopts)
+            vim.keymap.set('n', '<leader>gr', builtin.lsp_references)
+            vim.keymap.set('i', '<C-l>', vim.lsp.buf.signature_help, bufopts)
+            vim.keymap.set('n', 'gF', function()
+              vim.lsp.buf.format { async = true }
+            end, bufopts)
+            vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+            vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, bufopts)
+            vim.keymap.set('n', ']g', vim.diagnostic.goto_next, bufopts)
+
+          end,
+        })
+
+        cmp.setup {
+          snippet = {
+            expand = function(args)
+              require('luasnip').lsp_expand(args.body)
+            end,
+          },
+          mapping = cmp.mapping.preset.insert({
+            ['<C-n>'] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+            ['<C-p>'] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+            ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+            ['<C-f>'] = cmp.mapping.scroll_docs(4),
+            ['<C-Space>'] = cmp.mapping.complete(),
+            ['<C-e>'] = cmp.mapping.abort(),
+            ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          }),
+          sources = cmp.config.sources({
+            { name = 'path' },
+            { name = 'nvim_lsp' },
+            { name = 'luasnip' },
+          },{
+            { name = 'buffer', keyword_length = 5,
+            option = {
+              get_bufnrs = function()
+                local bufs = {}
+                for _, win in ipairs(vim.api.nvim_list_wins()) do
+                  bufs[vim.api.nvim_win_get_buf(win)] = true
+                end
+                return vim.tbl_keys(bufs)
+              end
+            }
+          },
+        }),
+        formatting = {
+          format = lspkind.cmp_format({
+            mode = 'symbol_text',
+            menu = {
+              buffer = "[buf]",
+              nvim_lsp = "[LSP]",
+              nvim_lua = "[api]",
+              path = "[path]",
+              luasnip = "[snip]",
+            },
+
+          })
+        },
+        experimental = {
+          native_menu = false,
+        }
+      }
+    end
+
+    lspkind.init {
+      symbol_map = {
+        Method = "",
+        Function = "f(x)",
+        Field = "",
+        Variable = "",
+        Class = "",
+        Property = "",
+        Keyword = "",
+        File = "",
+        Folder = "",
+        Constant = "",
+        Struct = "",
+        Operator = "",
+        Text = "",
+      },
+    }
+  end
+}
