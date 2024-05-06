@@ -10,12 +10,7 @@ return {
     }
   },
   { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', ft = { 'yaml' } },
-  { 'lervag/wiki.vim',
-    keys = {
-      { '<leader>WC', 'mx0f[ax<Esc>`x' }, -- check [] box
-      { '<leader>WD', 'mx0f[fxx<Esc>`x' }, -- uncheck [x] box
-    }
-  },
+  'lervag/wiki.vim',
   'nvim-lualine/lualine.nvim',
   {
     'williamboman/mason.nvim',
