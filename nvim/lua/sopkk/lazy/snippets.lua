@@ -1,7 +1,7 @@
 return {
   'L3MON4D3/LuaSnip',
   keys = {
-    { '<leader><leader>s', '<cmd>source ~/.config/nvim/lua/sopkk/luasnip.lua<CR>' },
+    { '<leader><leader>s', '<cmd>source ~/.config/nvim/lua/sopkk/lazy/snippets.lua<CR>' },
   },
   config = function ()
     local ls = require('luasnip')

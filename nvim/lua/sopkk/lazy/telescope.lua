@@ -18,7 +18,7 @@ return {
     { '<leader>ag', function() require('telescope').extensions.live_grep_args.live_grep_args() end },
     { '<leader>aG', function() require('telescope.builtin').live_grep({ cwd = require('telescope.utils').buffer_dir() }) end },
     { '<leader>af', function() require('telescope.builtin').grep_string() end },
-    { '<leader>at', function() require('telescope.builtin').grep_string({ search = "TODO" }) end },
+    { '<leader>aT', function() require('telescope.builtin').grep_string({ search = "TODO" }) end },
     { '<leader>aF', function() require('telescope.builtin').current_buffer_fuzzy_find() end },
     { '<leader>aL', function() require('telescope.builtin').live_grep({ additional_args = { '--hidden' } }) end },
     { '<leader>aC', function() require('telescope.builtin').git_status() end },

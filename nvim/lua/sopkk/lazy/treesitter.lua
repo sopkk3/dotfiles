@@ -72,6 +72,7 @@ return {
           goto_next_start = {
             ["]p"] = "@parameter.inner",
             ["]m"] = "@function.outer",
+            ["]i"] = "@block.outer",
           },
           goto_next_end = {
             ["]M"] = "@function.outer",
@@ -79,6 +80,7 @@ return {
           goto_previous_start = {
             ["[p"] = "@parameter.inner",
             ["[m"] = "@function.outer",
+            ["[i"] = "@block.outer",
           },
           goto_previous_end = {
             ["[M"] = "@function.outer",

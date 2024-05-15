@@ -7,6 +7,9 @@ local function encode64()
   vim.api.nvim_set_current_line(newLineContent)
 end
 
+local function openSplitBelow()
+  vim.cmd('belowright 20split')
+end
 
 local mappings = {
   {'n', '<leader>ww', '<cmd>update<CR>'},
@@ -30,7 +33,7 @@ local mappings = {
   {'t', '<Esc>', '<C-\\><C-n>'},
 
   -- Folding
-  {'n', '[z', 'zfi{'}, -- TODO: Make fold work based on indentation blocks
+  {'n', '[z', 'zfi{'},
   {'n', ']z', 'za'},
 
   -- Buffers, tabs and qfix list
@@ -48,6 +51,7 @@ local mappings = {
   {'n', '<A-n>', '<C-W>-'},
   {'n', '<leader>os', '<cmd>set scrollbind!<CR>'},
   {'n', '<leader>tn', '<cmd>tabnew<CR>'},
+  {'n', '<leader>tt', openSplitBelow},
 
   {'n', ']<Space>', '<cmd>m .-2<CR>=='},
   {'v', ']<Space>', [[:move '<-2<CR>gv=gv]]},

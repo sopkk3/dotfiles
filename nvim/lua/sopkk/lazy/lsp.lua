@@ -48,9 +48,6 @@ return {
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
     },
-    keys = {
-      { '<leader>LR', '<cmd>LspRestart<CR>' },
-    },
     config = function()
       local lspcnf = require 'lspconfig'
       local cmp = require('cmp')
@@ -103,7 +100,7 @@ return {
             ['<C-p>'] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
             ['<C-d>'] = cmp.mapping.scroll_docs(-4),
             ['<C-f>'] = cmp.mapping.scroll_docs(4),
-            ['<C-Space>'] = cmp.mapping.complete(),
+            ['<C-s>'] = cmp.mapping.complete(),
             ['<C-e>'] = cmp.mapping.abort(),
             ['<CR>'] = cmp.mapping.confirm({ select = true }),
           }),
@@ -134,13 +131,19 @@ return {
               path = "[path]",
               luasnip = "[snip]",
             },
-
           })
         },
         experimental = {
           native_menu = false,
         }
       }
+
+      cmp.setup.filetype({ 'sql' }, {
+        sources = {
+          { name = 'vim-dadbod-completion' },
+          { name = 'buffer'},
+        },
+      })
     end
 
     lspkind.init {

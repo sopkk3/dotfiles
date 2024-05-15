@@ -1,5 +1,6 @@
 return {
-  { 'wuelnerdotexe/vim-enfocado',
+  {
+    'wuelnerdotexe/vim-enfocado',
     lazy = false,
     priority = 1000,
     config = function()
