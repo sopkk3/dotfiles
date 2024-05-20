@@ -1,4 +1,4 @@
-import = ["/Users/anorojor/.config/alacritty/themes/sopkk.toml"]
+import = ["~/.config/alacritty/themes/sopkk.toml"]
 live_config_reload = true
 
 [cursor.style]

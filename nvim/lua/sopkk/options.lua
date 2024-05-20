@@ -89,8 +89,8 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'FocusGained' }, {
   end,
 })
 
-vim.api.nvim_set_hl(0, 'greenFGblackBG', {ctermfg = 158, ctermbg = 234})
-vim.api.nvim_set_hl(0, 'greenFGwhiteBG', {ctermfg = 0, ctermbg = 231})
+vim.api.nvim_set_hl(0, 'greenFGblackBG', {fg = '#afffd7', bg = '#1c1c1c'})
+vim.api.nvim_set_hl(0, 'greenFGwhiteBG', {fg = '#000000', bg = '#ffffff'})
 
 vim.o.statusline="%#greenFGblackBG#%{get(b:, 'branch_name', '')} %h%m%r %=%F %=%{&encoding} %y %{&ff} %-8.(%l,%c%V%) %P"
 vim.o.winbar="%#greenFGblackBG# %{winnr()} %f%m"
