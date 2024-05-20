@@ -11,38 +11,36 @@ return {
 
       -- find hl groups: <cmd>filter /search/ highlight
       -- :filter /line/ highlight
-      if vim.o.background ~= "light" then
-        -- 250 default white #bcbcbc
-        -- 234 default bg black
-        -- bg 0 for high contrast
+      -- 250 default white #bcbcbc
+      -- 234 default bg black #1c1c1c
+      -- bg 0 for high contrast
 
-        -- hl('NormalNC', { ctermbg = 232, }) -- non active
-        hl('Normal', { ctermfg = 250, ctermbg = 234 })
+      -- hl('NormalNC', { bg = 232, }) -- non active
+      hl('Normal', { fg = '#bcbcbc', bg = '#1c1c1c' })
 
-        hl('NormalFloat', { ctermfg = 250, ctermbg = 234, })
-        hl('FloatBorder', { ctermfg = 107, ctermbg = 234, })
+      hl('NormalFloat', { fg = '#bcbcbc', bg = '#1c1c1c', })
+      hl('FloatBorder', { fg = '#87af5f', bg = '#1c1c1c', })
 
-        hl('LineNrBelow', { ctermfg = 246, ctermbg = 234, })
-        hl('LineNrAbove', { ctermfg = 246, ctermbg = 234, })
-        hl('CursorLineNr', { ctermfg = 254, ctermbg = 234, })
+      hl('LineNrBelow', { fg = '#949494', bg = '#1c1c1c', })
+      hl('LineNrAbove', { fg = '#949494', bg = '#1c1c1c', })
+      hl('CursorLineNr', { fg = '#e4e4e4', bg = '#1c1c1c', })
 
-        hl('Search', { ctermfg = 214, ctermbg = 234, })
+      hl('Search', { fg = '#ffaf00', bg = '#1c1c1c', })
 
-        hl('CursorLine', { ctermbg = 238, })
-        hl('ColorColumn', { ctermbg = 238, })
+      hl('CursorLine', { bg = '#444444', })
+      hl('ColorColumn', { bg = '#444444', })
 
-        hl('NonText', { ctermfg = 243, })
+      hl('NonText', { fg = '#767676', })
 
-        -- hl('@markup.heading', { link = 'Title' }) -- @markup.heading shares group with pipe_table_header
-        hl('@markup.heading.1', { ctermfg = 66, bold = true })
-        hl('@markup.heading.2', { ctermfg = 66, bold = true })
-        hl('@markup.heading.3', { ctermfg = 66, bold = true })
-        hl('@markup.link.label', { link = 'SpecialChar' })
-        hl('@markup.link.url', { link = 'Underlined' })
-        hl('@markup.list', { ctermfg = 69 })
-        hl('@markup.strong', { bold = true })
+      -- -- hl('@markup.heading', { link = 'Title' }) -- @markup.heading shares group with pipe_table_header
+      hl('@markup.heading.1', { fg = '#5f8787', bold = true })
+      hl('@markup.heading.2', { fg = '#5f8787', bold = true })
+      hl('@markup.heading.3', { fg = '#5f8787', bold = true })
+      hl('@markup.link.label', { link = 'SpecialChar' })
+      hl('@markup.link.url', { link = 'Underlined' })
+      hl('@markup.list', { fg = '#5f87ff' })
+      hl('@markup.strong', { bold = true })
 
-      end
 
       -- disable 0.9 lsp highlight
       -- https://www.reddit.com/r/neovim/comments/12gvms4/this_is_why_your_higlights_look_different_in_90/
