@@ -23,7 +23,6 @@ return {
     end,
     opts = {},
   },
-  { 'tpope/vim-commentary' },
   {
     'ThePrimeagen/harpoon',
     keys = {

@@ -24,6 +24,7 @@ local options = {
   scrolloff = 10,
   sidescrolloff = 5,
   cursorline = true,
+  smoothscroll = true,
 
   tabstop = 2,
   softtabstop = 2,

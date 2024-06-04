@@ -1,14 +1,10 @@
 local opts = { noremap = true, silent = true }
 
-local function encode64()
+local function encode64() -- :h vim.base64
   local lineContent = vim.api.nvim_get_current_line()
   local output = vim.fn.system("echo -n '" .. lineContent .. "'| base64")
   local newLineContent = output:gsub("\n", "")
   vim.api.nvim_set_current_line(newLineContent)
-end
-
-local function openSplitBelow()
-  vim.cmd('belowright 20split')
 end
 
 local mappings = {
@@ -25,10 +21,12 @@ local mappings = {
   {'n', '<Up>', '<C-y>'},
   {'n', '<Down>', '<C-e>'},
   {'n', '*', '*N'},
+
   {'n', '<leader>w1', '1<C-w>w'},
   {'n', '<leader>w2', '2<C-w>w'},
   {'n', '<leader>w3', '3<C-w>w'},
   {'n', '<leader>w4', '4<C-w>w'},
+
   {'t', '<C-x>', '<C-\\><C-n>'},
   {'t', '<Esc>', '<C-\\><C-n>'},
 
@@ -51,7 +49,7 @@ local mappings = {
   {'n', '<A-n>', '<C-W>-'},
   {'n', '<leader>os', '<cmd>set scrollbind!<CR>'},
   {'n', '<leader>tn', '<cmd>tabnew<CR>'},
-  {'n', '<leader>tt', openSplitBelow},
+  {'n', '<leader>tt', function() vim.cmd('belowright 20split') end},
 
   {'n', ']<Space>', '<cmd>m .-2<CR>=='},
   {'v', ']<Space>', [[:move '<-2<CR>gv=gv]]},

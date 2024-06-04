@@ -36,14 +36,13 @@ return {
       hl('@markup.heading.1', { fg = '#5f8787', bold = true })
       hl('@markup.heading.2', { fg = '#5f8787', bold = true })
       hl('@markup.heading.3', { fg = '#5f8787', bold = true })
-      hl('@markup.link.label', { link = 'SpecialChar' })
+      hl('@markup.link.label', { link = 'SpecialChar' }) -- '#b891f5', 141
       hl('@markup.link.url', { link = 'Underlined' })
       hl('@markup.list', { fg = '#5f87ff' })
       hl('@markup.strong', { bold = true })
 
 
-      -- disable 0.9 lsp highlight
-      -- https://www.reddit.com/r/neovim/comments/12gvms4/this_is_why_your_higlights_look_different_in_90/
+      -- disable 0.9 lsp highlight | @lsp.type.*
       for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
         vim.api.nvim_set_hl(0, group, {})
       end
