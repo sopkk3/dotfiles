@@ -137,13 +137,6 @@ return {
           native_menu = false,
         }
       }
-
-      cmp.setup.filetype({ 'sql' }, {
-        sources = {
-          { name = 'vim-dadbod-completion' },
-          { name = 'buffer'},
-        },
-      })
     end
 
     lspkind.init {

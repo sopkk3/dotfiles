@@ -64,7 +64,7 @@ local mappings = {
   -- {'v', ']=', alignOnChar},
   {'n', ']c', '<cmd>!openssl x509 -in % -noout -text<CR>'},
 
-  -- Clipboard access is needed :help clipboard
+  -- Clipboard access is needed :help clipboard | <C-r>+ paste from + register (insert)
   {{ 'n', 'v' }, '<leader>y', '"+y'},
   {'n', '<leader>p', '"+p'},
   {'v', '<leader>p', '"_d"+P'},
