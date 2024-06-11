@@ -49,6 +49,7 @@ return {
         'vimdoc',
         'yaml',
         'sql',
+        'groovy',
       },
       highlight = {
         enable = true,
