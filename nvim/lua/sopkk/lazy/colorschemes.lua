@@ -27,8 +27,8 @@ return {
 
       hl('Search', { fg = '#ffaf00', bg = '#1c1c1c', })
 
-      hl('CursorLine', { bg = '#444444', })
-      hl('ColorColumn', { bg = '#444444', })
+      hl('CursorLine', { bg = '#303030', })
+      hl('ColorColumn', { bg = '#303030', })
 
       hl('NonText', { fg = '#767676', })
 
