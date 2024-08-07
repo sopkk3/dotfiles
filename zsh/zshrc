@@ -5,6 +5,7 @@ CASE_SENSITIVE="true"
 
 plugins=(
   zsh-autosuggestions
+  zsh-syntax-highlighting # https://github.com/zsh-users/zsh-syntax-highlighting
 )
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
