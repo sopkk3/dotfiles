@@ -17,7 +17,7 @@ local servers = {
           globals = {'vim', 'use'},
         },
         workspace = {
-          library = vim.api.nvim_get_runtime_file("", true),
+          library = vim.api.nvim_get_runtime_file('', true),
           checkThirdParty = false,
         },
         telemetry = {
@@ -27,9 +27,9 @@ local servers = {
     },
   },
 
-  rust_analyzer = { -- Mason -- rustup
+  rust_analyzer = { -- Mason -- rustup component add rust-analyzer
     cmd = {
-      "rustup", "run", "stable", "rust-analyzer",
+      'rustup', 'run', 'stable', 'rust-analyzer',
     }
   },
 
@@ -38,29 +38,29 @@ local servers = {
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-cmdline",
-    "hrsh7th/nvim-cmp",
-    "L3MON4D3/LuaSnip",
-    "saadparwaiz1/cmp_luasnip",
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-cmdline',
+    'hrsh7th/nvim-cmp',
+    'L3MON4D3/LuaSnip',
+    'saadparwaiz1/cmp_luasnip',
   },
   config = function()
     local lspcnf = require 'lspconfig'
     local cmp = require('cmp')
-    local builtin = require("telescope.builtin")
+    local builtin = require('telescope.builtin')
     local lspkind = require('lspkind')
 
     for server, config in pairs(servers) do
-      if type(config) ~= "table" then
+      if type(config) ~= 'table' then
         config = {}
       end
 
-      config = vim.tbl_deep_extend("force", {
-        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+      config = vim.tbl_deep_extend('force', {
+        capabilities = require('cmp_nvim_lsp').default_capabilities(),
       }, config)
 
       lspcnf[server].setup(config)
@@ -125,11 +125,11 @@ return {
         format = lspkind.cmp_format({
           mode = 'symbol_text',
           menu = {
-            buffer = "[buf]",
-            nvim_lsp = "[LSP]",
-            nvim_lua = "[api]",
-            path = "[path]",
-            luasnip = "[snip]",
+            buffer = '[buf]',
+            nvim_lsp = '[LSP]',
+            nvim_lua = '[api]',
+            path = '[path]',
+            luasnip = '[snip]',
           },
         })
       },
@@ -158,19 +158,19 @@ return {
 
   lspkind.init {
     symbol_map = {
-      Method = "",
-      Function = "f(x)",
-      Field = "",
-      Variable = "",
-      Class = "",
-      Property = "",
-      Keyword = "",
-      File = "",
-      Folder = "",
-      Constant = "",
-      Struct = "",
-      Operator = "",
-      Text = "",
+      Method = '',
+      Function = 'f(x)',
+      Field = '',
+      Variable = '',
+      Class = '',
+      Property = '',
+      Keyword = '',
+      File = '',
+      Folder = '',
+      Constant = '',
+      Struct = '',
+      Operator = '',
+      Text = '',
     },
   }
 end
