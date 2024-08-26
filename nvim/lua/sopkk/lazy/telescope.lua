@@ -14,7 +14,7 @@ return {
     { '<leader>gf', function() require('telescope.builtin').git_files() end },
     { '<leader>as', function() require('telescope.builtin').find_files({ cwd = require('telescope.utils').buffer_dir() }) end },
     { '<leader>aS', function() require('telescope.builtin').quickfix() end },
-    { '<leader>al', function() require('telescope.builtin').find_files({ hidden = true }) end },
+    { '<leader>al', function() require('telescope.builtin').find_files({ hidden = true, no_ignore = true, no_ignore_parent = true }) end },
     { '<leader>ag', function() require('telescope').extensions.live_grep_args.live_grep_args() end },
     { '<leader>aG', function() require('telescope.builtin').live_grep({ cwd = require('telescope.utils').buffer_dir() }) end },
     { '<leader>af', function() require('telescope.builtin').grep_string() end },
