@@ -48,13 +48,13 @@ return {
             ['<C-q>'] = actions.smart_add_to_qflist,
             ['<C-w>'] = actions.smart_send_to_qflist,
             ['<tab>'] = actions.toggle_selection + actions.move_selection_next,
-            ['<C-d>'] = actions.delete_buffer,
+            ['<C-k>'] = actions.delete_buffer,
           },
           n = {
             ['<C-q>'] = actions.smart_add_to_qflist,
             ['<C-w>'] = actions.smart_send_to_qflist,
             ['<tab>'] = actions.toggle_selection,
-            ['<C-d>'] = actions.delete_buffer,
+            ['<C-k>'] = actions.delete_buffer,
           },
         },
 
