@@ -4,7 +4,9 @@ local servers = {
   pyright = true, -- Mason -- npm i -g pyright
   jsonnet_ls = true, -- Mason -- go install github.com/grafana/jsonnet-language-server@latest
   terraformls = true, -- Mason -- https://github.com/hashicorp/terraform-ls/releases
-  groovyls = true, -- Mason
+  groovyls = { -- Mason | cmd: .local/share/nvim/mason/packages/groovy-language-server
+    cmd = { 'groovy-language-server' },
+  },
   tsserver = true, -- Mason
   yamlls = true, -- Mason -- https://github.com/redhat-developer/yaml-language-server
   lua_ls = { -- Mason
