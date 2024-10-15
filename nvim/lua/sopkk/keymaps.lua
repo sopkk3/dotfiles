@@ -66,6 +66,7 @@ local mappings = {
 
   -- Clipboard access is needed :help clipboard | <C-r>+ paste from + register (insert)
   {{ 'n', 'v' }, '<leader>y', '"+y'},
+  {'n', '<leader>Y', '"+y$'},
   {'n', '<leader>p', '"+p'},
   {'v', '<leader>p', '"_d"+P'},
   {'v', 'p', '"_dP'},

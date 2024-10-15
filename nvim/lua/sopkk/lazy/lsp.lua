@@ -7,7 +7,7 @@ local servers = {
   groovyls = { -- Mason | cmd: .local/share/nvim/mason/packages/groovy-language-server
     cmd = { 'groovy-language-server' },
   },
-  tsserver = true, -- Mason
+  ts_ls = true, -- Mason
   yamlls = true, -- Mason -- https://github.com/redhat-developer/yaml-language-server
   lua_ls = { -- Mason
     settings = {

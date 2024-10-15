@@ -41,9 +41,6 @@ then
   source <(helm completion zsh)
 fi
 
-# Bat
-export BAT_THEME="ansi"
-
 # Launches ssh-agent
 if command -v keychain &> /dev/null
 then
