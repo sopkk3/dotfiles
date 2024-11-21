@@ -48,8 +48,8 @@ local mappings = {
   {'n', '<A-m>', '<C-W>+'},
   {'n', '<A-n>', '<C-W>-'},
   {'n', '<leader>os', '<cmd>set scrollbind!<CR>'},
+  {'n', '<leader>ow', '<cmd>set wrap!<CR>'},
   {'n', '<leader>tn', '<cmd>tabnew<CR>'},
-  {'n', '<leader>tt', function() vim.cmd('belowright 20split') end},
 
   {'n', ']<Space>', '<cmd>m .-2<CR>=='},
   {'v', ']<Space>', [[:move '<-2<CR>gv=gv]]},
