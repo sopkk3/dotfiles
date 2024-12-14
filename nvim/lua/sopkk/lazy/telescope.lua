@@ -32,7 +32,7 @@ return {
 
     require('telescope').setup({
       defaults = {
-        prompt_prefix = ' >',
+        prompt_prefix = ' > ',
         color_devicons = true,
         file_ignore_patterns = {
           '%.otf'
@@ -58,14 +58,21 @@ return {
           },
         },
 
-        sorting_strategy = 'ascending',
-        layout_strategy = 'horizontal',
+        -- from lua/telescope/themes.lua | ivy
+        sorting_strategy = "ascending",
+        layout_strategy = "bottom_pane",
         layout_config = {
-          preview_width = 90,
-          prompt_position = 'top',
+          height = 0.7,
         },
+        borderchars = {
+          prompt = { "─", " ", " ", " ", "─", "─", " ", " " },
+          results = { " " },
+          preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+        },
+
       },
       extensions = {
+        fzf = {},
         live_grep_args = {
           auto_quoting = true,
           mappings = {

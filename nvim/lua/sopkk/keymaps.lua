@@ -21,6 +21,8 @@ local mappings = {
   {'n', '<Up>', '<C-y>'},
   {'n', '<Down>', '<C-e>'},
   {'n', '*', '*N'},
+  {"n", "<leader>x", "<cmd>.lua<CR>"},
+  {"n", "<leader><leader>x", "<cmd>source %<CR>"},
 
   {'n', '<leader>w1', '1<C-w>w'},
   {'n', '<leader>w2', '2<C-w>w'},
@@ -71,6 +73,8 @@ local mappings = {
   {'v', '<leader>p', '"_d"+P'},
   {'v', 'p', '"_dP'},
   {'n', '<leader>cf', '<cmd>let @+ = expand("%")<CR>'}, -- copies file path | :h expand
+  {'n', '<leader>cdl', '<cmd>cd %:p:h<CR>'},
+  {'n', '<leader>cdh', '<cmd>cd -<CR>'},
 
 }
 
