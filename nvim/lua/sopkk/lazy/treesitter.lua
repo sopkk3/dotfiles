@@ -40,6 +40,7 @@ return {
         'java',
         'javascript',
         'json',
+        'json5',
         'markdown',
         'python',
         'rust',

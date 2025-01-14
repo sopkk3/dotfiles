@@ -25,8 +25,8 @@ local config = {
     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
     '-javaagent:' .. home .. '/build/lombok/1.18.28/lombok.jar',
-    '-jar', home .. '/build/jdtls/1.26.0/plugins/org.eclipse.equinox.launcher_1.6.500.v20230717-2134.jar',
-    '-configuration', home .. '/build/jdtls/1.26.0/config_mac',
+    '-jar', home .. '/build/jdtls/1.39.0/plugins/org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar',
+    '-configuration', home .. '/build/jdtls/1.39.0/config_mac',
     '-data', vim.fn.expand('/tmp/jdtls-workspace') .. workspace_dir,
   },
 

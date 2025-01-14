@@ -20,7 +20,7 @@ local mappings = {
   {'n', '<leader>E', '<cmd>Explore<CR>'},
   {'n', '<Up>', '<C-y>'},
   {'n', '<Down>', '<C-e>'},
-  {'n', '*', '*N'},
+  {'n', '*', '*<C-o>'},
   {"n", "<leader>x", "<cmd>.lua<CR>"},
   {"n", "<leader><leader>x", "<cmd>source %<CR>"},
 
