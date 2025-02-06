@@ -9,7 +9,7 @@ return {
     },
   },
   keys = {
-    { '<leader>s', function() require('telescope.builtin').find_files() end },
+    { '<leader>s', function() require('telescope.builtin').find_files({ hidden = true }) end },
     { '<leader>S', function() require('telescope.builtin').buffers() end },
     { '<leader>gf', function() require('telescope.builtin').git_files() end },
     { '<leader>as', function() require('telescope.builtin').find_files({ cwd = require('telescope.utils').buffer_dir() }) end },
@@ -35,7 +35,7 @@ return {
         prompt_prefix = ' > ',
         color_devicons = true,
         file_ignore_patterns = {
-          '%.otf'
+          '%.otf', '.git/', 'venv/'
         },
         path_display = { shorten = { len = 1, exclude = { 1, 2, -1, -2 } } },
 
