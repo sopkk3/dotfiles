@@ -1,6 +1,6 @@
 #!/bin/bash
 
-selected_dir=$(find ~/git -mindepth 1 -maxdepth 1 -type d | fzf)
+selected_dir=$(find ~/git ~/kk -mindepth 1 -maxdepth 1 -type d | fzf)
 if [[ -z $selected_dir ]]; then
     exit 0
 fi
