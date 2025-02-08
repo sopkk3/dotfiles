@@ -44,27 +44,37 @@ return {
     end)
 
     -- GLOBAL {{
-      ls.add_snippets( 'all', {
-        ls.parser.parse_snippet('tern', '${1:condition} ? ${2:true} : ${0:false}'),
+    ls.add_snippets( 'all', {
+      ls.parser.parse_snippet('tern', '${1:condition} ? ${2:true} : ${0:false}'),
 
-        snippet('todo', fmt([[TODO({}): {}]], { i(1, 'who'), i(0, 'what')}) ),
+      snippet('todo', fmt([[TODO({}): {}]], { i(1, 'who'), i(0, 'what')}) ),
 
-      }, {
-        key = 'all',
-      })
-      -- }}
+    }, {
+      key = 'all',
+    })
+    -- }}
 
-      -- WIKI {{
-        ls.add_snippets( 'markdown', {
-          snippet('daily', fmt("{}\n- ", {f(
-          function ()
-            return os.date "%Y/%m/%d"
-          end)}
-          )
-          )
-        }, {
-          key = 'wiki'
-        })
-        -- }}
-      end
-    }
+    -- WIKI {{
+    ls.add_snippets( 'markdown', {
+      snippet('daily', fmt("{}\n- ", {f(
+      function ()
+        return os.date "%Y/%m/%d"
+      end)}
+      )
+      )
+    }, {
+      key = 'wiki'
+    })
+    -- }}
+
+    -- GOLANG {{
+    ls.add_snippets ( 'go', {
+      ls.parser.parse_snippet('rer', [[if err != nil {
+	return err
+}]]),
+    }, {
+      key = 'go'
+    })
+    -- }}
+  end
+}
