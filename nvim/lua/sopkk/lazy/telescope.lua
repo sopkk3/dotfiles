@@ -17,12 +17,15 @@ return {
     { '<leader>al', function() require('telescope.builtin').find_files({ hidden = true, no_ignore = true}) end },
     { '<leader>ag', function() require('telescope').extensions.live_grep_args.live_grep_args() end },
     { '<leader>aG', function() require('telescope.builtin').live_grep({ cwd = require('telescope.utils').buffer_dir() }) end },
-    { '<leader>af', function() require('telescope.builtin').grep_string() end },
-    { '<leader>aT', function() require('telescope.builtin').grep_string({ search = 'TODO' }) end },
+    { '<leader>af', function()
+      local word = vim.fn.expand("<cword>")
+      require('telescope.builtin').grep_string({ search = word })
+    end },
     { '<leader>aF', function() require('telescope.builtin').current_buffer_fuzzy_find() end },
+    { '<leader>aT', function() require('telescope.builtin').grep_string({ search = 'TODO' }) end },
     { '<leader>aL', function() require('telescope.builtin').live_grep({ additional_args = { '--hidden' } }) end },
-    { '<leader>ac', function() require('telescope.builtin').git_status() end },
-    { '<leader>aC', function() require('telescope.builtin').git_commits() end },
+    { '<leader>as', function() require('telescope.builtin').git_status() end },
+    { '<leader>ac', function() require('telescope.builtin').git_commits() end },
     { '<leader>ab', function() require('telescope.builtin').git_branches() end },
     { '<leader>ah', function() require('telescope.builtin').help_tags() end },
   },
