@@ -14,7 +14,6 @@ return {
   },
   { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', ft = { 'yaml' } },
   'lervag/wiki.vim',
-  'nvim-lualine/lualine.nvim',
   {
     'williamboman/mason.nvim',
     opts = {

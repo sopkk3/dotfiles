@@ -15,6 +15,7 @@ return {
       { '<leader>gp', '<cmd>G push<CR>' },
       { '<leader>gl', '<cmd>G pull<CR>' },
       { '<leader>gb', '<cmd>G blame<CR>' },
+      { '<leader>WW', '<cmd>Gwrite<CR>' },
     },
   },
   {
