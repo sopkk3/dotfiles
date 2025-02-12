@@ -38,7 +38,7 @@ return {
         prompt_prefix = ' > ',
         color_devicons = true,
         file_ignore_patterns = {
-          '%.otf', '.git/', 'venv/'
+          '%.otf', '%.git/', 'venv/'
         },
         path_display = { shorten = { len = 1, exclude = { 1, 2, -1, -2 } } },
 
