@@ -46,9 +46,6 @@ end
 vim.filetype.add({
   pattern = {
     ['.*Jenkinsfile.*'] = 'groovy',
-    ['.*tf'] = 'terraform',
-    ['.*terraform'] = 'terraform',
-    ['.*tfvars'] = 'terraform',
     ['.*%.yaml.*'] = 'yaml'
   }
 })
