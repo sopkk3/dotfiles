@@ -7,6 +7,18 @@ local function encode64() -- :h vim.base64
   vim.api.nvim_set_current_line(newLineContent)
 end
 
+local function toggleQflist()
+  for _, win in pairs(vim.fn.getwininfo()) do
+    if win["quickfix"] == 1 then
+      vim.cmd "cclose"
+      return
+    end
+  end
+  if not vim.tbl_isempty(vim.fn.getqflist()) then
+    vim.cmd "copen"
+  end
+end
+
 local mappings = {
   {'n', '<leader>ww', '<cmd>update<CR>'},
   {'n', '<leader>q', '<cmd>q<CR>'},
@@ -14,7 +26,7 @@ local mappings = {
   {'n', '<leader>QQ', '<cmd>qa<CR>'},
   {'n', '<leader>QW', '<cmd>tabclose<CR>'},
   {'n', '<leader>aQ', '<cmd>qa!<CR>'},
-  {'n', '<leader>cq', '<cmd>cclose<CR>'},
+  {'n', '<leader>cq', toggleQflist},
   {'n', 'J', 'mxJ`x'},
   {'n', 'Y', 'y$'},
   {'i', '<C-c>', '<Esc>'},
@@ -29,7 +41,6 @@ local mappings = {
   {'n', '<leader>w3', '3<C-w>w'},
   {'n', '<leader>w4', '4<C-w>w'},
 
-  {'t', '<C-x>', '<C-\\><C-n>'},
   {'t', '<Esc>', '<C-\\><C-n>'},
 
   -- Folding

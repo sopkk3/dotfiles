@@ -18,6 +18,7 @@ return {
     { '<leader>ah', function() require('fzf-lua').helptags() end },
   },
   config = function ()
+    local actions = require('fzf-lua').actions
     require('fzf-lua').setup({
       fzf_opts = {
         ['--cycle'] = true
@@ -28,9 +29,9 @@ return {
         -- formatter = 'path.filename_first',
         formatter = 'path.dirname_first',
         actions = {
-          ['alt-i'] = { require('fzf-lua').actions.toggle_ignore },
-          ['alt-h'] = { require('fzf-lua').actions.toggle_hidden },
-          ['ctrl-q'] = require('fzf-lua').actions.file_sel_to_qf,
+          ['alt-i'] = { actions.toggle_ignore },
+          ['alt-h'] = { actions.toggle_hidden },
+          ['ctrl-w'] = actions.file_sel_to_qf,
         },
       },
       grep = {
@@ -38,20 +39,25 @@ return {
         glob_flag = '--iglob',
         no_header = true,
         actions = {
-          ['alt-i'] = { require('fzf-lua').actions.toggle_ignore },
-          ['alt-h'] = { require('fzf-lua').actions.toggle_hidden },
-          ['ctrl-q'] = require('fzf-lua').actions.file_sel_to_qf,
+          ['alt-i'] = { actions.toggle_ignore },
+          ['alt-h'] = { actions.toggle_hidden },
+          ['ctrl-w'] = actions.file_sel_to_qf,
         },
       },
       buffers = {
         actions = {
-          ['ctrl-k'] = { require('fzf-lua').actions.buf_del },
+          ['ctrl-k'] = { fn = actions.buf_del, reload = true }
         },
       },
       previewers = {
         builtin = {
           syntax_limit_b = 1024 * 300,
         },
+      },
+      keymap = {
+        fzf = {
+          ['ctrl-q'] = "select-all+accept",
+        }
       },
       winopts = {
         row = 1,
