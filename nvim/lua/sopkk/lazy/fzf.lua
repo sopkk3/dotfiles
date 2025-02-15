@@ -25,27 +25,27 @@ return {
       files = {
         cwd_prompt = false,
         no_header = true,
-        -- formatter = "path.filename_first",
-        formatter = "path.dirname_first",
+        -- formatter = 'path.filename_first',
+        formatter = 'path.dirname_first',
         actions = {
-          ["alt-i"] = { require("fzf-lua").actions.toggle_ignore },
-          ["alt-h"] = { require("fzf-lua").actions.toggle_hidden },
-          ["ctrl-q"] = require("fzf-lua").actions.file_sel_to_qf,
+          ['alt-i'] = { require('fzf-lua').actions.toggle_ignore },
+          ['alt-h'] = { require('fzf-lua').actions.toggle_hidden },
+          ['ctrl-q'] = require('fzf-lua').actions.file_sel_to_qf,
         },
       },
       grep = {
         rg_glob = true,
-        glob_flag = "--iglob",
+        glob_flag = '--iglob',
         no_header = true,
         actions = {
-          ["alt-i"] = { require("fzf-lua").actions.toggle_ignore },
-          ["alt-h"] = { require("fzf-lua").actions.toggle_hidden },
-          ["ctrl-q"] = require("fzf-lua").actions.file_sel_to_qf,
+          ['alt-i'] = { require('fzf-lua').actions.toggle_ignore },
+          ['alt-h'] = { require('fzf-lua').actions.toggle_hidden },
+          ['ctrl-q'] = require('fzf-lua').actions.file_sel_to_qf,
         },
       },
       buffers = {
         actions = {
-          ["ctrl-k"] = { require("fzf-lua").actions.buf_del },
+          ['ctrl-k'] = { require('fzf-lua').actions.buf_del },
         },
       },
       previewers = {
@@ -57,30 +57,31 @@ return {
         row = 1,
         width = 1,
         height = 0.7,
-        border = { "", "─", "", "", "", "", "", "" },
+        border = { '', '─', '', '', '', '', '', '' },
         preview = {
           title = 'center',
+          horizontal = 'right:55%',
           border = function(_, m)
-            if m.type == "fzf" then
-              return "single"
+            if m.type == 'fzf' then
+              return 'single'
             else
-              assert(m.type == "nvim" and m.name == "prev" and type(m.layout) == "string")
-              local b = { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
-              if m.layout == "down" then
-                b[1] = "├" --top right
-                b[3] = "┤" -- top left
-              elseif m.layout == "up" then
-                b[7] = "├" -- bottom left
-                b[6] = "" -- remove bottom
-                b[5] = "┤" -- bottom right
-              elseif m.layout == "left" then
-                b[3] = "┬" -- top right
-                b[5] = "┴" -- bottom right
-                b[6] = "" -- remove bottom
+              assert(m.type == 'nvim' and m.name == 'prev' and type(m.layout) == 'string')
+              local b = { '┌', '─', '┐', '│', '┘', '─', '└', '│' }
+              if m.layout == 'down' then
+                b[1] = '├' --top right
+                b[3] = '┤' -- top left
+              elseif m.layout == 'up' then
+                b[7] = '├' -- bottom left
+                b[6] = '' -- remove bottom
+                b[5] = '┤' -- bottom right
+              elseif m.layout == 'left' then
+                b[3] = '┬' -- top right
+                b[5] = '┴' -- bottom right
+                b[6] = '' -- remove bottom
               else -- right
-                b[1] = "┬" -- top left
-                b[7] = "┴" -- bottom left
-                b[6] = "" -- remove bottom
+                b[1] = '┬' -- top left
+                b[7] = '┴' -- bottom left
+                b[6] = '' -- remove bottom
               end
               return b
             end
