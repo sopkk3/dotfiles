@@ -53,7 +53,7 @@ return {
   config = function()
     local lspcnf = require 'lspconfig'
     local cmp = require('cmp')
-    local builtin = require('telescope.builtin')
+    local fzf = require('fzf-lua')
     local lspkind = require('lspkind')
 
     for server, config in pairs(servers) do
@@ -72,19 +72,20 @@ return {
         callback = function(ev)
           local bufopts = { noremap=true, silent=true, buffer=ev.buf }
 
-          -- https://github.com/nvim-telescope/telescope.nvim#neovim-lsp-pickers
           -- :h vim.lsp
           vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-          vim.keymap.set('n', 'gd', builtin.lsp_definitions, bufopts)
+          vim.keymap.set('n', 'gd', fzf.lsp_definitions, bufopts)
           vim.keymap.set('n', 'gT', vim.lsp.buf.type_definition, bufopts)
           vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
           vim.keymap.set('n', 'gR', vim.lsp.buf.rename, bufopts)
-          vim.keymap.set('n', '<leader>gr', builtin.lsp_references)
+          vim.keymap.set('n', '<leader>gr', fzf.lsp_references)
           vim.keymap.set('i', '<C-l>', vim.lsp.buf.signature_help, bufopts)
           vim.keymap.set('n', 'gF', function()
             vim.lsp.buf.format { async = true }
           end, bufopts)
           vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+          vim.keymap.set('n', '<leader>cg', fzf.lsp_document_diagnostics, bufopts)
+          vim.keymap.set('n', '<leader>cG', fzf.lsp_workspace_diagnostics, bufopts)
           vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, bufopts)
           vim.keymap.set('n', ']g', vim.diagnostic.goto_next, bufopts)
 

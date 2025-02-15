@@ -14,6 +14,7 @@ local mappings = {
   {'n', '<leader>QQ', '<cmd>qa<CR>'},
   {'n', '<leader>QW', '<cmd>tabclose<CR>'},
   {'n', '<leader>aQ', '<cmd>qa!<CR>'},
+  {'n', '<leader>cq', '<cmd>cclose<CR>'},
   {'n', 'J', 'mxJ`x'},
   {'n', 'Y', 'y$'},
   {'i', '<C-c>', '<Esc>'},
