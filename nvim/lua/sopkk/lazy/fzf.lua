@@ -31,7 +31,6 @@ return {
         actions = {
           ['alt-i'] = { actions.toggle_ignore },
           ['alt-h'] = { actions.toggle_hidden },
-          ['ctrl-w'] = actions.file_sel_to_qf,
         },
       },
       grep = {
@@ -41,7 +40,6 @@ return {
         actions = {
           ['alt-i'] = { actions.toggle_ignore },
           ['alt-h'] = { actions.toggle_hidden },
-          ['ctrl-w'] = actions.file_sel_to_qf,
         },
       },
       buffers = {
