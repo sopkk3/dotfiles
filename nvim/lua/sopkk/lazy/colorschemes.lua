@@ -48,7 +48,5 @@ return {
       end
     end,
   },
-  -- 'folke/tokyonight.nvim',
-  -- 'EdenEast/nightfox.nvim',
   -- 'blazkowolf/gruber-darker.nvim',
 }

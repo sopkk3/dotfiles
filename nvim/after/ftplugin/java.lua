@@ -12,6 +12,12 @@ local workspace_dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local home = os.getenv "HOME"
 -- https://github.com/eclipse-jdtls/eclipse.jdt.ls#installation
 -- https://projectlombok.org/download
+local config_file
+if vim.loop.os_uname().sysname == 'Linux' then
+  config_file = 'config_linux'
+else
+  config_file = 'config_mac'
+end
 local config = {
   cmd = {
     'java',
@@ -26,7 +32,7 @@ local config = {
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
     '-javaagent:' .. home .. '/build/lombok/1.18.36/lombok.jar',
     '-jar', home .. '/build/jdtls/1.39.0/plugins/org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar',
-    '-configuration', home .. '/build/jdtls/1.39.0/config_mac',
+    '-configuration', home .. '/build/jdtls/1.39.0/' .. config_file,
     '-data', vim.fn.expand('/tmp/jdtls-workspace') .. workspace_dir,
   },
 
