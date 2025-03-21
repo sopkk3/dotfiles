@@ -42,6 +42,7 @@ return {
         'json',
         'json5',
         'markdown',
+        'markdown_inline',
         'python',
         'rust',
         'terraform',
@@ -51,6 +52,8 @@ return {
         'yaml',
         'sql',
         'groovy',
+        'make',
+        'gotmpl',
       },
       highlight = {
         enable = true,

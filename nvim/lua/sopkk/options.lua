@@ -44,12 +44,16 @@ for k, v in pairs(options) do
 end
 
 vim.filetype.add({
+  extension = {
+    gotmpl = 'gotmpl',
+  },
   pattern = {
     ['.*Jenkinsfile.*'] = 'groovy',
-    ['.*%.yaml.*'] = 'yaml'
+    [".*/templates/.*%.tpl"] = "helm",
+    [".*/templates/.*%.ya?ml"] = "helm",
+    ["helmfile.*%.ya?ml"] = "helm",
   }
 })
-
 
 local group = vim.api.nvim_create_augroup('OptionsGroup', { clear = true })
 
