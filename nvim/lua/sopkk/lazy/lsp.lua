@@ -67,6 +67,7 @@ return {
 
       lspcnf[server].setup(config)
 
+      vim.diagnostic.config({ virtual_text = true })
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('UserLspConfig', {}),
         callback = function(ev)
@@ -86,8 +87,8 @@ return {
           vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
           vim.keymap.set('n', '<leader>cg', fzf.lsp_document_diagnostics, bufopts)
           vim.keymap.set('n', '<leader>cG', fzf.lsp_workspace_diagnostics, bufopts)
-          vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, bufopts)
-          vim.keymap.set('n', ']g', vim.diagnostic.goto_next, bufopts)
+          vim.keymap.set('n', '[g', function() vim.diagnostic.jump({count=-1, float=true}) end, bufopts)
+          vim.keymap.set('n', ']g', function() vim.diagnostic.jump({count=1, float=true}) end, bufopts)
 
         end,
       })
