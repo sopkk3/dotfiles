@@ -78,13 +78,11 @@ return {
           vim.keymap.set('n', 'gd', fzf.lsp_definitions, bufopts)
           vim.keymap.set('n', 'gT', vim.lsp.buf.type_definition, bufopts)
           vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-          vim.keymap.set('n', 'gR', vim.lsp.buf.rename, bufopts)
           vim.keymap.set('n', '<leader>gr', fzf.lsp_references)
           vim.keymap.set('i', '<C-l>', vim.lsp.buf.signature_help, bufopts)
           vim.keymap.set('n', 'gF', function()
             vim.lsp.buf.format { async = true }
           end, bufopts)
-          vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
           vim.keymap.set('n', '<leader>cg', fzf.lsp_document_diagnostics, bufopts)
           vim.keymap.set('n', '<leader>cG', fzf.lsp_workspace_diagnostics, bufopts)
           vim.keymap.set('n', '[g', function() vim.diagnostic.jump({count=-1, float=true}) end, bufopts)
