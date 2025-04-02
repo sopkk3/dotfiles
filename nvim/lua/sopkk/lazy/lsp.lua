@@ -67,7 +67,7 @@ return {
 
       lspcnf[server].setup(config)
 
-      vim.diagnostic.config({ virtual_text = true })
+      vim.diagnostic.config({ virtual_text = true, underline = false })
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('UserLspConfig', {}),
         callback = function(ev)
