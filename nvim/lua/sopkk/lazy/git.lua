@@ -23,6 +23,17 @@ return {
     keys = {
       { '<leader>gd', ':DiffviewOpen ' },
     },
+    config = function()
+      local actions = require("diffview.actions")
+      require('diffview').setup({
+        keymaps = {
+          file_panel = {
+            { "n", "<c-u>", actions.scroll_view(-0.25) },
+            { "n", "<c-d>", actions.scroll_view(0.25) },
+          }
+        }
+      })
+    end
   },
   {
     'lewis6991/gitsigns.nvim',
