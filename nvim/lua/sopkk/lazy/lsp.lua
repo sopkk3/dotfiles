@@ -79,7 +79,6 @@ return {
           vim.keymap.set('n', 'gT', vim.lsp.buf.type_definition, bufopts)
           vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
           vim.keymap.set('n', '<leader>gr', fzf.lsp_references)
-          vim.keymap.set('i', '<C-l>', vim.lsp.buf.signature_help, bufopts)
           vim.keymap.set('n', 'gF', function()
             vim.lsp.buf.format { async = true }
           end, bufopts)
@@ -101,7 +100,7 @@ return {
         mapping = cmp.mapping.preset.insert({
           ['<C-d>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-s>'] = cmp.mapping.complete(),
+          ['<C-l>'] = cmp.mapping.complete(),
           ['<C-e>'] = cmp.mapping.abort(),
         }),
         sources = cmp.config.sources({
