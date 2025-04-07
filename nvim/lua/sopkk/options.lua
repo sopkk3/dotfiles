@@ -35,6 +35,7 @@ local options = {
 }
 
 vim.opt.wildignore:append('*/node_modules/*,*/target/*,*/.out,*/.git/*,*.swp,*/venv/*,*/__pycache__/*')
+vim.opt.fillchars:append{ diff = "╱" }
 
 vim.g.netrw_banner = 0
 vim.g.jsonnet_fmt_on_save = 0

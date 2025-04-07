@@ -1,14 +1,25 @@
 #!/bin/bash
 
-selected_dir=$(find ~/git ~/kk -mindepth 1 -maxdepth 1 -type d | fzf)
-if [[ -z $selected_dir ]]; then
+selected_dir=$(find ~/git ~/kk -mindepth 1 -maxdepth 1 -type d | fzf --print-query)
+input=($selected_dir)
+dir=${input[1]}
+if [[ ${#input[@]} -lt 2 || -z ${input[1]} ]]; then
   exit 0
 fi
-window_name=$(basename $selected_dir)
 
+if [[ "${input[0]}" == "clone" ]]; then
+  if [[ ${#input[@]} -eq 3 ]]; then
+    dir="$HOME/${input[1]}/$(basename -s .git ${input[2]})"
+    cd "$HOME/${input[1]}"; git clone ${input[2]}
+  else
+    exit 0
+  fi
+fi
+
+window_name=$(basename $dir)
 if tmux has-session -t '$0':$window_name 2> /dev/null; then
   tmux select-window -t $window_name
   exit 0
 fi
 
-tmux new-window -c $selected_dir -n $window_name
+tmux new-window -c ${input[1]} -n $window_name
