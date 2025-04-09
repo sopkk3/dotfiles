@@ -16,6 +16,15 @@ if [[ "${input[0]}" == "clone" ]]; then
   fi
 fi
 
+if [[ "${input[0]}" == "mkdir" ]]; then
+  if [[ ${#input[@]} -eq 3 ]]; then
+    dir="$HOME/${input[1]}/${input[2]}"
+    mkdir -p $dir
+  else
+    exit 0
+  fi
+fi
+
 window_name=$(basename $dir)
 if tmux has-session -t '$0':$window_name 2> /dev/null; then
   tmux select-window -t $window_name
