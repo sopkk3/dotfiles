@@ -24,11 +24,6 @@ return {
       end,
     },
   },
-  init = function()
-    vim.o.foldmethod = 'expr'
-    vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
-    vim.o.foldlevelstart = 99
-  end,
   config = function ()
     ---@diagnostic disable-next-line: missing-fields
     require('nvim-treesitter.configs').setup {
