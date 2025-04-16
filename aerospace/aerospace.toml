@@ -79,6 +79,7 @@ esc = 'mode main'
 6 = 'secondary'
 7 = 'secondary'
 
+# osascript -e 'id of app "Application Name"'
 [[on-window-detected]]
 if.app-id = 'com.microsoft.edgemac'
 run = 'move-node-to-workspace 2'
@@ -88,13 +89,13 @@ if.app-id = 'com.microsoft.teams2'
 run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
-if.app-id = 'com.microsoft.Outlook'
-run = 'move-node-to-workspace 4'
-
-[[on-window-detected]]
 if.app-id = 'com.jetbrains.intellij.ce'
 run = 'move-node-to-workspace 5'
 
 [[on-window-detected]]
 if.app-id = 'org.jkiss.dbeaver.core.product'
+run = 'move-node-to-workspace 5'
+
+[[on-window-detected]]
+if.app-id = 'com.postmanlabs.mac'
 run = 'move-node-to-workspace 5'

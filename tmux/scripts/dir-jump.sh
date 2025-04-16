@@ -24,9 +24,17 @@ case ${input[0]} in
       exit 0
     fi
     ;;
-  "cd")
+  "open")
     if [[ ${#input[@]} -eq 2 ]]; then
       dir="$HOME/${input[1]}"
+    else
+      exit 0
+    fi
+    ;;
+  "cd")
+    if [[ ${#input[@]} -eq 2 ]]; then
+      selected_dir=$(find ~/${input[1]} -mindepth 1 -maxdepth 1 -type d | fzf)
+      dir=$selected_dir
     else
       exit 0
     fi
