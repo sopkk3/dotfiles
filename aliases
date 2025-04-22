@@ -1,5 +1,6 @@
 # General
 alias mkdir='mkdir -p'
+alias rm='rm -I'
 alias chown='chown -Rv'
 alias chmod='chmod -Rv'
 alias ll='ls -lhrta'
