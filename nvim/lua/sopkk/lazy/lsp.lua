@@ -1,22 +1,22 @@
 -- :h lspconfig-server-configurations
 local servers = {
-  gopls = true, -- Mason -- go install golang.org/x/tools/gopls@latest
-  pyright = true, -- Mason -- npm i -g pyright
-  jsonnet_ls = true, -- Mason -- go install github.com/grafana/jsonnet-language-server@latest
+  gopls = true,       -- Mason -- go install golang.org/x/tools/gopls@latest
+  pyright = true,     -- Mason -- npm i -g pyright
+  jsonnet_ls = true,  -- Mason -- go install github.com/grafana/jsonnet-language-server@latest
   terraformls = true, -- Mason -- https://github.com/hashicorp/terraform-ls/releases
-  groovyls = { -- Mason | cmd: .local/share/nvim/mason/packages/groovy-language-server
+  groovyls = {        -- Mason | cmd: .local/share/nvim/mason/packages/groovy-language-server
     cmd = { 'groovy-language-server' },
   },
-  ts_ls = true, -- Mason
+  ts_ls = true,  -- Mason
   yamlls = true, -- Mason -- https://github.com/redhat-developer/yaml-language-server
-  lua_ls = { -- Mason
+  lua_ls = {     -- Mason
     settings = {
       Lua = {
         runtime = {
           version = 'LuaJIT',
         },
         diagnostics = {
-          globals = {'vim', 'use'},
+          globals = { 'vim', 'use' },
         },
         workspace = {
           library = vim.api.nvim_get_runtime_file('', true),
@@ -67,14 +67,14 @@ return {
 
       lspcnf[server].setup(config)
 
-      vim.diagnostic.config({ virtual_text = true, underline = false })
+      vim.diagnostic.config({ virtual_text = true, underline = false, float = { border = 'rounded' } })
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('UserLspConfig', {}),
         callback = function(ev)
-          local bufopts = { noremap=true, silent=true, buffer=ev.buf }
+          local bufopts = { noremap = true, silent = true, buffer = ev.buf }
 
           -- :h vim.lsp
-          vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+          vim.keymap.set('n', 'K', function() vim.lsp.buf.hover({ border = 'rounded' }) end, bufopts)
           vim.keymap.set('n', 'gd', fzf.lsp_definitions, bufopts)
           vim.keymap.set('n', 'gT', vim.lsp.buf.type_definition, bufopts)
           vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
@@ -84,9 +84,8 @@ return {
           end, bufopts)
           vim.keymap.set('n', '<leader>cg', fzf.lsp_document_diagnostics, bufopts)
           vim.keymap.set('n', '<leader>cG', fzf.lsp_workspace_diagnostics, bufopts)
-          vim.keymap.set('n', '[g', function() vim.diagnostic.jump({count=-1, float=true}) end, bufopts)
-          vim.keymap.set('n', ']g', function() vim.diagnostic.jump({count=1, float=true}) end, bufopts)
-
+          vim.keymap.set('n', '[g', function() vim.diagnostic.jump({ count = -1, float = true }) end, bufopts)
+          vim.keymap.set('n', ']g', function() vim.diagnostic.jump({ count = 1, float = true }) end, bufopts)
         end,
       })
 
@@ -97,6 +96,10 @@ return {
           end,
         },
         preselect = cmp.PreselectMode.None,
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
+        },
         mapping = cmp.mapping.preset.insert({
           ['<C-d>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -108,70 +111,70 @@ return {
           { name = 'path' },
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
-        },{
+        }, {
           { name = 'buffer', keyword_length = 5,
-          option = {
-            get_bufnrs = function()
-              local bufs = {}
-              for _, win in ipairs(vim.api.nvim_list_wins()) do
-                bufs[vim.api.nvim_win_get_buf(win)] = true
+            option = {
+              get_bufnrs = function()
+                local bufs = {}
+                for _, win in ipairs(vim.api.nvim_list_wins()) do
+                  bufs[vim.api.nvim_win_get_buf(win)] = true
+                end
+                return vim.tbl_keys(bufs)
               end
-              return vim.tbl_keys(bufs)
-            end
-          }
-        },
-      }),
-      formatting = {
-        format = lspkind.cmp_format({
-          mode = 'symbol_text',
-          menu = {
-            buffer = '[buf]',
-            nvim_lsp = '[LSP]',
-            nvim_lua = '[api]',
-            path = '[path]',
-            luasnip = '[snip]',
+            }
           },
-        })
-      },
-      experimental = {
-        native_menu = false,
+        }),
+        formatting = {
+          format = lspkind.cmp_format({
+            mode = 'symbol_text',
+            menu = {
+              buffer = '[buf]',
+              nvim_lsp = '[LSP]',
+              nvim_lua = '[api]',
+              path = '[path]',
+              luasnip = '[snip]',
+            },
+          })
+        },
+        experimental = {
+          native_menu = false,
+        }
       }
+    end
+
+    cmp.setup.cmdline({ '/', '?' }, {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = {
+        { name = 'buffer', keyword_length = 4 }
+      }
+    })
+
+    cmp.setup.cmdline(':', {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        { name = 'path' }
+      }, {
+        { name = 'cmdline' }
+      }),
+      matching = { disallow_symbol_nonprefix_matching = false }
+    })
+
+    lspkind.init {
+      symbol_map = {
+        Method = '',
+        Function = 'f(x)',
+        Field = '',
+        Variable = '',
+        Class = '',
+        Property = '',
+        Keyword = '',
+        File = '',
+        Folder = '',
+        Constant = '',
+        Struct = '',
+        Operator = '',
+        Text = '',
+      },
     }
   end
-
-  cmp.setup.cmdline({ '/', '?' }, {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-      { name = 'buffer' , keyword_length = 4 }
-    }
-  })
-
-  cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-      { name = 'path' }
-    }, {
-      { name = 'cmdline' }
-    }),
-    matching = { disallow_symbol_nonprefix_matching = false }
-  })
-
-  lspkind.init {
-    symbol_map = {
-      Method = '',
-      Function = 'f(x)',
-      Field = '',
-      Variable = '',
-      Class = '',
-      Property = '',
-      Keyword = '',
-      File = '',
-      Folder = '',
-      Constant = '',
-      Struct = '',
-      Operator = '',
-      Text = '',
-    },
-  }
-end
 }
