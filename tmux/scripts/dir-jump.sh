@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 selected_dir=$(find ~/git ~/kk -mindepth 1 -maxdepth 1 -type d | fzf --print-query)
 input=($selected_dir)

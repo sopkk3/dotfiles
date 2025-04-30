@@ -86,6 +86,7 @@ return {
           vim.keymap.set('n', '<leader>cG', fzf.lsp_workspace_diagnostics, bufopts)
           vim.keymap.set('n', '[g', function() vim.diagnostic.jump({ count = -1, float = true }) end, bufopts)
           vim.keymap.set('n', ']g', function() vim.diagnostic.jump({ count = 1, float = true }) end, bufopts)
+          vim.keymap.set('i', '<C-s>', function() vim.lsp.buf.signature_help({ border = 'rounded' }) end, bufopts)
         end,
       })
 
