@@ -26,7 +26,6 @@ return {
       files = {
         cwd_prompt = false,
         no_header = true,
-        -- formatter = 'path.filename_first',
         formatter = 'path.dirname_first',
         actions = {
           ['alt-i'] = { actions.toggle_ignore },
@@ -45,6 +44,11 @@ return {
       buffers = {
         actions = {
           ['ctrl-k'] = { fn = actions.buf_del, reload = true }
+        },
+      },
+      git = {
+        branches = {
+          cmd_del  = { "git", "branch", "--delete", "--force" },
         },
       },
       previewers = {
