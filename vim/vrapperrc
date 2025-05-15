@@ -1,9 +1,5 @@
 let mapleader = ","
-set relativenumber
 set number
-set surround
-set commentary
-set encoding=utf-8
 set clipboard+=unnamedplus
 
 noremap <leader>ww :w<CR>
@@ -16,8 +12,3 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
-
-" noremap \w <Plug>(eclipse-motion:org.eclipse.ui.edit.text.goto.wordNext)
-" noremap \b <Plug>(eclipse-motion:org.eclipse.ui.edit.text.goto.wordPrevious)
-" noremap \e <Plug>(eclipse-textobj:org.eclipse.jdt.ui.edit.text.java.select.enclosing)
-" noremap \l <Plug>(eclipse-textobj:org.eclipse.jdt.ui.edit.text.java.select.last)
