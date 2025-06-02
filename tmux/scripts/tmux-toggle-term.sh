@@ -11,5 +11,5 @@ if [ "${PANE_COUNT}" = 1 ]; then
 elif [ -n "${PANE_ZOOMED}" ]; then
   tmux select-pane -t:.-
 else
-  tmux resize-pane -Z -t1
+  tmux resize-pane -Z -t0
 fi
