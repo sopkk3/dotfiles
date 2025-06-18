@@ -73,6 +73,7 @@ local mappings = {
   {'n', '[d', encode64}, -- <cmd>.!base64<CR> line ending also encoded
   {'n', ']d', '<cmd>.!base64 -d<CR>'},
   {'n', ']j', '<cmd>.!jq<CR>'},
+  {'n', ']x', '<cmd>.!xmllint --format -<CR>'}, -- libxml
   {'v', '[=', [[:'<,'>! column -t | sed 's/ = /=/'<CR>]]},
   -- {'v', ']=', alignOnChar},
   {'n', ']c', '<cmd>!openssl x509 -in % -noout -text<CR>'},
