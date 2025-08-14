@@ -7,7 +7,7 @@ return {
     { '<leader>gf', function() require('fzf-lua').git_files() end },
     { '<leader>as', function() require('fzf-lua').files({ cwd = vim.fn.expand('%:p:h') }) end },
     { '<leader>aS', function() require('fzf-lua').quickfix() end },
-    { '<leader>ag', function() require('fzf-lua').live_grep_glob() end },
+    { '<leader>ag', function() require('fzf-lua').live_grep() end },
     { '<leader>aG', function() require('fzf-lua').live_grep({ search_paths = vim.fn.expand('%:p:h') }) end },
     { '<leader>af', function() require('fzf-lua').grep_cword() end },
     { '<leader>aF', function() require('fzf-lua').grep_curbuf() end },
