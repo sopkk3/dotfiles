@@ -47,4 +47,5 @@ if tmux has-session -t '$0':$window_name 2> /dev/null; then
   exit 0
 fi
 
-tmux new-window -c $dir -n $window_name 'nvim'
+tmux new-window -c $dir -n $window_name
+tmux send-keys -t $window_name 'nvim' C-m
