@@ -1,7 +1,13 @@
 -- :h lspconfig-server-configurations
 local servers = {
   gopls = true,       -- Mason -- go install golang.org/x/tools/gopls@latest
-  pyright = true,     -- Mason -- npm i -g pyright
+  pyright = {     -- Mason -- npm i -g pyright
+    settings = {
+      python = {
+        pythonPath = '.venv/bin/python',
+      },
+    }
+  },
   jsonnet_ls = true,  -- Mason -- go install github.com/grafana/jsonnet-language-server@latest
   terraformls = true, -- Mason -- https://github.com/hashicorp/terraform-ls/releases
   groovyls = {        -- Mason | cmd: .local/share/nvim/mason/packages/groovy-language-server
