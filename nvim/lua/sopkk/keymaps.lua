@@ -44,7 +44,8 @@ local mappings = {
   {'t', '<Esc>', '<C-\\><C-n>'},
 
   -- Folding
-  {'n', '[z', 'zfi{'},
+  {'n', '[zi', 'zfi{'},
+  {'n', '[za', 'zfa{'},
   {'n', ']z', 'za'},
 
   -- Buffers, tabs and qfix list
