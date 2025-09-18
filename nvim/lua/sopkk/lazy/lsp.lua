@@ -57,7 +57,6 @@ return {
     'saadparwaiz1/cmp_luasnip',
   },
   config = function()
-    local lspcnf = require 'lspconfig'
     local cmp = require('cmp')
     local fzf = require('fzf-lua')
     local lspkind = require('lspkind')
@@ -71,7 +70,7 @@ return {
         capabilities = require('cmp_nvim_lsp').default_capabilities(),
       }, config)
 
-      lspcnf[server].setup(config)
+      vim.lsp.enable(server)
 
       vim.diagnostic.config({ virtual_text = true, underline = false, float = { border = 'rounded' } })
       vim.api.nvim_create_autocmd('LspAttach', {
