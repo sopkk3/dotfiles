@@ -70,6 +70,7 @@ return {
         capabilities = require('cmp_nvim_lsp').default_capabilities(),
       }, config)
 
+      vim.lsp.config(server, config)
       vim.lsp.enable(server)
 
       vim.diagnostic.config({ virtual_text = true, underline = false, float = { border = 'rounded' } })
