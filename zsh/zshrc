@@ -15,7 +15,7 @@ source $HOME/.aliases
 
 function mkcd { command mkdir -p $1 && cd $1 }
 function jqp { jq -R -r '. as $line | try fromjson catch $line' }
-function lenv { export $(xargs < .env) }
+function lenv { set -a; source .env; set +a }
 
 if [[ $OSTYPE == 'darwin'* ]]; then
   export GOROOT="$(brew --prefix golang)/libexec"
