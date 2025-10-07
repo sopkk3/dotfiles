@@ -27,6 +27,7 @@ local mappings = {
   {'n', '<leader>QW', '<cmd>tabclose<CR>'},
   {'n', '<leader>aQ', '<cmd>qa!<CR>'},
   {'n', '<leader>cq', toggleQflist},
+  {'n', '<leader>ca', [[<cmd>caddexpr expand('%') . ':' . line('.') . ':' . ' '<CR>]]},
   {'n', 'J', 'mxJ`x'},
   {'n', 'Y', 'y$'},
   {'i', '<C-c>', '<Esc>'},
@@ -43,8 +44,7 @@ local mappings = {
   {'t', '<Esc>', '<C-\\><C-n>'},
 
   -- Folding
-  {'n', '[zi', 'zfi{'},
-  {'n', '[za', 'zfa{'},
+  {'n', '[z', 'zfa{'},
   {'n', ']z', 'za'},
 
   -- Buffers, tabs and qfix list
