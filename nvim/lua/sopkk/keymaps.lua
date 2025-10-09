@@ -19,6 +19,14 @@ local function toggleQflist()
   end
 end
 
+local function del_qf_item()
+  local items = vim.fn.getqflist()
+  local line = vim.fn.line('.')
+  table.remove(items, line)
+  vim.fn.setqflist(items, "r")
+  vim.api.nvim_win_set_cursor(0, { line, 0 })
+end
+
 local mappings = {
   {'n', '<leader>ww', '<cmd>update<CR>'},
   {'n', '<leader>q', '<cmd>q<CR>'},
@@ -62,6 +70,7 @@ local mappings = {
   {'n', '<leader>cq', toggleQflist},
   {'n', '<leader>ca', [[<cmd>caddexpr expand('%') . ':' . line('.') . ':' . ' '<CR>]]},
   {'n', '<leader>cl', '<cmd>cexpr []<CR>'},
+  {'n', '<leader>ct', del_qf_item},
 
   {'n', '[<Space>', '<cmd>m .-2<CR>=='},
   {'v', '[<Space>', [[:move '<-2<CR>gv=gv]]},
