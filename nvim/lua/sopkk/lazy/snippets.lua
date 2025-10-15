@@ -56,11 +56,11 @@ return {
 
     -- WIKI {{
     ls.add_snippets( 'markdown', {
-      snippet('daily', fmt("{}\n- ", {f(
-      function ()
-        return os.date "%Y/%m/%d"
-      end)}
-      )
+      snippet('daily', fmt("{}\n\n", {f(
+        function ()
+          return os.date "%Y/%m/%d"
+        end)}
+        )
       )
     }, {
       key = 'wiki'
