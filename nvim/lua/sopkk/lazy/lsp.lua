@@ -38,7 +38,8 @@ local servers = {
   rust_analyzer = { -- Mason -- rustup component add rust-analyzer
     cmd = {
       'rustup', 'run', 'stable', 'rust-analyzer',
-    }
+    },
+    root_markers = { 'Cargo.toml' }
   },
 
 }
