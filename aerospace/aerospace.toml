@@ -9,12 +9,6 @@ start-at-login = true
 accordion-padding = 5
 
 [mode.main.binding]
-# https://gist.github.com/stecman/97bbe21b59613aa6c6c025ae85871438
-alt-enter = '''exec-and-forget osascript -e '
-tell application "System Events" to tell process "kitty"
-  click menu item "New OS Window" of menu 1 of menu bar item "Shell" of menu bar 1
-end tell''''
-
 # Consider using 'join-with' command as a 'split' replacement if you want to enable normalizations
 # alt-x = 'split horizontal'
 # alt-v = 'split vertical'
@@ -99,4 +93,8 @@ run = 'move-node-to-workspace 5'
 
 [[on-window-detected]]
 if.app-id = 'com.postmanlabs.mac'
+run = 'move-node-to-workspace 5'
+
+[[on-window-detected]]
+if.app-id = 'com.usebruno.app'
 run = 'move-node-to-workspace 5'

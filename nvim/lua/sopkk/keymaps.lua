@@ -95,6 +95,7 @@ local mappings = {
   {'n', '<leader>cf', '<cmd>let @+ = expand("%")<CR>'}, -- copies file path | :h expand
   {'n', '<Leader>cr', function()
     local remote = vim.fn.system('git config --get remote.origin.url')
+    remote = remote:gsub("\n", "")
     vim.fn.setreg('+', remote)
   end },
   {'n', '<Leader>cb', function()
