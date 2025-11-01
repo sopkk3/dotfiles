@@ -14,7 +14,16 @@ local servers = {
     cmd = { 'groovy-language-server' },
   },
   ts_ls = true,  -- Mason
-  yamlls = true, -- Mason -- https://github.com/redhat-developer/yaml-language-server
+  yamlls = { -- Mason -- https://github.com/redhat-developer/yaml-language-server
+    settings = {
+      yaml = {
+        schemas = {
+          kubernetes = { '/*.yaml' },
+          -- ['https://json.schemastore.org/github-action'] = ".github/*.yaml",
+        },
+      }
+    }
+  },
   lua_ls = {     -- Mason
     settings = {
       Lua = {
