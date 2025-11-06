@@ -33,5 +33,21 @@ return {
       vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
     end
   },
+  {
+    'echasnovski/mini.hipatterns',
+    config = function ()
+      local hipatterns = require('mini.hipatterns')
+      hipatterns.setup({
+        highlighters = {
+          todo  = { pattern = '%f[%w]()TODO()%f[%W]', group = 'MiniHipatternsNote' },
+          hex_color = hipatterns.gen_highlighter.hex_color(),
+        },
+      })
+    end
+  },
+  {
+    "j-hui/fidget.nvim",
+    opts = { },
+  }
 
 }
