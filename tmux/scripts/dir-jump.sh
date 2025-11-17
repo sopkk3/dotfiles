@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-selected_dir=$(find ~/git ~/kk -mindepth 1 -maxdepth 1 -type d | fzf --print-query)
+selected_dir=$(find ~/git ~/kk ~/scripts -mindepth 1 -maxdepth 1 -type d | fzf --print-query)
 input=($selected_dir)
 dir=${input[1]}
 if [[ ${#input[@]} -lt 2 || -z ${input[1]} ]]; then
