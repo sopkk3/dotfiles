@@ -18,8 +18,8 @@ local servers = {
     settings = {
       yaml = {
         schemas = {
-          kubernetes = { '/*.yaml' },
-          -- ['https://json.schemastore.org/github-action'] = ".github/*.yaml",
+          kubernetes = { '/k8*/**/*.yaml', '/**/kuberentes/templates/*yaml' },
+          -- ['https://json.schemastore.org/github-action'] = '.github/*.yaml',
         },
       }
     }

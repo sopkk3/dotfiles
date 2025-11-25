@@ -49,6 +49,7 @@ return {
         'groovy',
         'make',
         'gotmpl',
+        'helm',
       },
       highlight = {
         enable = true,

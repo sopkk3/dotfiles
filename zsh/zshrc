@@ -54,3 +54,4 @@ then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -d /opt/podman ] && export PATH="/opt/podman/bin:$PATH"
