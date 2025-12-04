@@ -13,7 +13,9 @@ return {
       end },
       { '<leader>gb', '<cmd>G blame<CR>' },
       { '<leader>gp', '<cmd>G push<CR>' },
-      { '<leader>gl', '<cmd>G pull<CR>' },
+      { '<leader>gl', function()
+         vim.system({'git', 'pull'}, { text = true }, require('sopkk.utils').print_out)
+      end},
       { '<leader>gb', '<cmd>G blame<CR>' },
       { '<leader>gL', '<cmd>G log --pretty=format:"%h%x09%an%x09%ad%x09%s"<CR>' },
       { '<leader>gc', '<cmd>G log -p -- %<CR>' },

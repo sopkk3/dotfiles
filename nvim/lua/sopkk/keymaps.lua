@@ -27,6 +27,8 @@ local function del_qf_item()
   vim.api.nvim_win_set_cursor(0, { line, 0 })
 end
 
+vim.api.nvim_create_user_command('Make', require('sopkk.utils').make_async, { nargs = '?' })
+
 local mappings = {
   {'n', '<leader>ww', '<cmd>update<CR>'},
   {'n', '<leader>q', '<cmd>q<CR>'},
@@ -48,6 +50,7 @@ local mappings = {
   {'n', '<leader>w4', '4<C-w>w'},
 
   {'t', '<Esc>', '<C-\\><C-n>'},
+  {'n', '<F2>', '<cmd>Make<CR>'},
 
   -- Folding
   {'n', '[z', 'zfa{'},
