@@ -1,5 +1,3 @@
-local opts = { noremap = true, silent = true }
-
 local function encode64() -- :h vim.base64
   local lineContent = vim.api.nvim_get_current_line()
   local output = vim.fn.system("echo -n '" .. lineContent .. "'| base64")
@@ -27,7 +25,7 @@ local function del_qf_item()
   vim.api.nvim_win_set_cursor(0, { line, 0 })
 end
 
-vim.api.nvim_create_user_command('Make', require('sopkk.utils').make_async, { nargs = '?' })
+vim.api.nvim_create_user_command('Run', require('sopkk.utils').run_async, { nargs = '?' })
 
 local mappings = {
   {'n', '<leader>ww', '<cmd>update<CR>'},
@@ -49,8 +47,11 @@ local mappings = {
   {'n', '<leader>w3', '3<C-w>w'},
   {'n', '<leader>w4', '4<C-w>w'},
 
+  -- Terminal - Shell
   {'t', '<Esc>', '<C-\\><C-n>'},
-  {'n', '<F2>', '<cmd>Make<CR>'},
+  {'n', '<F2>', '<cmd>Run make<CR>'},
+  {'n', '<leader>rr', ':Run '},
+  {'n', '<leader>bc', '<cmd>.!bc<CR>'},
 
   -- Folding
   {'n', '[z', 'zfa{'},
@@ -86,7 +87,6 @@ local mappings = {
   {'n', ']j', '<cmd>.!jq<CR>'},
   {'n', ']x', '<cmd>.!xmllint --format -<CR>'}, -- libxml
   {'v', '[=', [[:'<,'>! column -t | sed 's/ = /=/'<CR>]]},
-  -- {'v', ']=', alignOnChar},
   {'n', ']c', '<cmd>!openssl x509 -in % -noout -text<CR>'},
 
   -- Clipboard access is needed :help clipboard | <C-r>+ paste from + register (insert)
@@ -111,5 +111,5 @@ local mappings = {
 }
 
 for _, v in pairs(mappings) do
-  vim.keymap.set(v[1], v[2], v[3], opts)
+  vim.keymap.set(v[1], v[2], v[3])
 end
