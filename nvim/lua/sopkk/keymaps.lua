@@ -25,7 +25,13 @@ local function del_qf_item()
   vim.api.nvim_win_set_cursor(0, { line, 0 })
 end
 
-vim.api.nvim_create_user_command('Run', require('sopkk.utils').run_async, { nargs = '?' })
+local function close_all_term_buffers()
+  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(bufnr) and vim.bo[bufnr].buftype == 'terminal' then
+    vim.cmd('bd! ' .. bufnr)
+    end
+  end
+end
 
 local mappings = {
   {'n', '<leader>ww', '<cmd>update<CR>'},
@@ -52,6 +58,7 @@ local mappings = {
   {'n', '<F2>', '<cmd>Run make<CR>'},
   {'n', '<leader>rr', ':Run '},
   {'n', '<leader>bc', '<cmd>.!bc<CR>'},
+  {'n', '<leader>tq', close_all_term_buffers},
 
   -- Folding
   {'n', '[z', 'zfa{'},

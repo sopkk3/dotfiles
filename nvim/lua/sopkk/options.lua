@@ -57,6 +57,8 @@ vim.filetype.add({
   }
 })
 
+vim.api.nvim_create_user_command('Run', require('sopkk.utils').run_async, { nargs = '?' })
+
 local group = vim.api.nvim_create_augroup('OptionsGroup', { clear = true })
 
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, { group = group,  command = '%s/\\s\\+$//e'})
