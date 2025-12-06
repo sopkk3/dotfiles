@@ -1,9 +1,9 @@
 local opts = { buffer = true, noremap = true, silent = true }
 
 if vim.fs.find({'pom.xml'}, { upward = true })[1] then
-  vim.keymap.set('n', '<leader>cc', ':!mvn clean install<CR>', opts)
+  vim.keymap.set('n', '<F2>', '<cmd>Run mvn clean install<CR>', opts)
 elseif vim.fs.find({'settings.gradle'}, { upward = true })[1] then
-  vim.keymap.set('n', '<leader>cc', ':!gradle build<CR>', opts)
+  vim.keymap.set('n', '<F2>', '<cmd>Run gradle build<CR>', opts)
 end
 
 vim.opt_local.commentstring = [[// %s]]
