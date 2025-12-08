@@ -143,7 +143,7 @@ return {
         }),
         formatting = {
           format = lspkind.cmp_format({
-            mode = 'symbol_text',
+            mode = 'text',
             menu = {
               buffer = '[buf]',
               nvim_lsp = '[LSP]',
@@ -153,9 +153,6 @@ return {
             },
           })
         },
-        experimental = {
-          native_menu = false,
-        }
       }
     end
 
