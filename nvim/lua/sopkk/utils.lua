@@ -10,6 +10,7 @@ local close_compile_window = function()
 end
 
 function M.print_out(obj)
+  vim.schedule(function() vim.cmd('checktime') end)
   print(obj.stdout)
   print(obj.stderr)
 end
@@ -153,6 +154,7 @@ function M.run_async(args)
       vim.api.nvim_buf_set_lines(compile_buffer, -1, -1, false, { "", status_line })
       local line_count = vim.api.nvim_buf_line_count(compile_buffer)
       vim.api.nvim_win_set_cursor(M.compile_window, {line_count, 0})
+      vim.cmd('checktime')
     end)
   end
 
