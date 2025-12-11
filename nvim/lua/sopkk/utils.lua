@@ -55,6 +55,7 @@ function M.run_async(args)
     style = "minimal",
   })
   local actual_cwd = vim.fn.getcwd()
+  vim.api.nvim_buf_set_lines(compile_buffer, -1, -1, false, { "> " .. table.concat(command, ' ') })
 
   vim.api.nvim_buf_set_keymap(compile_buffer, "n", "<CR>", "", {
     callback = function()
