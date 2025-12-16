@@ -36,6 +36,7 @@ local mappings = {
   {'n', 'Y', 'y$'},
   {'i', '<C-c>', '<Esc>'},
   {'n', '<leader>E', '<cmd>Explore<CR>'},
+  {'n', '<leader>ee', '<cmd>e<CR>'},
   {'n', '<Up>', '<C-y>'},
   {'n', '<Down>', '<C-e>'},
   {"n", "<leader>f", "<C-^>"},
