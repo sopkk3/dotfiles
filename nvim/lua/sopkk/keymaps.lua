@@ -52,7 +52,10 @@ local mappings = {
   {'n', '<leader>rr', ':Run '},
   {'n', '<leader>bc', '<cmd>.!bc<CR>'},
   {'n', '<leader>rq', function()
-    vim.api.nvim_win_close(require('sopkk.utils').compile_window, true)
+    local window = require('sopkk.utils').compile_window
+    if window ~= nil and vim.api.nvim_win_is_valid(window) then
+      vim.api.nvim_win_close(window, true)
+    end
   end},
 
   -- Folding
