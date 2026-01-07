@@ -1,33 +1,13 @@
 return {
-  'nvim-treesitter/nvim-treesitter',
-  dependencies = {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    {
-      'nvim-treesitter/nvim-treesitter-context',
-      config = function()
-        require'treesitter-context'.setup{
-          enable = true,
-          throttle = true,
-          max_lines = 0,
-          patterns = {
-            default = {
-              'function',
-              'method',
-              'for',
-              'while',
-              'if',
-              'switch',
-              'case',
-            },
-          },
-        }
-      end,
-    },
-  },
-  config = function ()
-    ---@diagnostic disable-next-line: missing-fields
-    require('nvim-treesitter.configs').setup {
-      ensure_installed = {
+  {
+    'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
+    -- cargo install --locked tree-sitter-cli
+    config = function ()
+      require('nvim-treesitter').setup({
+        install_dir = vim.fn.stdpath('data') .. '/site',
+      })
+      local parsers = {
         'bash',
         'dockerfile',
         'go',
@@ -50,44 +30,68 @@ return {
         'make',
         'gotmpl',
         'helm',
-      },
-      highlight = {
-        enable = true,
-        disable = function(_, buf)
-          local max_filesize = 2 * 1024 * 1024 -- 2 MB
-          local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-          if ok and stats and stats.size > max_filesize then
-            return true
+      }
+      local group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true })
+      local ts = require('nvim-treesitter')
+      ts.install(parsers)
+
+      vim.api.nvim_create_autocmd('FileType', {
+        group = group,
+        desc = "Enable treesitter",
+        callback = function(event)
+          local lang = vim.treesitter.language.get_lang(event.match) or event.match
+          if vim.list_contains(ts.get_installed(),vim.treesitter.language.get_lang(lang)) then
+            vim.treesitter.start()
           end
         end,
-        additional_vim_regex_highlighting = false
-      },
-      indent = {
-        enable = false,
-      },
-      textobjects = {
+      })
+    end
+  },
+  {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    branch = 'main',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    config = function()
+      require('nvim-treesitter-textobjects').setup({
+        select = {
+          lookahead = true,
+        },
         move = {
-          enable = true,
           set_jumps = true,
+        },
+      })
+      vim.keymap.set('n', ']p', function() require('nvim-treesitter-textobjects.move').goto_next_start('@parameter.inner', 'textobjects') end)
+      vim.keymap.set('n', ']m', function() require('nvim-treesitter-textobjects.move').goto_next_start('@function.outer', 'textobjects') end)
+      vim.keymap.set('n', ']i', function() require('nvim-treesitter-textobjects.move').goto_next_start('@block.outer', 'textobjects') end)
 
-          goto_next_start = {
-            ["]p"] = "@parameter.inner",
-            ["]m"] = "@function.outer",
-            ["]i"] = "@block.outer",
-          },
-          goto_next_end = {
-            ["]M"] = "@function.outer",
-          },
-          goto_previous_start = {
-            ["[p"] = "@parameter.inner",
-            ["[m"] = "@function.outer",
-            ["[i"] = "@block.outer",
-          },
-          goto_previous_end = {
-            ["[M"] = "@function.outer",
+      vim.keymap.set('n', '[p', function() require('nvim-treesitter-textobjects.move').goto_previous_start('@parameter.inner', 'textobjects') end)
+      vim.keymap.set('n', '[m', function() require('nvim-treesitter-textobjects.move').goto_previous_start('@function.outer', 'textobjects') end)
+      vim.keymap.set('n', '[i', function() require('nvim-treesitter-textobjects.move').goto_previous_start('@block.outer', 'textobjects') end)
+
+      vim.keymap.set('n', '[M', function() require('nvim-treesitter-textobjects.move').goto_previous_end('@function.outer', 'textobjects') end)
+      vim.keymap.set('n', ']M', function() require('nvim-treesitter-textobjects.move').goto_next_end('@function.outer', 'textobjects') end)
+    end
+  },
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    config = function()
+      require'treesitter-context'.setup{
+        enable = true,
+        throttle = true,
+        max_lines = 0,
+        patterns = {
+          default = {
+            'function',
+            'method',
+            'for',
+            'while',
+            'if',
+            'switch',
+            'case',
           },
         },
       }
-    }
-  end
+    end,
+  }
 }

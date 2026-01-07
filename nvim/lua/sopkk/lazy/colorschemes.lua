@@ -32,7 +32,7 @@ return {
 
       hl('NonText', { fg = '#767676', })
 
-      -- -- hl('@markup.heading', { link = 'Title' }) -- @markup.heading shares group with pipe_table_header
+      -- hl('@markup.heading', { link = 'Title' }) -- @markup.heading shares group with pipe_table_header
       hl('@markup.heading.1', { fg = '#5f8787', bold = true })
       hl('@markup.heading.2', { fg = '#5f8787', bold = true })
       hl('@markup.heading.3', { fg = '#5f8787', bold = true })
