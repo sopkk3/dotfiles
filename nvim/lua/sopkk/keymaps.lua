@@ -36,7 +36,6 @@ local mappings = {
   {'n', 'Y', 'y$'},
   {'i', '<C-c>', '<Esc>'},
   {'n', '<leader>E', '<cmd>Explore<CR>'},
-  {'n', '<leader>ee', '<cmd>e<CR>'},
   {'n', '<Up>', '<C-y>'},
   {'n', '<Down>', '<C-e>'},
   {"n", "<leader>f", "<C-^>"},
@@ -45,6 +44,8 @@ local mappings = {
   {'n', '<leader>w2', '2<C-w>w'},
   {'n', '<leader>w3', '3<C-w>w'},
   {'n', '<leader>w4', '4<C-w>w'},
+
+  {'i', '<A-o>',function() vim.fn.append(vim.fn.line('.'), '') end},
 
   -- Terminal - Shell
   {'t', '<Esc>', '<C-\\><C-n>'},
