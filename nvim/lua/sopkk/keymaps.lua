@@ -45,19 +45,20 @@ local mappings = {
   {'n', '<leader>w3', '3<C-w>w'},
   {'n', '<leader>w4', '4<C-w>w'},
 
-  {'i', '<A-o>',function() vim.fn.append(vim.fn.line('.'), '') end},
+  {{ 'n', 'i' }, '<A-o>',function() vim.fn.append(vim.fn.line('.'), '') end},
+  {{ 'n', 'i' }, '<A-O>',function() vim.fn.append(vim.fn.line('.') - 1, '') end},
 
   -- Terminal - Shell
   {'t', '<Esc>', '<C-\\><C-n>'},
   {'n', '<F2>', '<cmd>Run make<CR>'},
   {'n', '<leader>rr', ':Run '},
-  {'n', '<leader>bc', '<cmd>.!bc<CR>'},
   {'n', '<leader>rq', function()
     local window = require('sopkk.utils').compile_window
     if window ~= nil and vim.api.nvim_win_is_valid(window) then
       vim.api.nvim_win_close(window, true)
     end
   end},
+  {'n', '<leader>bc', '<cmd>.!bc<CR>'},
 
   -- Folding
   {'n', '[z', 'zfa{'},
