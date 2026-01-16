@@ -58,6 +58,7 @@ local mappings = {
       vim.api.nvim_win_close(window, true)
     end
   end},
+  {'n', '<leader>re', ':read !'},
   {'n', '<leader>bc', '<cmd>.!bc<CR>'},
 
   -- Folding

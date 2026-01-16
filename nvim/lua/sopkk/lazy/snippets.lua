@@ -47,7 +47,7 @@ return {
     ls.add_snippets( 'all', {
       ls.parser.parse_snippet('tern', '${1:condition} ? ${2:true} : ${0:false}'),
 
-      snippet('todo', fmt([[TODO({}): {}]], { i(1, 'who'), i(0, 'what')}) ),
+      snippet('todo', fmt([[TODO: {}]], { i(0, 'what')}) ),
 
     }, {
       key = 'all',
