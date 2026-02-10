@@ -48,6 +48,9 @@ function M.run_async(args)
 
   local original_window = vim.api.nvim_get_current_win()
   local compile_buffer = vim.api.nvim_create_buf(false, true)
+  if M.compile_window ~= nil and vim.api.nvim_win_is_valid(M.compile_window) then
+    close_compile_window()
+  end
   M.compile_window = vim.api.nvim_open_win(compile_buffer, true, {
     split = "below",
     win = -1,
