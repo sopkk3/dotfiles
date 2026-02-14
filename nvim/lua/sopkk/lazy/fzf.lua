@@ -62,38 +62,15 @@ return {
         }
       },
       winopts = {
-        row = 1,
-        width = 1,
-        height = 0.7,
-        border = { '', '─', '', '', '', '', '', '' },
+        split = "belowright " .. math.floor(vim.o.lines * 0.45) .. "new",
+        on_create = function()
+          vim.wo.winbar = " "
+        end,
+
+        border = "none",
         preview = {
-          title = 'center',
-          horizontal = 'right:55%',
-          border = function(_, m)
-            if m.type == 'fzf' then
-              return 'single'
-            else
-              assert(m.type == 'nvim' and m.name == 'prev' and type(m.layout) == 'string')
-              local b = { '┌', '─', '┐', '│', '┘', '─', '└', '│' }
-              if m.layout == 'down' then
-                b[1] = '├' --top right
-                b[3] = '┤' -- top left
-              elseif m.layout == 'up' then
-                b[7] = '├' -- bottom left
-                b[6] = '' -- remove bottom
-                b[5] = '┤' -- bottom right
-              elseif m.layout == 'left' then
-                b[3] = '┬' -- top right
-                b[5] = '┴' -- bottom right
-                b[6] = '' -- remove bottom
-              else -- right
-                b[1] = '┬' -- top left
-                b[7] = '┴' -- bottom left
-                b[6] = '' -- remove bottom
-              end
-              return b
-            end
-          end,
+          layout = "horizontal",
+          horizontal = "right:50%",
         },
       },
     })
