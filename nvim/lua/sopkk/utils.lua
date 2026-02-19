@@ -16,6 +16,7 @@ function M.print_out(obj)
 end
 
 function M.run_async(args)
+  M.run_dir = nil
   local command = vim.fn.split(args.fargs[1], ' ')
   if command[1] == 'v:null' then
     command = vim.deepcopy(M.last_cmd)
@@ -23,16 +24,30 @@ function M.run_async(args)
     M.last_cmd = vim.deepcopy(command)
   end
 
-  if command[1] == '@' then
+  if command[1] == '#' then
     table.remove(command, 1)
     vim.system(command, { text = true }, M.print_out) -- { timeout = N --ms }
     return
+  elseif command[1] == '@' then
+    table.remove(command, 1)
+    local buf_dir = vim.fn.expand('%:p:h')
+    vim.ui.input({
+      prompt = 'Run in directory: ',
+      default = buf_dir,
+      -- completion = 'dir',
+    }, function(selected_cwd)
+      M.run_dir = selected_cwd
+    end)
+    if not M.run_dir or M.run_dir == "" then
+      vim.notify("Command cancelled")
+      return
+    end
   elseif command[1] == '!' then
     table.remove(command,1)
     local shell_command = vim.fn.shellescape(table.concat(command, ' '))
     local pane_count = tonumber(vim.trim(vim.fn.system("tmux list-panes -F '#{pane_id}' | wc -l")))
     if not pane_count or pane_count < 1 then
-      vim.notify("Error: Could not determine tmux pane count.")
+      vim.notify("Error: Could not determine tmux pane count")
       return
     end
     if pane_count == 1 then
@@ -60,64 +75,6 @@ function M.run_async(args)
   local actual_cwd = vim.fn.getcwd()
   vim.api.nvim_buf_set_lines(compile_buffer, -1, -1, false, { "> " .. table.concat(command, ' ') })
 
-  vim.api.nvim_buf_set_keymap(compile_buffer, "n", "<CR>", "", {
-    callback = function()
-      local line = vim.api.nvim_get_current_line()
-
-      local cfile = vim.fn.expand("<cfile>")
-      local start_idx = line:find(cfile, 1, true)
-      if not start_idx then
-        print("Path not found on current line")
-        return
-      end
-      local trimmed_line = line:sub(start_idx)
-
-      -- Pipe into quickfix to take advantage of the errorformatting
-      local original_qf_state = vim.fn.getqflist({ all = 0 })
-      local original_efm = vim.go.errorformat
-
-      local temp_efm = table.concat({
-        '%f:%l:%c:%m',
-        '%f:%l:%c',
-        '%f:%l',
-      }, ',')
-      vim.go.errorformat = temp_efm .. ","  .. original_efm
-      vim.fn.setqflist({}, 'r', { lines = { trimmed_line } })
-      local qf_items = vim.fn.getqflist()
-
-      vim.go.errorformat = original_efm
-      vim.fn.setqflist({}, 'r', {
-        items = original_qf_state.items,
-        title = original_qf_state.title,
-      })
-
-      local lnum = qf_items[1].lnum
-      local col = qf_items[1].col
-
-      local full_path = vim.fs.normalize(vim.fs.joinpath(actual_cwd, cfile))
-      if not vim.uv.factual_cwds_stat(full_path) and vim.uv.fs_stat(cfile) then
-        full_path = vim.fs.normalize(cfile)
-      end
-      if not vim.uv.fs_stat(full_path) then
-        return nil
-      end
-
-      if not vim.api.nvim_win_is_valid(original_window) then
-        vim.notify("Original window is no longer valid", vim.log.levels.ERROR)
-        return
-      end
-
-      local open_to_cmd = "edit +" .. lnum .. " " .. vim.fn.fnameescape(full_path)
-      if type(col) == "number" and col > 0 then
-        open_to_cmd = open_to_cmd .. " | normal! " .. col .. "|"
-      end
-
-      vim.fn.win_execute(original_window, open_to_cmd)
-      vim.api.nvim_set_current_win(original_window)
-    end,
-    noremap = true,
-    silent = true,
-  })
   vim.api.nvim_buf_set_keymap(compile_buffer, "n", "q", "", {
     callback = function()
       close_compile_window()
@@ -164,6 +121,7 @@ function M.run_async(args)
 
   vim.system(command, {
     text = true,
+    cwd = M.run_dir or actual_cwd,
     stdout = on_data,
     stderr = on_data
   }, on_exit)
