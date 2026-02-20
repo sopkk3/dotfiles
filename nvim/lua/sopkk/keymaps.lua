@@ -106,6 +106,10 @@ local mappings = {
   {'n', '<Leader>cr', function()
     local remote = vim.fn.system('git config --get remote.origin.url')
     remote = remote:gsub("\n", "")
+    if remote:sub(1, 4) == 'git@' then
+      remote = remote:gsub(":", "/")
+      remote = remote:gsub("git@", "https://")
+    end
     vim.fn.setreg('+', remote)
   end },
   {'n', '<Leader>cb', function()
