@@ -69,7 +69,7 @@ function M.run_async(args)
   M.compile_window = vim.api.nvim_open_win(compile_buffer, true, {
     split = "below",
     win = -1,
-    height = math.floor(vim.o.lines * 0.3),
+    height = math.floor(vim.o.lines * 0.4),
     style = "minimal",
   })
   local actual_cwd = vim.fn.getcwd()
