@@ -5,7 +5,7 @@ return {
     { '<leader>s', function() require('fzf-lua').files({ git_icons = true }) end },
     { '<leader>S', function() require('fzf-lua').buffers() end },
     { '<leader>gf', function() require('fzf-lua').git_files() end },
-    { '<leader>gds', function() require('fzf-lua').git_diff({ git_icons = true, previewer = "git_diff" }) end },
+    { '<leader><leader>gd', function() require('fzf-lua').git_diff({ git_icons = true, previewer = "git_diff" }) end },
     { '<leader>as', function() require('fzf-lua').files({ cwd = vim.fn.expand('%:p:h') }) end },
     { '<leader>cs', function() require('fzf-lua').quickfix() end },
     { '<leader>ag', function() require('fzf-lua').live_grep() end },
