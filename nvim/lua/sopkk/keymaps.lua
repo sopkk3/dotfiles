@@ -44,8 +44,8 @@ local mappings = {
   {'n', '<leader>w3', '3<C-w>w'},
   {'n', '<leader>w4', '4<C-w>w'},
 
-  {{ 'n', 'i' }, '<A-o>',function() vim.fn.append(vim.fn.line('.'), '') end},
-  {{ 'n', 'i' }, '<A-O>',function() vim.fn.append(vim.fn.line('.') - 1, '') end},
+  {'i', '<A-o>',function() vim.fn.append(vim.fn.line('.'), '') end},
+  {'i', '<A-O>',function() vim.fn.append(vim.fn.line('.') - 1, '') end},
 
   -- Terminal - Shell
   {'t', '<Esc>', '<C-\\><C-n>'},
