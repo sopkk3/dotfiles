@@ -36,7 +36,7 @@ local options = {
 }
 
 vim.opt.wildignore:append('*/node_modules/*,*/target/*,*/.out,*/.git/*,*.swp,*/venv/*,*/__pycache__/*')
-vim.opt.fillchars:append{ diff = "╱" }
+vim.opt.fillchars:append { diff = "╱" }
 
 vim.g.netrw_banner = 0
 vim.g.jsonnet_fmt_on_save = 0
@@ -58,10 +58,11 @@ vim.filetype.add({
 })
 
 vim.api.nvim_create_user_command('Run', require('sopkk.utils').run_async, { nargs = '?' })
+require('vim._core.ui2').enable({ msg = { target = 'cmd' } }) -- experimental. Prints output to buffer (g<)
 
 local group = vim.api.nvim_create_augroup('OptionsGroup', { clear = true })
 
-vim.api.nvim_create_autocmd({ 'BufWritePre' }, { group = group,  command = '%s/\\s\\+$//e'})
+vim.api.nvim_create_autocmd({ 'BufWritePre' }, { group = group, command = '%s/\\s\\+$//e' })
 vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
   group = group,
   callback = function()
@@ -94,8 +95,8 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'FocusGained' }, {
   end,
 })
 
-vim.api.nvim_set_hl(0, 'greenFGblackBG', {fg = '#afffd7', bg = '#1c1c1c'})
-vim.api.nvim_set_hl(0, 'greenFGwhiteBG', {fg = '#000000', bg = '#ffffff'})
+vim.api.nvim_set_hl(0, 'greenFGblackBG', { fg = '#afffd7', bg = '#1c1c1c' })
+vim.api.nvim_set_hl(0, 'greenFGwhiteBG', { fg = '#000000', bg = '#ffffff' })
 
 vim.o.statusline="%#greenFGblackBG#%{get(b:, 'branch_name', '')} %h%m%r %=%F %=%{&encoding} %y %{&ff} %-8.(%l,%c%V%) %P"
 vim.o.winbar="%#greenFGblackBG# %{winnr()} %f%m"
