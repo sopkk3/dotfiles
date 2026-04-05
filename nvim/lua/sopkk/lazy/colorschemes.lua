@@ -31,6 +31,15 @@ return {
       hl('ColorColumn', { bg = '#303030', })
 
       hl('NonText', { fg = '#767676', })
+      hl('DiagnosticError', { fg = '#db4b4b', bg = '#1c1c1c' })
+      hl('DiagnosticFloatingError', { fg = '#db4b4b', bg = '#1c1c1c', bold = true })
+      hl('DiagnosticSignWarn',  { fg = '#e0af68', bg = '#1c1c1c' })
+      hl('DiagnosticFloatingWarn',  { fg = '#e0af68', bg = '#1c1c1c', bold = true })
+      hl('DiagnosticSignInfo',  { fg = '#0db9d7', bg = '#1c1c1c' })
+      hl('DiagnosticFloatingInfo',  { fg = '#0db9d7', bg = '#1c1c1c', bold = true })
+      hl('DiagnosticSignHint',  { fg = '#10b981', bg = '#1c1c1c' })
+      hl('DiagnosticFloatingHint',  { fg = '#10b981', bg = '#1c1c1c', bold = true })
+
 
       -- hl('@markup.heading', { link = 'Title' }) -- @markup.heading shares group with pipe_table_header
       hl('@markup.heading.1', { fg = '#5f8787', bold = true })

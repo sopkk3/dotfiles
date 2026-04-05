@@ -57,7 +57,7 @@ vim.filetype.add({
   }
 })
 
-vim.api.nvim_create_user_command('Run', require('sopkk.utils').run_async, { nargs = '?' })
+vim.api.nvim_create_user_command('Run', require('sopkk.utils').run_async, { nargs = '?', complete = 'file'})
 require('vim._core.ui2').enable({ msg = { target = 'cmd' } }) -- experimental. Prints output to buffer (g<)
 
 local group = vim.api.nvim_create_augroup('OptionsGroup', { clear = true })
@@ -98,6 +98,31 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'FocusGained' }, {
 vim.api.nvim_set_hl(0, 'greenFGblackBG', { fg = '#afffd7', bg = '#1c1c1c' })
 vim.api.nvim_set_hl(0, 'greenFGwhiteBG', { fg = '#000000', bg = '#ffffff' })
 
-vim.o.statusline="%#greenFGblackBG#%{get(b:, 'branch_name', '')} %h%m%r %=%F %=%{&encoding} %y %{&ff} %-8.(%l,%c%V%) %P"
+function _G.custom_statusline()
+    local branch = vim.b.branch_name or ""
+    local diagnostics = vim.diagnostic.status()
+
+    local diagnostic_section = ""
+    if diagnostics ~= "" then
+      diagnostic_section = diagnostics .. "%#greenFGblackBG# "
+    end
+
+    return table.concat({
+        "%#greenFGblackBG# ",
+        branch,
+        " %h%m%r ",
+        "%=",
+        "%F ",
+        "%=",
+        diagnostics,
+        "%{&encoding} ",
+        "%y ",
+        "%{&ff} ",
+        "%-8.(%l,%c%V%) ",
+        "%P",
+    })
+end
+
+vim.o.statusline = "%!v:lua.custom_statusline()"
 vim.o.winbar="%#greenFGblackBG# %{winnr()} %f%m"
 -- vim.o.tabline needs to iterate through tabs
