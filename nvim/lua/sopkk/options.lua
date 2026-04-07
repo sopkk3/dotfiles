@@ -99,28 +99,27 @@ vim.api.nvim_set_hl(0, 'greenFGblackBG', { fg = '#afffd7', bg = '#1c1c1c' })
 vim.api.nvim_set_hl(0, 'greenFGwhiteBG', { fg = '#000000', bg = '#ffffff' })
 
 function _G.custom_statusline()
-    local branch = vim.b.branch_name or ""
-    local diagnostics = vim.diagnostic.status()
+  local branch = vim.b.branch_name or ""
+  local diagnostics = vim.diagnostic.status()
 
-    local diagnostic_section = ""
-    if diagnostics ~= "" then
-      diagnostic_section = diagnostics .. "%#greenFGblackBG# "
-    end
+  if diagnostics ~= "" then
+    diagnostics = diagnostics .. "%#greenFGblackBG# "
+  end
 
-    return table.concat({
-        "%#greenFGblackBG# ",
-        branch,
-        " %h%m%r ",
-        "%=",
-        "%F ",
-        "%=",
-        diagnostics,
-        "%{&encoding} ",
-        "%y ",
-        "%{&ff} ",
-        "%-8.(%l,%c%V%) ",
-        "%P",
-    })
+  return table.concat({
+      "%#greenFGblackBG# ",
+      branch,
+      " %h%m%r ",
+      "%=",
+      "%F ",
+      "%=",
+      diagnostics,
+      "%{&encoding} ",
+      "%y ",
+      "%{&ff} ",
+      "%-8.(%l,%c%V%) ",
+      "%P",
+  })
 end
 
 vim.o.statusline = "%!v:lua.custom_statusline()"
