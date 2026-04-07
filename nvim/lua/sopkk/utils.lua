@@ -74,7 +74,7 @@ function M.run_async(args)
   M.compile_window = vim.api.nvim_open_win(compile_buffer, true, {
     split = "below",
     win = -1,
-    height = math.floor(vim.o.lines * 0.4),
+    height = math.floor(vim.o.lines * 0.1),
     style = "minimal",
   })
   local actual_cwd = vim.fn.getcwd()
@@ -109,7 +109,7 @@ function M.run_async(args)
 
       local line_count = vim.api.nvim_buf_line_count(compile_buffer)
       local max_h = math.floor(vim.o.lines * 0.4)
-      local target_h = math.max(1, math.min(line_count, max_h))
+      local target_h = math.max(math.floor(vim.o.lines * 0.2), math.min(line_count, max_h))
 
       if M.compile_window and vim.api.nvim_win_is_valid(M.compile_window) then
         vim.api.nvim_win_set_height(M.compile_window, target_h)
