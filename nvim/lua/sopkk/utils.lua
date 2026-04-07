@@ -2,6 +2,7 @@ local M = {}
 
 M.last_cmd = {}
 M.compile_window = nil
+M.current_process = nil
 local close_compile_window = function()
   if M.compile_window and vim.api.nvim_win_is_valid(M.compile_window) then
     vim.api.nvim_win_close(M.compile_window, true)
@@ -66,6 +67,10 @@ function M.run_async(args)
   if M.compile_window ~= nil and vim.api.nvim_win_is_valid(M.compile_window) then
     close_compile_window()
   end
+  if M.current_process ~= nil then
+    M.current_process:kill(9)
+    M.current_process = nil
+  end
   M.compile_window = vim.api.nvim_open_win(compile_buffer, true, {
     split = "below",
     win = -1,
@@ -96,14 +101,18 @@ function M.run_async(args)
       end)
       return
     end
-    if data == nil then
-      return
-    end
+    if data == nil then return end
+
     vim.schedule(function()
       local lines = vim.split(data, "\n", { trimempty = false })
       vim.api.nvim_buf_set_lines(compile_buffer, -1, -1, false, lines)
+
       local line_count = vim.api.nvim_buf_line_count(compile_buffer)
+      local max_h = math.floor(vim.o.lines * 0.4)
+      local target_h = math.max(1, math.min(line_count, max_h))
+
       if M.compile_window and vim.api.nvim_win_is_valid(M.compile_window) then
+        vim.api.nvim_win_set_height(M.compile_window, target_h)
         vim.api.nvim_win_set_cursor(M.compile_window, {line_count, 0})
       end
     end)
@@ -119,7 +128,7 @@ function M.run_async(args)
     end)
   end
 
-  vim.system(command, {
+  M.current_process = vim.system(command, {
     text = true,
     cwd = M.run_dir or actual_cwd,
     stdout = on_data,

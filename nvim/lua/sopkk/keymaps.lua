@@ -53,6 +53,11 @@ local mappings = {
   {'n', '<leader>rr', ':Run '},
   {'n', '<leader>rq', function()
     local window = require('sopkk.utils').compile_window
+    local current_process = require('sopkk.utils').current_process
+    if current_process ~= nil then
+      current_process:kill(9)
+      current_process = nil
+    end
     if window ~= nil and vim.api.nvim_win_is_valid(window) then
       vim.api.nvim_win_close(window, true)
     end
