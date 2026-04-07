@@ -1,7 +1,7 @@
 -- :h lspconfig-server-configurations
 local servers = {
-  gopls = true,       -- Mason -- go install golang.org/x/tools/gopls@latest
-  pyright = {     -- Mason -- npm i -g pyright
+  gopls = true,   -- go install golang.org/x/tools/gopls@latest
+  pyright = {     -- npm i -g pyright
     settings = {
       python = {
         pythonPath = '.venv/bin/python',
