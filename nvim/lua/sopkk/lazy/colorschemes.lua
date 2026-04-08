@@ -33,8 +33,8 @@ return {
       hl('NonText', { fg = '#767676', })
       hl('DiagnosticError', { fg = '#db4b4b', bg = '#1c1c1c' })
       hl('DiagnosticFloatingError', { fg = '#db4b4b', bg = '#1c1c1c', bold = true })
-      hl('DiagnosticSignWarn',  { fg = '#e0af68', bg = '#1c1c1c' })
-      hl('DiagnosticFloatingWarn',  { fg = '#e0af68', bg = '#1c1c1c', bold = true })
+      hl('DiagnosticSignWarn',  { fg = '#FFFF00', bg = '#1c1c1c' })
+      hl('DiagnosticFloatingWarn',  { fg = '#FFFF00', bg = '#1c1c1c', bold = true })
       hl('DiagnosticSignInfo',  { fg = '#0db9d7', bg = '#1c1c1c' })
       hl('DiagnosticFloatingInfo',  { fg = '#0db9d7', bg = '#1c1c1c', bold = true })
       hl('DiagnosticSignHint',  { fg = '#10b981', bg = '#1c1c1c' })
@@ -57,5 +57,13 @@ return {
       end
     end,
   },
-  -- 'blazkowolf/gruber-darker.nvim',
+  -- { 'colepeters/spacemacs-theme.vim' },
+  -- {
+  --   "blazkowolf/gruber-darker.nvim",
+  --   config = function(_, _)
+  --     vim.cmd.colorscheme('gruber-darker')
+  --   end,
+  --   priority = 1000
+  -- }
+  -- { 'jnz/studio98' } -- clear coloscheme base
 }
