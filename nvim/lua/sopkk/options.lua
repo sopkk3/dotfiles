@@ -13,7 +13,6 @@ local options = {
   number = true,
   updatetime = 1000,
   splitright = true,
-  joinspaces = false,
   wrap = true,
   breakindent = true,
   showbreak = string.rep(" ", 3),
@@ -21,6 +20,7 @@ local options = {
   list = true,
   cedit = '^O',
   listchars = { trail = '·', tab = '> ', nbsp = '␣' },
+  nrformats = 'unsigned',
 
   scrolloff = 10,
   sidescrolloff = 5,
