@@ -59,7 +59,6 @@ vim.filetype.add({
 
 vim.api.nvim_create_user_command('Run', require('sopkk.utils').run_async, { nargs = '?', complete = 'file'})
 require('vim._core.ui2').enable({ msg = { target = 'cmd' } }) -- experimental. Prints output to buffer (g<)
-vim.cmd.packadd('nvim.difftool')
 
 local group = vim.api.nvim_create_augroup('OptionsGroup', { clear = true })
 
