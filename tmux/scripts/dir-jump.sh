@@ -41,11 +41,12 @@ case ${input[0]} in
     ;;
 esac
 
+session=$(tmux display-message -p '#S')
 window_name=$(basename $dir)
-if tmux has-session -t '$0':$window_name 2> /dev/null; then
-  tmux select-window -t $window_name
+if tmux has-session -t "${session}:${window_name}" 2> /dev/null; then
+  tmux select-window -t "${session}:${window_name}"
   exit 0
 fi
 
-tmux new-window -c $dir -n $window_name
-tmux send-keys -t $window_name 'nvim' C-m
+tmux new-window -t "$session" -c $dir -n $window_name
+tmux send-keys -t "${session}:${window_name}" 'nvim' C-m
