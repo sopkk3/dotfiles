@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 selected_dir=$(find ~/git ~/kk ~/scripts -mindepth 1 -maxdepth 1 -type d | fzf --print-query)
-input=($selected_dir)
+IFS=$'\n' read -r -d '' -a input <<< "$selected_dir" || true
 dir=${input[1]}
 if [[ ${#input[@]} -lt 2 || -z ${input[1]} ]]; then
   exit 0
@@ -48,5 +48,5 @@ if tmux has-session -t "${session}:${window_name}" 2> /dev/null; then
   exit 0
 fi
 
-tmux new-window -t "$session" -c $dir -n $window_name
+tmux new-window -t "${session}:" -c "$dir" -n "$window_name"
 tmux send-keys -t "${session}:${window_name}" 'nvim' C-m
