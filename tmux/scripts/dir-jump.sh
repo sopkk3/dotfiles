@@ -2,38 +2,39 @@
 
 selected_dir=$(find ~/git ~/kk ~/scripts -mindepth 1 -maxdepth 1 -type d | fzf --print-query)
 IFS=$'\n' read -r -d '' -a input <<< "$selected_dir" || true
+IFS=' ' read -r -a args <<< "${input[0]}"
 dir=${input[1]}
-if [[ ${#input[@]} -lt 2 || -z ${input[1]} ]]; then
+if [[ -z "${args[0]}" && -z "${input[1]}" ]]; then
   exit 0
 fi
 
-case ${input[0]} in
+case ${args[0]} in
   "clone")
-    if [[ ${#input[@]} -eq 3 ]]; then
-      dir="$HOME/${input[1]}/$(basename -s .git ${input[2]})"
-      cd "$HOME/${input[1]}"; git clone ${input[2]}
+    if [[ ${#args[@]} -eq 3 ]]; then
+      dir="$HOME/${args[1]}/$(basename -s .git ${args[2]})"
+      cd "$HOME/${args[1]}"; git clone ${args[2]}
     else
       exit 0
     fi
     ;;
   "mkdir")
-    if [[ ${#input[@]} -eq 3 ]]; then
-      dir="$HOME/${input[1]}/${input[2]}"
+    if [[ ${#args[@]} -eq 3 ]]; then
+      dir="$HOME/${args[1]}/${args[2]}"
       mkdir -p $dir
     else
       exit 0
     fi
     ;;
   "open")
-    if [[ ${#input[@]} -eq 2 ]]; then
-      dir="$HOME/${input[1]}"
+    if [[ ${#args[@]} -eq 2 ]]; then
+      dir="$HOME/${args[1]}"
     else
       exit 0
     fi
     ;;
   "cd")
-    if [[ ${#input[@]} -eq 2 ]]; then
-      selected_dir=$(find ~/${input[1]} -mindepth 1 -maxdepth 1 -type d | fzf)
+    if [[ ${#args[@]} -eq 2 ]]; then
+      selected_dir=$(find ~/${args[1]} -mindepth 1 -maxdepth 1 -type d | fzf)
       dir=$selected_dir
     else
       exit 0
