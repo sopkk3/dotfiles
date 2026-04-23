@@ -48,8 +48,8 @@ return {
           topdelete    = {text = '‾'},
           changedelete = {text = '~'},
         },
-        signcolumn = false,
-        numhl      = true,
+        signcolumn = true,
+        numhl      = false,
         watch_gitdir = {
           interval = 1000,
           follow_files = true

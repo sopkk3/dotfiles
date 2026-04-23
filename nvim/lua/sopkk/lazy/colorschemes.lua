@@ -23,18 +23,18 @@ return {
 
       hl('LineNrBelow', { fg = '#949494', bg = '#1c1c1c', })
       hl('LineNrAbove', { fg = '#949494', bg = '#1c1c1c', })
-      hl('CursorLineNr', { fg = '#e4e4e4', bg = '#1c1c1c', })
+      hl('CursorLineNr', { fg = '#b891f5', bg = '#1c1c1c', bold = true })
 
       hl('Search', { fg = '#ffaf00', bg = '#1c1c1c', })
 
-      hl('CursorLine', { bg = '#303030', })
+      hl('CursorLine', { bg = '#1c1c1c', })
       hl('ColorColumn', { bg = '#303030', })
 
       hl('NonText', { fg = '#767676', })
       hl('DiagnosticError', { fg = '#db4b4b', bg = '#1c1c1c' })
       hl('DiagnosticFloatingError', { fg = '#db4b4b', bg = '#1c1c1c', bold = true })
-      hl('DiagnosticSignWarn',  { fg = '#FFFF00', bg = '#1c1c1c' })
-      hl('DiagnosticFloatingWarn',  { fg = '#FFFF00', bg = '#1c1c1c', bold = true })
+      hl('DiagnosticSignWarn',  { fg = '#ffff00', bg = '#1c1c1c' })
+      hl('DiagnosticFloatingWarn',  { fg = '#ffff00', bg = '#1c1c1c', bold = true })
       hl('DiagnosticSignInfo',  { fg = '#0db9d7', bg = '#1c1c1c' })
       hl('DiagnosticFloatingInfo',  { fg = '#0db9d7', bg = '#1c1c1c', bold = true })
       hl('DiagnosticSignHint',  { fg = '#10b981', bg = '#1c1c1c' })
