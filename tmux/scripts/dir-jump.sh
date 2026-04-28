@@ -44,8 +44,14 @@ esac
 
 session=$(tmux display-message -p '#S')
 window_name=$(basename $dir)
-if tmux has-session -t "${session}:${window_name}" 2> /dev/null; then
-  tmux select-window -t "${session}:${window_name}"
+
+match=$(tmux list-windows -a -F '#{session_name}:#{window_name} #{pane_current_path}' 2>/dev/null \
+  | awk -v dir="$dir" -v wname="$window_name" '$2 == dir && $1 ~ (":" wname "$") { print $1; exit }')
+
+if [[ -n "$match" ]]; then
+  match_session="${match%%:*}"
+  tmux switch-client -t "$match_session"
+  tmux select-window -t "$match"
   exit 0
 fi
 
