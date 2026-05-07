@@ -4,8 +4,6 @@ selected_dir=$(find ~/git ~/kk ~/scripts -mindepth 1 -maxdepth 1 -type d | fzf -
 IFS=$'\n' read -r -d '' -a input <<< "$selected_dir" || true
 IFS=' ' read -r -a args <<< "${input[0]}"
 dir=${input[1]}
-[[ -z "$dir" && ! "${args[0]}" =~ ^(clone|mkdir|open|cd)$ ]] && exit 0
-
 case ${args[0]} in
   "clone")
     if [[ ${#args[@]} -eq 3 ]]; then
@@ -42,17 +40,23 @@ case ${args[0]} in
 esac
 
 session=$(tmux display-message -p '#S')
-window_name=$(basename "$dir")
+
+if [[ -n "$dir" ]]; then
+  window_name=$(basename "$dir")
+elif [[ -n "${args[0]}" ]]; then
+  window_name="${args[0]}"
+fi
 
 match=$(tmux list-windows -a -F '#{session_name}:#{window_name}' 2>/dev/null \
   | awk -v wname="$window_name" '$1 ~ (":" wname "$") { print $1; exit }')
 
 if [[ -n "$match" ]]; then
-  match_session="${match%%:*}"
-  tmux switch-client -t "$match_session"
+  tmux switch-client -t "${match%%:*}"
   tmux select-window -t "$match"
   exit 0
 fi
+
+[[ -z "$dir" ]] && exit 0
 
 window_index=$(tmux new-window -t "${session}:" -c "$dir" -n "$window_name" -P -F '#{window_index}')
 tmux send-keys -t "${session}:${window_index}" 'nvim' C-m
