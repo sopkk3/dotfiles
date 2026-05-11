@@ -43,6 +43,7 @@ local mappings = {
   {'n', '<leader>w2', '2<C-w>w'},
   {'n', '<leader>w3', '3<C-w>w'},
   {'n', '<leader>w4', '4<C-w>w'},
+  {'n', '<leader>w5', '5<C-w>w'},
 
   {'i', '<A-o>',function() vim.fn.append(vim.fn.line('.'), '') end},
   {'i', '<A-O>',function() vim.fn.append(vim.fn.line('.') - 1, '') end},
