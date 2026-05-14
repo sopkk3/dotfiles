@@ -35,6 +35,7 @@ return {
       },
       grep = {
         rg_glob = true,
+        hidden = true,
         glob_flag = '--iglob',
         no_header = true,
         actions = {

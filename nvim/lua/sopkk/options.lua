@@ -57,7 +57,30 @@ vim.filetype.add({
   }
 })
 
-vim.api.nvim_create_user_command('Run', require('sopkk.utils').run_async, { nargs = '?', complete = 'file'})
+vim.api.nvim_create_user_command('Run', require('sopkk.utils').run_async, {
+  nargs = '?',
+  complete = function(arg_lead, cmd_line, cursor_pos)
+    local candidates = {}
+    local args = vim.split(cmd_line, '%s+')
+    local first_arg = args[2]
+
+    if first_arg == 'make' and vim.fn.filereadable('Makefile') == 1 then
+      local makefile = vim.fn.readfile('Makefile')
+      for _, line in ipairs(makefile) do
+        local target = line:match('^([%w_-]+):')
+        if target and not line:match('^[%w_-]+%s*:?=') then
+          table.insert(candidates, target)
+        end
+      end
+    else
+      local files = vim.fn.getcompletion(arg_lead, 'file')
+      vim.list_extend(candidates, files)
+    end
+
+    return candidates
+  end
+})
+
 require('vim._core.ui2').enable({ msg = { target = 'cmd' } }) -- experimental. Prints output to buffer (g<)
 
 local group = vim.api.nvim_create_augroup('OptionsGroup', { clear = true })

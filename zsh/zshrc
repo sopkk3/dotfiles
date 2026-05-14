@@ -30,6 +30,7 @@ function lenv { set -a; source .env; set +a }
 
 if [[ $OSTYPE == 'darwin'* ]]; then
   export GOROOT="$(brew --prefix golang)/libexec"
+  export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   export GOROOT=/usr/local/go
 fi

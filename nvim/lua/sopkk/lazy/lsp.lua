@@ -19,6 +19,7 @@ local servers = {
       yaml = {
         schemas = {
           kubernetes = { '/k8s/*.yaml', '/**/kuberentes/templates/*yaml' },
+          ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
           -- ['https://json.schemastore.org/github-action'] = '.github/*.yaml',
         },
       }
