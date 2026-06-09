@@ -99,6 +99,12 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'FocusGained' }, {
   callback = function()
     if vim.fn.isdirectory '.git' ~= 0 then
       local branch = vim.fn.system "git branch --show-current | tr -d '\n'"
+      if branch == '' then
+        branch = vim.fn.system "git describe --tags --exact-match 2>/dev/null | tr -d '\n'"
+      end
+      if branch == '' then
+        branch = vim.fn.system "git rev-parse --short HEAD | tr -d '\n'"
+      end
       vim.b.branch_name = '  ' .. branch .. ' '
     else
       vim.b.branch_name = ''
