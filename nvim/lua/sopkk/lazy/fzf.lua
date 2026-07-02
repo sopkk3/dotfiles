@@ -31,6 +31,17 @@ return {
         actions = {
           ['alt-i'] = { actions.toggle_ignore },
           ['alt-h'] = { actions.toggle_hidden },
+          ['ctrl-a'] = {
+            fn = function(selected, opts)
+              local name = selected[1]
+              if not name or name == '' then return end
+              local path = require('fzf-lua').path.join({ opts.cwd or vim.uv.cwd(), name })
+              vim.fn.mkdir(vim.fn.fnamemodify(path, ':h'), 'p')
+              vim.cmd.edit(vim.fn.fnameescape(path))
+              vim.cmd.write()
+            end,
+            field_index = '{q}',
+          },
         },
       },
       grep = {
