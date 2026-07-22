@@ -108,7 +108,7 @@ local mappings = {
   {'v', '<leader>p', '"_d"+P'},
   {'v', 'p', '"_dP'},
   {'n', '<leader>cf', '<cmd>let @+ = expand("%:.")<CR>'}, -- copies file path | :h expand
-  {'n', '<Leader>cr', function()
+  {'n', '<leader>cr', function()
     local remote = vim.fn.system('git config --get remote.origin.url')
     remote = remote:gsub("\n", "")
     if remote:sub(1, 4) == 'git@' then
@@ -117,9 +117,20 @@ local mappings = {
     end
     vim.fn.setreg('+', remote)
   end },
-  {'n', '<Leader>cb', function()
+  {'n', '<leader>cb', function()
     local branch = vim.fn.system('git rev-parse --abbrev-ref HEAD')
     vim.fn.setreg('+', branch)
+  end },
+  {'n', '<leader>cF', function()
+    local remote = vim.fn.system('git config --get remote.origin.url'):gsub("\n", "")
+    if remote:sub(1, 4) == 'git@' then
+      remote = remote:gsub(":", "/"):gsub("git@", "https://")
+    end
+    remote = remote:gsub("%.git$", "")
+    local branch = vim.fn.system('git rev-parse --abbrev-ref HEAD'):gsub("\n", "")
+    local root = vim.fn.system('git rev-parse --show-toplevel'):gsub("\n", "")
+    local file = vim.fn.expand('%:p'):sub(#root + 2)
+    vim.fn.setreg('+', remote .. '/blob/' .. branch .. '/' .. file)
   end },
   {'n', '<leader>cdl', '<cmd>cd %:p:h<CR>'},
   {'n', '<leader>cdh', '<cmd>cd -<CR>'},
