@@ -1,7 +1,4 @@
-# i3 doesn't have "normalizations" feature that why we disable them here.
-# Enable back splits if this is enabled
-# enable-normalization-flatten-containers = false
-# enable-normalization-opposite-orientation-for-nested-containers = false
+config-version = 2
 
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 start-at-login = true
@@ -9,10 +6,6 @@ start-at-login = true
 accordion-padding = 5
 
 [mode.main.binding]
-# Consider using 'join-with' command as a 'split' replacement if you want to enable normalizations
-# alt-x = 'split horizontal'
-# alt-v = 'split vertical'
-
 alt-h = 'focus left --boundaries-action wrap-around-the-workspace'
 alt-j = 'focus down --boundaries-action wrap-around-the-workspace'
 alt-k = 'focus up --boundaries-action wrap-around-the-workspace'
