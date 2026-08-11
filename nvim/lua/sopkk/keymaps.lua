@@ -25,6 +25,16 @@ local function del_qf_item()
   vim.api.nvim_win_set_cursor(0, { line, 0 })
 end
 
+local function toggleDiff()
+  for _, win in pairs(vim.fn.getwininfo()) do
+    if win["tabnr"] == vim.fn.tabpagenr() and vim.wo[win.winid].diff then
+      vim.cmd "diffoff!"
+      return
+    end
+  end
+  vim.cmd "windo diffthis"
+end
+
 local mappings = {
   {'n', '<leader>ww', '<cmd>update<CR>'},
   {'n', '<leader>q', '<cmd>q<CR>'},
@@ -80,6 +90,7 @@ local mappings = {
   {'n', '<A-,>', '<C-W><'},
   {'n', '<A-m>', '<C-W>+'},
   {'n', '<A-n>', '<C-W>-'},
+  {'n', '<leader>od', toggleDiff},
   {'n', '<leader>os', '<cmd>set scrollbind!<CR>'},
   {'n', '<leader>ow', '<cmd>set wrap!<CR>'},
   {'n', '<leader>tn', '<cmd>tabnew<CR>'},
