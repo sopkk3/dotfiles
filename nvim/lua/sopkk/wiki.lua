@@ -53,6 +53,11 @@ function M.follow_link()
   local target = find_target_at_cursor()
   if not target then return end
 
+  if target:match('^%a[%w+.-]*://') or target:match('^mailto:') then
+    vim.ui.open(target)
+    return
+  end
+
   table.insert(position_stack, {
     file = vim.api.nvim_buf_get_name(0),
     cursor = vim.api.nvim_win_get_cursor(0),
