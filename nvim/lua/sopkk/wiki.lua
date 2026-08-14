@@ -136,6 +136,9 @@ local function find_existing_toc()
         last = j
         j = j + 1
       end
+      if lines[j] and lines[j]:match('^%s*$') then
+        last = j
+      end
       return i, last
     end
   end
