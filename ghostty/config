@@ -1,0 +1,25 @@
+font-family = Cousine Nerd Font Mono
+font-size = 15
+
+foreground = white
+background = #1c1c1c
+
+cursor-color = #fff000
+cursor-text = black
+
+palette = 0=#000000
+palette = 1=#8a2f58
+palette = 2=#287373
+palette = 3=#914e89
+palette = 4=#395573
+palette = 5=#5e468c
+palette = 6=#2b7694
+palette = 7=#899ca1
+palette = 8=#3d3d3d
+palette = 9=#cf4f88
+palette = 10=#53a6a6
+palette = 11=#bf85cc
+palette = 12=#4779b3
+palette = 13=#7f62b3
+palette = 14=#47959e
+palette = 15=#c0c0c0
