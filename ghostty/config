@@ -6,6 +6,8 @@ background = #1c1c1c
 
 cursor-color = #fff000
 cursor-text = black
+cursor-style = block
+shell-integration-features = no-cursor
 
 palette = 0=#000000
 palette = 1=#8a2f58
