@@ -48,6 +48,7 @@ return {
         rg_glob = true,
         hidden = true,
         glob_flag = '--iglob',
+        rg_opts = require('fzf-lua').defaults.grep.rg_opts:gsub(' %-e$', ' -g "!.git" -e'),
         no_header = true,
         actions = {
           ['alt-i'] = { actions.toggle_ignore },
