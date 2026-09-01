@@ -56,6 +56,7 @@ local servers = {
 
 return {
   'neovim/nvim-lspconfig',
+  event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
@@ -69,7 +70,6 @@ return {
   },
   config = function()
     local cmp = require('cmp')
-    local fzf = require('fzf-lua')
     local lspkind = require('lspkind')
 
     for server, config in pairs(servers) do
@@ -88,6 +88,7 @@ return {
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('UserLspConfig', {}),
         callback = function(ev)
+          local fzf = require('fzf-lua')
           local bufopts = { noremap = true, silent = true, buffer = ev.buf }
 
           -- :h vim.lsp
