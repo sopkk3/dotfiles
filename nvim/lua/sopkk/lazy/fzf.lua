@@ -24,6 +24,10 @@ return {
       fzf_opts = {
         ['--cycle'] = true
       },
+      fzf_colors = {
+        ['hl'] = { 'fg', 'Match' },
+        ['hl+'] = { 'fg', 'Match' },
+      },
       files = {
         cwd_prompt = false,
         no_header = true,

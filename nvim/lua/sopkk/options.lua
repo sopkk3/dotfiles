@@ -113,7 +113,6 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'FocusGained' }, {
 })
 
 vim.api.nvim_set_hl(0, 'greenFGblackBG', { fg = '#afffd7', bg = '#1c1c1c' })
-vim.api.nvim_set_hl(0, 'greenFGwhiteBG', { fg = '#000000', bg = '#ffffff' })
 
 function _G.custom_statusline()
   local branch = vim.b.branch_name or ""
