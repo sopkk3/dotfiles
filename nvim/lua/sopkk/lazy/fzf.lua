@@ -76,7 +76,9 @@ return {
         }
       },
       winopts = {
-        split = "botright " .. math.floor(vim.o.lines * 0.45) .. "new",
+        split = function()
+          vim.cmd("botright " .. math.floor(vim.o.lines * 0.45) .. "new")
+        end,
         on_create = function()
           vim.wo.winbar = " "
         end,
