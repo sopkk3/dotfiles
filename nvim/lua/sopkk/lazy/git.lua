@@ -16,6 +16,7 @@ return {
       { '<leader>gl', '<cmd>Run git pull<CR>' },
       { '<leader>gb', '<cmd>G blame<CR>' },
       { '<leader>gL', '<cmd>G log --pretty=format:"%h%x09%an%x09%ad%x09%s"<CR>' },
+      { '<leader>gT', '<cmd>Run git pull --tags --force<CR>' },
       { '<leader>gc', '<cmd>G log -p -- %<CR>' },
       { '<leader>WW', '<cmd>Gwrite<CR>' },
     },
