@@ -16,7 +16,7 @@ if wezterm.target_triple:find("windows") ~= nil then
   }
   config.default_domain = "WSL:Ubuntu"
 elseif wezterm.target_triple:find("darwin") ~= nil then
-  config.font_size = 13.0
+  config.font_size = 15.0
 end
 
 config.colors = {

@@ -63,6 +63,9 @@ vim.api.nvim_create_user_command('Run', require('sopkk.utils').run_async, {
     local candidates = {}
     local args = vim.split(cmd_line, '%s+')
     local first_arg = args[2]
+    if first_arg == '!' or first_arg == '#' or first_arg == '@' then
+      first_arg = args[3]
+    end
 
     if first_arg == 'make' and vim.fn.filereadable('Makefile') == 1 then
       local makefile = vim.fn.readfile('Makefile')
