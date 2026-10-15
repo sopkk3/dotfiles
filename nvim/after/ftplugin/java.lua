@@ -30,7 +30,7 @@ local config = {
     '--add-modules=ALL-SYSTEM',
     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-    '-javaagent:' .. home .. '/build/lombok/1.18.36/lombok.jar',
+    '-javaagent:' .. home .. '/build/lombok/1.18.48/lombok.jar',
     '-jar', home .. '/build/jdtls/1.57.0/plugins/org.eclipse.equinox.launcher_1.7.100.v20251111-0406.jar',
     '-configuration', home .. '/build/jdtls/1.57.0/' .. config_file,
     '-data', vim.fn.expand('/tmp/jdtls-workspace') .. workspace_dir,
