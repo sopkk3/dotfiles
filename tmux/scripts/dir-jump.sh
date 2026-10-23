@@ -13,7 +13,7 @@ case ${args[0]} in
       exit 0
     fi
     ;;
-  "mkdir")
+  "mkdir"|"mk")
     if [[ ${#args[@]} -eq 3 ]]; then
       dir="$HOME/${args[1]}/${args[2]}"
       mkdir -p $dir
@@ -21,7 +21,7 @@ case ${args[0]} in
       exit 0
     fi
     ;;
-  "open")
+  "open"|"o")
     if [[ ${#args[@]} -eq 2 && -d ~/${args[1]} ]]; then
       dir="$HOME/${args[1]}"
     else
