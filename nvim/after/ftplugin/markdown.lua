@@ -51,8 +51,10 @@ local function preview_markdown_split()
   vim.wo[preview_win].relativenumber = false
   vim.wo[preview_win].signcolumn = "no"
   local synced = {}
+  local rendering = false
 
   local function render()
+    rendering = true
     local buf = vim.api.nvim_create_buf(false, true)
     vim.bo[buf].bufhidden = "wipe"
     vim.api.nvim_win_set_buf(preview_win, buf)
@@ -62,7 +64,10 @@ local function preview_markdown_split()
       vim.fn.jobstart({ "leaf", "--inline", "ansi:" .. width, file }, {
         term = true,
         on_exit = function()
-          vim.schedule(function() sync_scroll(src_win, preview_win, synced) end)
+          vim.schedule(function()
+            sync_scroll(src_win, preview_win, synced)
+            rendering = false
+          end)
         end,
       })
     end)
@@ -78,7 +83,11 @@ local function preview_markdown_split()
   vim.api.nvim_create_autocmd("WinScrolled", {
     group = group,
     pattern = tostring(preview_win),
-    callback = function() sync_scroll(preview_win, src_win, synced) end,
+    callback = function()
+      if not rendering then
+        sync_scroll(preview_win, src_win, synced)
+      end
+    end,
   })
   vim.api.nvim_create_autocmd("WinClosed", {
     group = group,
